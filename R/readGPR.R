@@ -1,60 +1,39 @@
-readGPR <- function (colour = "RG", targets, gpr.path, gal.filename, gal.path){
+readGPR <- function(x, path, galPath) {
   # Read in microarray GPR files (Genepix) for both 635nm and 532nm scans
-  # Dependencies: limma
-  # Arguments: targets = character vector of GPR filenames
-  #            colour = RG, R or G
-  #            gpr.path = full path to GPR files in targets
-  #            gal.file = GAL file name
-  #            gal.path = full path to GAL file
-  # Output: (RG) List of Limma EListRaw object with 2 components - R for 635nm and  G for 532nm
-  #         (R or G) Limma EListRaw object
-  # Last Updated: 18.2.2012
-  require(limma)
-  if (colour == "RG"){
-    RG <- list (R = read.maimages (targets,
-                                   path = gpr.path,
-                                   source = "genepix",
-                                   columns = list(R="F635 Median", Rb="B635 Median"),
-                                   wt.fun = function(x) as.numeric(x$Flags > -99)
-                                   ),
-                G = read.maimages (targets,
-                                   path = gpr.path,
-                                   source = "genepix",
-                                   columns = list(R="F532 Median", Rb="B532 Median"),
-                                   wt.fun = function(x) as.numeric(x$Flags > -99)
-                                   )
-                )
-    
-    for (i in 1:length(RG)){
-      RG[[i]]$genes <- readGAL (galfile = gal.filename, path = gal.path)
-      RG[[i]]$printer <- getLayout(readGAL(gal.filename, path = gal.path), guessdups = TRUE)
-      rownames(RG[[i]]$E) <- RG[[i]]$genes$ID
-    }
-    return (RG)
-    
-  } else if (colour == "R"){
-    R <-  read.maimages (targets,
-                         path = gpr.path,
-                         source = "genepix",
-                         columns = list(R="F635 Median", Rb="B635 Median"),
-                         wt.fun = function(x) as.numeric(x$Flags > -99)
-                         )
-    
-    R$genes <- readGAL (galfile = gal.filename, path = gal.path)
-    R$printer <- getLayout(readGAL(gal.filename, path = gal.path), guessdups = TRUE)
-    return (R)
-    
-  } else if (colour == "G"){
-    G <-  read.maimages (targets,
-                         path = gpr.path,
-                         source = "genepix",
-                         columns = list(G="F532 Median", Gb="B532 Median"),
-                         wt.fun = function(x) as.numeric(x$Flags > -99)
-                         )
-    
-    G$genes <- readGAL (galfile = gal.filename, path = gal.path)
-    G$printer <- getLayout(readGAL(gal.filename, path = gal.path), guessdups = TRUE)
-    return (G)
-    
-  } else stop ("Colour must be either RG, R or G")
+  # Dependencies: plyr
+  # Arguments:    x = character vector of GPR filenames
+  #               path = full path to GPR file directory
+  #               galPath = full path to GAL file
+  #
+  # Author:       Kate Nambiar
+  # Last Updated: 29.4.2012
+  
+  require(plyr)
+  
+  filePath <- as.list(file.path(path, x))
+  fileHeaders <- read.table(filePath[[1]], skip = 34, stringsAsFactors = FALSE, nrows = 1)
+  idCol <- fileHeaders %in% "ID"
+  dataCols <- fileHeaders %in% c("F635 Median", "B635 Median", "F532 Median", "B532 Median", "Flags")
+  cols <- rep("NULL", length(fileHeaders))
+  cols[idCol] <- "character"
+  cols[dataCols] <- "integer"
+  
+  cat("Reading GPR files... \n")
+  GPR <- llply(filePath, function(x) read.table(x, header = TRUE, skip = 34, stringsAsFactors = FALSE, colClasses = cols), .progress = "text")
+  names(GPR) <- x
+  
+  cat("Reading GAL file... \n \n")
+  GAL <- readLines(galPath)
+  skip <- intersect(grep("Name", GAL), grep("ID", GAL)) - 1
+  GAL <- read.table(galPath, header = TRUE, skip = skip, stringsAsFactors = FALSE)
+  
+  listOut <- list(F635 = sapply(GPR, function(x) x$F635.Median),
+                  B635 = sapply(GPR, function(x) x$B635.Median),
+                  F532 = sapply(GPR, function(x) x$F532.Median),
+                  B532 = sapply(GPR, function(x) x$B532.Median),
+                  Weights = sapply(GPR, function(x) as.numeric(x$Flags > -99)),
+                  Annotation = GAL
+                  )
+  cat("Reading Array Files Completed")
+  return(listOut)
 }
