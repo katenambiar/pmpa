@@ -32,7 +32,7 @@ readGPR <- function(x, path, galPath) {
                   F532 = sapply(GPR, function(x) x$F532.Median),
                   B532 = sapply(GPR, function(x) x$B532.Median),
                   Weights = sapply(GPR, function(x) as.numeric(x$Flags > -99)),
-                  Annotation = GAL
+                  peptideAnnotation = GAL
                   )
   cat("Reading Array Files Completed")
   return(listOut)
