@@ -11,43 +11,22 @@ setClass ("pepArrayRaw",
 #   Accessor Methods for pepArrayRaw class
 #-----------------------------------------------------------------------------------------------------
 
-if(!isGeneric("fg")) {
-  setGeneric("fg", function(x) standardGeneric("fg"))
-  setMethod("fg", "pepArrayRaw", function(x) slot(x, "FG"))
-}
-
-if(!isGeneric("bg")) {
-  setGeneric("bg", function(x) standardGeneric("bg"))
-  setMethod("bg", "pepArrayRaw", function(x) slot(x, "BG"))
-}
-
-if(!isGeneric("flags")) {
-  setGeneric("flags", function(x) standardGeneric("flags"))
-  setMethod("flags", "pepArrayRaw", function(x) slot(x, "flags"))
-}
-
-if(!isGeneric("peptideAnnotation")) {
-  setGeneric("peptideAnnotation", function(x) standardGeneric("peptideAnnotation"))
-  setMethod("peptideAnnotation", "pepArrayRaw", function(x) slot(x, "peptideAnnotation"))
-}
-
-if(!isGeneric("sampleAnnotation")) {
-  setGeneric("sampleAnnotation", function(x) standardGeneric("sampleAnnotation"))
-  setMethod("sampleAnnotation", "pepArrayRaw", function(x) slot(x, "sampleAnnotation"))
-}
-
+setMethod("getFG", "pepArrayRaw", function(x) slot(x, "FG"))
+setMethod("getBG", "pepArrayRaw", function(x) slot(x, "BG"))
+setMethod("getFlags", "pepArrayRaw", function(x) slot(x, "flags"))
+setMethod("getPepAnnot", "pepArrayRaw", function(x) slot(x, "peptideAnnotation"))
+setMethod("getSampAnnot", "pepArrayRaw", function(x) slot(x, "sampleAnnotation"))
 
 #-----------------------------------------------------------------------------------------------------
 #   Print Methods for pepArrayRaw class
 #-----------------------------------------------------------------------------------------------------
 
 setMethod("show", "pepArrayRaw", 
-          function(object) {
-            cat("Object of class ", class(object), "\n", sep = "")
-            cat(ncol(fg(object)), " Samples \n", sep = "")
-            cat(nrow(fg(object)), " Probes \n", sep = "")
+          function(x) {
+            cat("Object of class ", class(x), "\n", sep = "")
+            cat(ncol(getFG(x)), " Samples \n", sep = "")
+            cat(nrow(getFG(x)), " Probes \n", sep = "")
           })
-
 
 #-----------------------------------------------------------------------------------------------------
 #   readGPR
@@ -123,31 +102,27 @@ readGPR <- function(x, path, galPath, col = "R") {
 #   ArrayCV
 #-----------------------------------------------------------------------------------------------------
 
-if(!isGeneric("arrayCV")) {
-  setGeneric(
-    name = "arrayCV", 
-    def = function(x, ndups, spacing) standardGeneric("arrayCV")
-    )
-  
-  setMethod(
-    f = "arrayCV",
-    signature = "pepArrayRaw",
-    definition = function(x, ndups, spacing){
-      # Calculate the CV of intra-array replicates
-      # Dependencies: 
-      # Arguments: x = PepArrayRaw object or matrix of intensity values with probes as rows and samples in columns
-      #            ndups = number of technical replicates on the microarray
-      #            spacing = number of rows separating a probe from its replicate
-      # Output:    matrix of CV values with samples in colums and unique probes in rows
-      #
-      # Kate Nambiar
-      # Last Updated: 30.4.2012
-      y <- log2(fg(x))
-      y[flags(x) == 0] <- NA
-      dim(y) <- c(spacing, ndups, ncol(y))
-      cv <- apply(y, c(1,3), sd) / apply(y, c(1,3), mean)
-      return(cv)
-    })
+
+setMethod(
+  f = "arrayCV",
+  signature = "pepArrayRaw",
+  definition = function(x, ndups, spacing){
+    # Calculate the CV of intra-array replicates
+    # Dependencies: 
+    # Arguments: x = PepArrayRaw object or matrix of intensity values with probes as rows and samples in columns
+    #            ndups = number of technical replicates on the microarray
+    #            spacing = number of rows separating a probe from its replicate
+    # Output:    matrix of CV values with samples in columns and unique probes in rows
+    #
+    # Kate Nambiar
+    # Last Updated: 30.4.2012
+    y <- log2(getFG(x))
+    y[flags(x) == 0] <- NA
+    dim(y) <- c(spacing, ndups, ncol(y))
+    cv <- apply(y, c(1,3), sd) / apply(y, c(1,3), mean)
+    return(cv)
+    }
+  )
 
   setMethod(
     f = "arrayCV",
@@ -158,7 +133,7 @@ if(!isGeneric("arrayCV")) {
       # Arguments: x = PepArrayRaw object or matrix of intensity values with probes as rows and samples in columns
       #            ndups = number of technical replicates on the microarray
       #            spacing = number of rows separating a probe from its replicate
-      # Output:    matrix of CV values with samples in colums and unique probes in rows
+      # Output:    matrix of CV values with samples in columns and unique probes in rows
       #
       # Kate Nambiar
       # Last Updated: 30.4.2012
@@ -166,5 +141,4 @@ if(!isGeneric("arrayCV")) {
       cv <- apply(x, c(1,3), sd) / apply(x, c(1,3), mean)
       return(cv)
     })
-}
-  
+
