@@ -22,10 +22,10 @@ setMethod("getSampAnnot", "pepArrayRaw", function(x) slot(x, "sampleAnnotation")
 #-----------------------------------------------------------------------------------------------------
 
 setMethod("show", "pepArrayRaw", 
-          function(x) {
-            cat("Object of class ", class(x), "\n", sep = "")
-            cat(ncol(getFG(x)), " Samples \n", sep = "")
-            cat(nrow(getFG(x)), " Probes \n", sep = "")
+          function(object) {
+            cat("Object of class ", class(object), "\n", sep = "")
+            cat(ncol(getFG(object)), " Samples \n", sep = "")
+            cat(nrow(getFG(object)), " Probes \n", sep = "")
           })
 
 #-----------------------------------------------------------------------------------------------------
