@@ -1,9 +1,14 @@
 Package: peparray
 Type: Package
 Title: Peptide Microarray Pre-Processing and Analysis
-Version: 1.0
+Version: 0.1
 Date: 2012-05-03
 Author: Kate Nambiar
 Maintainer: Kate Nambiar <k.z.nambiar@bsms.ac.uk>
 Description: 
+Depends:
+    R (>= 2.14)
+    methods
+Imports:
+    plyr (>= 1.0)
 License: GPL-2
