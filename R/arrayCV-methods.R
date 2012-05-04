@@ -4,7 +4,7 @@
 
 setMethod(
   f = "arrayCV",
-  signature = "pepArrayRaw",
+  signature = "pepArray",
   definition = function(x, ndups, spacing){
     # Calculate the CV of intra-array replicates
     # Dependencies: 
