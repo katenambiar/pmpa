@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------------------
 
 # pepArrayRaw Class Definition
-setClass ("pepArrayRaw", 
+setClass ("pepArray", 
           representation (FG = "matrix", BG = "matrix", flags = "matrix", peptideAnnotation = "data.frame", sampleAnnotation = "data.frame")
           )
 
