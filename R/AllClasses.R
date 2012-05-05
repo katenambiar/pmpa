@@ -1,13 +1,15 @@
-library(Biobase) #For testing only - Remove in final package
-library(plyr)
+# pepArrayPP Class Definition - Pre-processing data class
+setClass ("pepArrayPP",
+          contains = "eSet"
+          )
 
-# pepArray Class Definition
+# pepArray Class Definition - Analysis data class
 setClass ("pepArray",
           contains = "eSet"
           )
 
-# pepArray Constructor Method
-setMethod ("initialize", "pepArray",
+# pepArrayPP Constructor Method
+setMethod ("initialize", "pepArrayPP",
            function(.Object,
                     assayData = assayDataNew(fg = fg, bg = bg, flags = flags),
                     fg = new("matrix"),
@@ -31,5 +33,22 @@ setMethod ("initialize", "pepArray",
                             experimentData = experimentData,
                             annotation = annotation,
                             protocolData = protocolData,
+                            ...)
+           })
+
+# pepArrayPP Constructor Method
+setMethod ("initialize", "pepArray",
+           function(.Object,
+                    assayData = assayDataNew(exprs = exprs, exprs.se = exprs.se),
+                    exprs = new("matrix"),
+                    exprs.se = new("matrix"),
+                    ...
+                    ) {
+             
+             if(!missing(assayData) && any(!missing(exprs), !missing(exprs.se))){
+               warning("Using 'assayData'; ignoring 'exprs', 'exprs.se'")
+             }
+             callNextMethod(.Object, 
+                            assayData = assayData,
                             ...)
            })

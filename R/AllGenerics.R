@@ -2,52 +2,17 @@
 #   Generic methods for peparray
 #-----------------------------------------------------------------------------------------------------
 
-if(!isGeneric("getI")) {
-  setGeneric(
-    name = "getI", 
-    def = function(x) standardGeneric("getI")
-    )
-}
-
-if(!isGeneric("getFG")) {
-  setGeneric(
-    name = "getFG", 
-    def = function(x) standardGeneric("getFG")
-    )
-}
-
-if(!isGeneric("getBG")) {
-  setGeneric(
-    name = "getBG", 
-    def = function(x) standardGeneric("getBG")
-    )
-}
-
-if(!isGeneric("getFlags")) {
-  setGeneric(
-    name = "getFlags", 
-    def = function(x) standardGeneric("getFlags")
-    )
-}
-
-if(!isGeneric("getPepAnnot")) {
-  setGeneric(
-    name = "getPepAnnot", 
-    def = function(x) standardGeneric("getPepAnnot")
-    )
-}
-
-if(!isGeneric("getSampAnnot")) {
-  setGeneric(
-    name = "getSampAnnot", 
-    def = function(x) standardGeneric("getSampAnnot")
-    )
-}
-
-
+# Calculate the CV of intra-array replicates
 if(!isGeneric("arrayCV")) {
   setGeneric(
     name = "arrayCV", 
-    def = function(x, ...) standardGeneric("arrayCV")
+    def = function(x, ...) standardGeneric("arrayCV"),
+    useAsDefault = function(x, ndups, spacing){
+      x <- as.matrix(x)
+      dim(x) <- c(spacing, ndups, ncol(x))
+      cv <- apply(x, c(1,3), sd) / apply(x, c(1,3), mean)
+      return(cv)
+    }
     )
 }
+
