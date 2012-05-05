@@ -1,8 +1,8 @@
 #-----------------------------------------------------------------------------------------------------
-#   readGPR
+#   readArrays
 #-----------------------------------------------------------------------------------------------------
 
-readGPR <- function(x, path, galPath, col = "R") {
+readArrays <- function(protocol, sample, experiment = NULL, col = "R") {
   # Read in peptide microarray GPR files (Genepix) for either 635nm or 532nm scans
   # Dependencies: plyr
   # Arguments:    x = character vector of GPR filenames
@@ -13,6 +13,13 @@ readGPR <- function(x, path, galPath, col = "R") {
   # Last Updated: 1.5.2012
   
   require(plyr)
+  samples <- read.delim(samples,
+                        stringsAsFactors = FALSE
+                        )
+  
+  filePath <- as.list(file.path(protocol$path, protocol$fileName))
+  
+  
   if(col == "R"){
     dataHeaders <- c("F635 Median", "B635 Median", "Flags")
     
@@ -21,7 +28,7 @@ readGPR <- function(x, path, galPath, col = "R") {
     
   } else stop ("Colour must be either R or G")
   
-  filePath <- as.list(file.path(path, x))
+
   fileHeaders <- read.table(filePath[[1]], skip = 34, stringsAsFactors = FALSE, nrows = 1)
   idCol <- fileHeaders %in% "ID"
   dataCols <- fileHeaders %in% dataHeaders
@@ -31,38 +38,30 @@ readGPR <- function(x, path, galPath, col = "R") {
   
   cat("Reading GPR files... \n")
   GPR <- llply(filePath, function(x) read.table(x, header = TRUE, skip = 34, stringsAsFactors = FALSE, colClasses = cols), .progress = "text")
-  names(GPR) <- x
-  
-  cat("Reading GAL file... \n \n")
-  GAL <- readLines(galPath)
-  skip <- intersect(grep("Name", GAL), grep("ID", GAL)) - 1
-  GAL <- read.table(galPath, header = TRUE, skip = skip, stringsAsFactors = FALSE)
-  
   cat("Reading Array Files Completed")
   
-  flags = sapply(GPR, function(x) as.numeric(x$Flags > -99))
-  peptideAnnotation = GAL
-  sampleAnnotation = data.frame (sampleID = x)
   
   if (col == "R"){
-    obj <- new("pepArrayRaw", 
-               FG = sapply(GPR, function(x) x$F635.Median),
-               BG = sapply(GPR, function(x) x$B635.Median),
-               flags = flags,
-               peptideAnnotation = peptideAnnotation,
-               sampleAnnotation = sampleAnnotation
-               )
+    obj <- new("pepArrayPP")
+    assayData(obj) <- assayDataNew(fg = sapply(GPR, function(x) x$F635.Median),
+                                   bg = sapply(GPR, function(x) x$B635.Median),
+                                   flags = sapply(GPR, function(x) as.numeric(x$Flags > -99))
+                                   )
+    pData(obj) <- data.frame(samples[,-2],
+                             row.names = samples$sampleName
+                             )
+    
+
     return(obj)
   }
   
   if (col == "G"){
-    obj <- new("pepArrayRaw", 
-               FG = sapply(GPR, function(x) x$F532.Median),
-               BG = sapply(GPR, function(x) x$B532.Median),
-               flags = flags,
-               peptideAnnotation = peptideAnnotation,
-               sampleAnnotation = sampleAnnotation
-               )
+    obj <- new("pepArrayPP") 
+    assayData(obj) <- assayDataNew(fg = sapply(GPR, function(x) x$F532.Median),
+                                   bg = sapply(GPR, function(x) x$B532.Median),
+                                   flags = sapply(GPR, function(x) as.numeric(x$Flags > -99))
+                                   )
+    
     return(obj)
   }
   
