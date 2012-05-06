@@ -6,7 +6,7 @@
 if(!isGeneric("prData")) {
   setGeneric(
     name = "prData", 
-    def = function(x) standardGeneric("prData")
+    def = function(x, ...) standardGeneric("prData")
     )
 }
 
