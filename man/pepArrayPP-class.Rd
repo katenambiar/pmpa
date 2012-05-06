@@ -1,6 +1,7 @@
 \name{pepArrayPP-class}
 \Rdversion{1.1}
 \docType{class}
+\alias{pepArrayPP}
 \alias{pepArrayPP-class}
 \alias{arrayAve,pepArrayPP-method}
 \alias{arrayCV,pepArrayPP-method}
@@ -9,7 +10,7 @@
 
 \title{Class \code{"pepArrayPP"}}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the class is. ~~
+This is the class representation for peptide microarray data requiring pre-processing. It extends eSet.
 }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("pepArrayPP", assayData, fg, bg, flags, phenoData, featureData, experimentData, annotation, protocolData, ...)}.
