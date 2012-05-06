@@ -1,17 +1,19 @@
 #-----------------------------------------------------------------------------------------------------
 #   readArrays
 #-----------------------------------------------------------------------------------------------------
-
+#
+#' Read peptide microarray raw data files in genepix GPR format
+#'
+#' This function imports the foreground intensity, background intensity,
+#' flags and feature annotation from GPR files and produces an object of class
+#' pepArrayPP - an extension of the eSet class.
+#'
+#' @param files - tab delimited text file with 3 columns - fileName, path and sampleName
+#' @param col - a character vector (either "R" to import the 635nm channel or "G" for the 532nm channel)
+#' @export
+#' @examples
+#' R <- readArrays(files, col = "R")
 readArrays <- function(files, col = "R") {
-  # Read in peptide microarray GPR files (Genepix) for either 635nm or 532nm scans
-  # Dependencies: plyr
-  # Arguments:    x = character vector of GPR filenames
-  #               path = full path to GPR file directory
-  #               galPath = full path to GAL file
-  #
-  # Author:       Kate Nambiar
-  # Last Updated: 1.5.2012
-  
   files <- read.delim(files, stringsAsFactors = FALSE)
   filePath <- file.path(files$path, files$fileName)
   atfHeader <- lapply(filePath, function(x) read.table(x, nrows = 2, stringsAsFactors = FALSE))
