@@ -2,6 +2,15 @@
 #   Generic methods for peparray
 #-----------------------------------------------------------------------------------------------------
 
+# Protocol data accessor method
+if(!isGeneric("prData")) {
+  setGeneric(
+    name = "prData", 
+    def = function(x) standardGeneric("prData")
+    )
+}
+
+
 # Read Annotation files for peparray objects
 if(!isGeneric("readAnnotation")) {
   setGeneric(
