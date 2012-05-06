@@ -1,2 +1,2 @@
+exportClasses(pepArrayPP)
 exportClasses(pepArray)
-exportMethods(show)
