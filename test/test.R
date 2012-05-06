@@ -1,14 +1,17 @@
 library(devtools)
-pkg <- as.package("../peparray")
-load_all(pkg)
+load_all(as.package("../peparray"))
 
 
 files <- "C:/Users/Kate/git/peparray/test/fileNames.txt"
 protocol <- "C:/Users/Kate/git/peparray/test/protocolAnnotation.txt"
-sample <- "C:/Users/Kate/git/peparray/test/sampleAnnotation.txt"
+pheno <- "C:/Users/Kate/git/peparray/test/sampleAnnotation.txt"
 
 # Read GPR Files
 R <- readArrays(files, col = "R")
+
+# Add pheno annotation
+R <- readAnnotation(R, pheno)
+
 
 # Get CV of replicates
 R.CV <- arrayCV(R, ndups = 3, spacing = 5184)
