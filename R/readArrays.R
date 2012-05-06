@@ -70,7 +70,7 @@ readArrays <- function(files, col = "R") {
                                    bg = sapply(gpr, function(x) x$B635.Median),
                                    flags = sapply(gpr, function(x) as.numeric(x$Flags > -99))
                                    )
-    pData(obj) <- data.frame (sampleName = files$sampleName,
+    pData(obj) <- data.frame (fileName = files$filName,
                              row.names = files$sampleName
                              )
     fData(obj) <- data.frame(ID = gpr[[1]]$ID,
@@ -88,7 +88,7 @@ readArrays <- function(files, col = "R") {
                                    bg = sapply(gpr, function(x) x$B532.Median),
                                    flags = sapply(gpr, function(x) as.numeric(x$Flags > -99))
                                    )
-    pData(obj) <- data.frame (sampleName = files$sampleName,
+    pData(obj) <- data.frame (fileName = files$fileName,
                              row.names = files$sampleName
                              )
     fData(obj) <- data.frame(ID = gpr[[1]]$ID,
