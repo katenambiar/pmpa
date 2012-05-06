@@ -10,7 +10,7 @@ pheno <- "C:/Users/Kate/git/peparray/test/sampleAnnotation.txt"
 R <- readArrays(files, col = "R")
 
 # Add pheno annotation
-R <- readAnnotation(R, pheno)
+R <- readAnnotation(R, pheno = pheno, protocol = protocol)
 
 
 # Get CV of replicates
