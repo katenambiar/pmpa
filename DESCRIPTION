@@ -6,6 +6,17 @@ Date: 2012-05-06
 Author: Kate Nambiar
 Maintainer: Kate Nambiar <k.z.nambiar@bsms.ac.uk>
 Description: 
-Depends: R (>= 2.14), Biobase, methods
-Imports: 
+Depends:
+    R (>= 2.14),
+    Biobase,
+    methods
+Imports: compiler
 License: GPL-2
+Collate:
+    'AllClasses.R'
+    'AllGenerics.R'
+    'arrayAve-methods.R'
+    'arrayCV-methods.R'
+    'intraArrayNormLM.R'
+    'readAnnotation-methods.R'
+    'readArrays.R'
