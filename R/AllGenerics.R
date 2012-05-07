@@ -2,8 +2,24 @@
 #   Generic methods for peparray
 #-----------------------------------------------------------------------------------------------------
 
-
-# Read Annotation files for peparray objects
+#' Read annotation files and add them to pepArrayPP or pepArray objects
+#'
+#' Some additional details go here.
+#'
+#' @param x Description of \code{x}.
+#' @param pheno Description of \code{pheno}.
+#' @param protocol Description of \code{protocol}.
+#' @param feature Description of \code{feature}.
+#'
+#' @usage readAnnotation(x, pheno, protocol, feature)
+#'
+#' @return peparrayPP or peparray object with added annotation
+#' 
+#' @export
+#' @docType methods
+#' @rdname readAnnotation-methods
+#'
+#' @examples ##
 if(!isGeneric("readAnnotation")) {
   setGeneric(
     name = "readAnnotation", 

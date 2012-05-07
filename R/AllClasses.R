@@ -39,7 +39,7 @@ setMethod ("initialize", "pepArrayPP",
 # pepArrayPP Constructor Method
 setMethod ("initialize", "pepArray",
            function(.Object,
-                    assayData = assayDataNew(exprs = exprs, exprs.se = exprs.se),
+                    assayData = assayDataNew(exprs = exprs),
                     exprs = new("matrix"),
                     exprs.se = new("matrix"),
                     ...
