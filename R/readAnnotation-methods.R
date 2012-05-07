@@ -4,7 +4,7 @@ setMethod(
   definition = function(x, pheno = NULL, protocol = NULL, feature = NULL){
     if (!is.null(pheno)){
       phAnnot <- read.AnnotatedDataFrame(pheno, stringsAsFactors = FALSE, row.names = "sampleName")
-      if (identical (sampleNames(x), rownames(phAnnot))){
+      if (identical (sampleNames(x), sampleNames(phAnnot))){
         
         dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
         phenoData(x) <- combine(protocolData(x), phAnnot)
