@@ -28,6 +28,21 @@ if(!isGeneric("readAnnotation")) {
 }
 
 
+if(!isGeneric("arrayBGcorr")) {
+  setGeneric(
+    name = "arrayBGcorr", 
+    def = function(x, ...) standardGeneric("arrayBGcorr")
+    )
+}
+
+
+if(!isGeneric("intraArrayNorm")) {
+  setGeneric(
+    name = "intraArrayNorm", 
+    def = function(x, ...) standardGeneric("intraArrayNorm")
+    )
+}
+
 # Calculate the CV of intra-array replicates
 if(!isGeneric("arrayCV")) {
   setGeneric(
