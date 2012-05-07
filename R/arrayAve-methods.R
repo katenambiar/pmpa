@@ -9,21 +9,31 @@
 setMethod(
   f = "arrayAve",
   signature = "pepArrayPP",
-  definition = function(x, ndups, spacing){
+  definition = function(x){
     
+    if (!is.null(fData(x)$ID)){
+      ID <- fData(x)$ID
+      ID <- factor(ID, levels = unique(ID))
+    }
+    
+    } else {
+      stop("Peptide IDs not defined")
+    }
+  
     y <- assayData(x)$fg
-    y[assayData(x)$flags == 0] <- NA
-    dim(y) <- c(spacing, ndups, ncol(y))
-    ave <- apply(y, c(1,3), mean)
-    se <- apply(y, c(1,3), function(z) sqrt(var(z)/length(z)))
-    obj.tmp <- x[1:spacing,]
-    
+    y[assayData(x)flags == 0] <- NA
+    sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
+    n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
+    ave <- sum.y/n
+  
     obj <- new("pepArray")
-    assayData(obj) <- assayDataNew(exprs = ave, exprs.se = se)
-    phenoData(obj) <- phenoData(obj.tmp)
-    featureData(obj) <- featureData(obj.tmp)
-    phenoData(obj) <- phenoData(obj.tmp)
-    protocolData(obj) <- protocolData(obj.tmp)
+    assayData(obj) <- assayDataNew(exprs = ave)
+    phenoData(obj) <- phenoData(x)
+    fData(obj) <- fData(x)[!duplicated(fData(x)$ID), ]
+    fData(obj) <- fData(obj)[ ,!(names(fData(obj)) %in% c("Block", "Column", "Row"))                     
+    experimentData(obj) <- experimentData(x)
+    protocolData(obj) <- protocolData(x)
+                             
     return(obj)
     }
   )
