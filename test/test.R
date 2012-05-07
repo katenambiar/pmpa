@@ -1,6 +1,8 @@
 library(devtools)
-load_all(as.package("../peparray"))
-
+pkg <- as.package("../peparray")
+load_all(pkg)
+# reload(pkg)
+# document(pkg)
 
 files <- "C:/Users/Kate/git/peparray/test/fileNames.txt"
 protocol <- "C:/Users/Kate/git/peparray/test/protocolAnnotation.txt"
@@ -12,9 +14,11 @@ R <- readArrays(files, col = "R")
 # Add pheno annotation
 R <- readAnnotation(R, pheno = pheno, protocol = protocol)
 
-
 # Get CV of replicates
 R.CV <- arrayCV(R, ndups = 3, spacing = 5184)
+
+# Average intraArray Replicates
+R.ave <- arrayAve(R)
 
 # IA norm
 boxplot(log2(fg(R)))
