@@ -20,7 +20,7 @@ setMethod(
       return (x)
     } else if (method == "subtract"){
       
-      assayDataElement(x, fg) <- assayDataElement(x, fg) - assayDataElement(x, bg)
+      assayDataElement(x, "fg") <- assayDataElement(x, "fg") - assayDataElement(x, "bg")
       return(x)
       
     } else {
