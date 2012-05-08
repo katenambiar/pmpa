@@ -9,8 +9,9 @@ Description:
 Depends:
     R (>= 2.14),
     Biobase,
-    methods
-Imports: compiler
+    methods,
+    compiler
+Imports: 
 License: GPL-2
 Collate:
     'AllClasses.R'
@@ -18,6 +19,7 @@ Collate:
     'arrayAve-methods.R'
     'arrayCV-methods.R'
     'arrayBGcorr-methods.R'
-    'intraArrayNormLM.R'
+    'boxplot-methods.R'
+    'intraArrayNorm-methods.R'
     'readAnnotation-methods.R'
     'readArrays.R'
