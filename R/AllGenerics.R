@@ -64,3 +64,8 @@ if(!isGeneric("arrayAve")) {
     def = function(x, ndups, spacing) standardGeneric("arrayAve")
     )
   }
+
+# Boxplot
+if(!isGeneric("boxplot")) {
+  setGeneric("boxplot")
+}
