@@ -2,6 +2,7 @@
 \Rdversion{1.1}
 \docType{class}
 \alias{pepArray-class}
+\alias{boxplot,pepArray-method}
 \alias{initialize,pepArray-method}
 \alias{readAnnotation,pepArray-method}
 
@@ -31,6 +32,7 @@ Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 }
 \section{Methods}{
   \describe{
+    \item{boxplot}{\code{signature(x = "pepArray")}: ... }
     \item{initialize}{\code{signature(.Object = "pepArray")}: ... }
     \item{readAnnotation}{\code{signature(x = "pepArray")}: ... }
 	 }
@@ -39,7 +41,7 @@ Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 %%  ~~put references to the literature/web site here~~
 }
 \author{
-%%  ~~who you are~~
+Kate Nambiar
 }
 \note{
 %%  ~~further notes~~

@@ -1,24 +1,25 @@
 \name{pepArrayPP-class}
 \Rdversion{1.1}
 \docType{class}
-\alias{pepArrayPP}
 \alias{pepArrayPP-class}
 \alias{arrayAve,pepArrayPP-method}
+\alias{arrayBGcorr,pepArrayPP-method}
 \alias{arrayCV,pepArrayPP-method}
+\alias{boxplot,pepArrayPP-method}
 \alias{initialize,pepArrayPP-method}
+\alias{intraArrayNorm,pepArrayPP-method}
 \alias{readAnnotation,pepArrayPP-method}
 
 \title{Class \code{"pepArrayPP"}}
 \description{
-This is the class representation for peptide microarray data requiring pre-processing. It extends eSet.
+This is a class representation for high-density peptide microarray data undergoing pre-processing. It extends the Biobase \code{"\linkS4class{eSet}"} virtual class.
 }
 \section{Objects from the Class}{
-Objects can be created by calls of the form \code{new("pepArrayPP", assayData, fg, bg, flags, phenoData, featureData, experimentData, annotation, protocolData, ...)}.
-%%  ~~ describe objects here ~~ 
+Objects can be created using the function readArrays to parse data from Genepix GPR files.
 }
 \section{Slots}{
   \describe{
-    \item{\code{assayData}:}{Object of class \code{"AssayData"} ~~ }
+    \item{\code{assayData}:}{Object of class \code{"AssayData"} Contains 3 matrices with equal dimensions: fg - median foreground signal intensity, bg - median local feature background intensity and flags - indicating values to be discarded in the analysis.}
     \item{\code{phenoData}:}{Object of class \code{"AnnotatedDataFrame"} ~~ }
     \item{\code{featureData}:}{Object of class \code{"AnnotatedDataFrame"} ~~ }
     \item{\code{experimentData}:}{Object of class \code{"MIAxE"} ~~ }
@@ -35,8 +36,11 @@ Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 \section{Methods}{
   \describe{
     \item{arrayAve}{\code{signature(x = "pepArrayPP")}: ... }
+    \item{arrayBGcorr}{\code{signature(x = "pepArrayPP")}: ... }
     \item{arrayCV}{\code{signature(x = "pepArrayPP")}: ... }
+    \item{boxplot}{\code{signature(x = "pepArrayPP")}: ... }
     \item{initialize}{\code{signature(.Object = "pepArrayPP")}: ... }
+    \item{intraArrayNorm}{\code{signature(x = "pepArrayPP")}: ... }
     \item{readAnnotation}{\code{signature(x = "pepArrayPP")}: ... }
 	 }
 }
@@ -44,7 +48,7 @@ Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 %%  ~~put references to the literature/web site here~~
 }
 \author{
-%%  ~~who you are~~
+Kate Nambiar <k.z.nambiar@bsms.ac.uk>
 }
 \note{
 %%  ~~further notes~~
@@ -53,8 +57,8 @@ Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 %% ~Make other sections like Warning with \section{Warning }{....} ~
 
 \seealso{
-%%  ~~objects to See Also as \code{\link{~~fun~~}}, ~~~
-%%  ~~or \code{\linkS4class{CLASSNAME}} for links to other classes ~~~
+Class \code{"\linkS4class{eSet}"}
+Class \code{\linkS4class{pepArray}}
 }
 \examples{
 showClass("pepArrayPP")
