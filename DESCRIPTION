@@ -17,6 +17,7 @@ Collate:
     'AllGenerics.R'
     'arrayAve-methods.R'
     'arrayCV-methods.R'
+    'arrayBGcorr-methods.R'
     'intraArrayNormLM.R'
     'readAnnotation-methods.R'
     'readArrays.R'
