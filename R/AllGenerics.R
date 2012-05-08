@@ -31,7 +31,7 @@ if(!isGeneric("readAnnotation")) {
 if(!isGeneric("arrayBGcorr")) {
   setGeneric(
     name = "arrayBGcorr", 
-    def = function(x, ...) standardGeneric("arrayBGcorr")
+    def = function(x, method) standardGeneric("arrayBGcorr")
     )
 }
 
