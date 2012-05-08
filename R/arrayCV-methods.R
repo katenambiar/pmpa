@@ -21,6 +21,7 @@ setMethod(
     y[assayData(x)$flags == 0] <- NA
     dim(y) <- c(spacing, ndups, ncol(y))
     cv <- apply(y, c(1,3), sd) / apply(y, c(1,3), mean)
+    colnames(cv) <- sampleNames(x)
     return(cv)
     
   }
