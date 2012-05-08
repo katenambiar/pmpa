@@ -107,6 +107,3 @@ readArrays <- function(files, col = "R") {
   }
   
 }
-
-readArrays <- cmpfun(readArrays)
-
