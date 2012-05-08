@@ -17,9 +17,5 @@
   GPR files and produces an object of class pepArrayPP - an
   extension of the eSet class.
 }
-\examples{
-## Not run: files <- dir(pattern="*\\\\.gpr$")
-R <- readArrays(files, col = "R")
-## End(Not run)
-}
+
 
