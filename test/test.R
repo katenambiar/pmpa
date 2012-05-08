@@ -4,9 +4,9 @@ load_all(pkg)
 # reload(pkg)
 # document(pkg)
 
-files <- "C:/Users/Kate/git/peparray/test/fileNames.txt"
-protocol <- "C:/Users/Kate/git/peparray/test/protocolAnnotation.txt"
-pheno <- "C:/Users/Kate/git/peparray/test/sampleAnnotation.txt"
+files <- "./test/fileNames.txt"
+protocol <- "./test/protocolAnnotation.txt"
+pheno <- "./test/sampleAnnotation.txt"
 
 # Read GPR Files
 R <- readArrays(files, col = "R")
