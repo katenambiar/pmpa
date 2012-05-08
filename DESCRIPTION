@@ -9,10 +9,10 @@ Description:
 Depends:
     R (>= 2.14),
     Biobase,
-    methods,
-    compiler
+    methods
 Imports: 
 License: GPL-2
+URL: http://github.com/katenambiar/peparray
 Collate:
     'AllClasses.R'
     'AllGenerics.R'
@@ -23,3 +23,4 @@ Collate:
     'intraArrayNorm-methods.R'
     'readAnnotation-methods.R'
     'readArrays.R'
+ByteCompile: TRUE
