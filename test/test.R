@@ -3,6 +3,8 @@ pkg <- as.package("../peparray")
 load_all(pkg)
 # reload(pkg)
 # document(pkg)
+# install_github("peparray", username = "katenambiar")
+
 
 files <- "C:/Users/Kate/git/peparray/test/fileNames.txt"
 protocol <- "C:/Users/Kate/git/peparray/test/protocolAnnotation.txt"
@@ -20,13 +22,11 @@ R.CV <- arrayCV(R, ndups = 3, spacing = 5184)
 # BG correction
 R.BG <- arrayBGcorr(R, method = "none")
 
-# Average intraArray Replicates
-R.ave <- arrayAve(R.BG)
-
-# IA norm
-boxplot(log2(fg(R)))
+# IntraArray Norm
 controlSeq <- c("MYPIYNTPDNLWFGY", "SRRYVPNQLTKVRLQ", "GHYSWIAKAVLQGEG")
+R.Norm <- intraArrayNorm(R.BG, controlSeq, method = "lm")
 
-RNorm <- intraArrayNormLM(R, controlSeq, method = "pls")
-boxplot(log2(fg(R))[,1] ~ peptideAnnotation(R)$Block)  
-boxplot(RNorm[,1] ~ peptideAnnotation(R)$Block)
+# Average intraArray Replicates
+R.ave <- arrayAve(R.Norm)
+
+
