@@ -11,7 +11,7 @@ setMethod(
       transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
       transformFunc <- function (y){
       eval(transformExpression)
-      }
+    }
         
       plotdata <- assayDataElement(x, slot)
       plotdata <- transformFunc(plotdata)
