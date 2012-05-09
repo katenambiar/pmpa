@@ -20,6 +20,8 @@ R.CV <- arrayCV(R, ndups = 3, spacing = 5184)
 # BG correction
 R.BG <- arrayBGcorr(R, method = "none")
 
+
+
 # Average intraArray Replicates
 R.ave <- arrayAve(R.BG)
 
