@@ -31,7 +31,7 @@ if(!isGeneric("readAnnotation")) {
 if(!isGeneric("arrayBGcorr")) {
   setGeneric(
     name = "arrayBGcorr", 
-    def = function(x, method) standardGeneric("arrayBGcorr")
+    def = function(x, ...) standardGeneric("arrayBGcorr")
     )
 }
 
@@ -47,13 +47,7 @@ if(!isGeneric("intraArrayNorm")) {
 if(!isGeneric("arrayCV")) {
   setGeneric(
     name = "arrayCV", 
-    def = function(x, ndups, spacing) standardGeneric("arrayCV"),
-    useAsDefault = function(x, ndups, spacing){
-      x <- as.matrix(x)
-      dim(x) <- c(spacing, ndups, ncol(x))
-      cv <- apply(x, c(1,3), sd) / apply(x, c(1,3), mean)
-      return(cv)
-      }
+    def = function(x, ...) standardGeneric("arrayCV")
     )
   }
 
@@ -61,7 +55,7 @@ if(!isGeneric("arrayCV")) {
 if(!isGeneric("arrayAve")) {
   setGeneric(
     name = "arrayAve", 
-    def = function(x, ndups, spacing) standardGeneric("arrayAve")
+    def = function(x, ...) standardGeneric("arrayAve")
     )
   }
 

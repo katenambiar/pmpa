@@ -19,6 +19,7 @@ Collate:
     'arrayAve-methods.R'
     'arrayCV-methods.R'
     'arrayBGcorr-methods.R'
+    'arraySecAb-methods.R'
     'boxplot-methods.R'
     'intraArrayNorm-methods.R'
     'readAnnotation-methods.R'

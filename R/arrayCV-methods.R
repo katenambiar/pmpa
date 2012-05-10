@@ -26,3 +26,15 @@ setMethod(
     
   }
   )
+
+
+setMethod(
+  f = "arrayCV",
+  signature = "matrix",
+  definition = function(x, ndups, spacing){
+    dim(x) <- c(spacing, ndups, ncol(x))
+    cv <- apply(x, c(1,3), sd) / apply(x, c(1,3), mean)
+    return(cv)
+    
+  }
+  )
