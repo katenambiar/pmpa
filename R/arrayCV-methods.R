@@ -15,13 +15,39 @@
 setMethod(
   f = "arrayCV",
   signature = "pepArrayPP",
-  definition = function(x, ndups, spacing){
-
-    y <- log2(assayData(x)$fg)
-    y[assayData(x)$flags == 0] <- NA
-    dim(y) <- c(spacing, ndups, ncol(y))
-    cv <- apply(y, c(1,3), sd) / apply(y, c(1,3), mean)
-    colnames(cv) <- sampleNames(x)
+  definition = function(x, transform = "log2"){
+    
+    if (!is.null(fData(x)$ID)){
+      ID <- fData(x)$ID
+      ID <- factor(ID, levels = unique(ID))
+      
+    } else {
+      stop("Peptide IDs not defined")
+      
+    }
+    
+    if (transform == "none"){
+      y <- assayDataElement(x, "fg")
+      colnames(y) <- sampleNames(x)
+      
+    } else {
+      transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
+      transformFunc <- function (y){
+        eval(transformExpression)
+      }
+      
+      y <- assayDataElement(x, "fg")
+      y <- transformFunc(y)
+      colnames(y) <- sampleNames(x)
+    }
+    
+    flags <- assayDataElement(x, "flags")
+    y[flags == 0] <- NA
+    
+    mean.y <- aggregate(y, by = list(ID), FUN = "mean", simplify = TRUE)
+    sd.y <- aggregate(y, by = list(ID), FUN = "sd", simplify = TRUE)
+    cv <- sd.y[,-1]/mean.y[,-1]
+    rownames(cv) <- mean.y$Group.1
     return(cv)
     
   }
