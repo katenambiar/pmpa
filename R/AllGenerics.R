@@ -59,6 +59,13 @@ if(!isGeneric("arrayAve")) {
     )
   }
 
+if(!isGeneric("arraySecAb")) {
+  setGeneric(
+    name = "arraySecAb", 
+    def = function(x, ...) standardGeneric("arraySecAb")
+    )
+}
+
 # Boxplot
 if(!isGeneric("boxplot")) {
   setGeneric("boxplot")
