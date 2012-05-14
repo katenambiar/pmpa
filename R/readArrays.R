@@ -11,10 +11,6 @@
 #' @param files - tab delimited text file with 3 columns - fileName, path and sampleName
 #' @param col - a character vector (either "R" to import the 635nm channel or "G" for the 532nm channel)
 #' @export
-#' @examples
-#' ## Not run: files <- dir(pattern="*\\.gpr$")
-#' R <- readArrays(files, col = "R")
-#' ## End(Not run)
 readArrays <- function(files, col = "R") {
   files <- read.delim(files, stringsAsFactors = FALSE)
   filePath <- file.path(files$path, files$fileName)
