@@ -26,10 +26,24 @@ setMethod(
 setMethod(
   f = "boxplot",
   signature = "pepArray",
-  definition = function(x, ...){
+  definition = function(x, transform = "none", ...){
     
-    plotdata <- assayDataElement(x, "exprs")
-    colnames(plotdata) <- sampleNames(x)
+    if (transform == "none"){
+      plotdata <- assayDataElement(x, "exprs")
+      colnames(plotdata) <- sampleNames(x)
+      
+    } else {
+      transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
+      transformFunc <- function (y){
+        eval(transformExpression)
+      }
+      
+      plotdata <- assayDataElement(x, "exprs")
+      plotdata <- transformFunc(plotdata)
+      colnames(plotdata) <- sampleNames(x)
+      
+    }
+    
     boxplot(plotdata, ...)
     
   }
