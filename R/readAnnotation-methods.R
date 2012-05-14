@@ -28,6 +28,13 @@ setMethod(
     
     if (!is.null(feature)){
       featureAnnot <- read.delim(feature, stringsAsFactors = FALSE)
+      if (identical (fData(x)$ID, featureAnnot$ID)){
+        
+        fData(x) <- combine(fData(x), featureAnnot)
+        
+      } else {
+        stop("Feature IDs of pepArrayPP object and feature annotation do not match")
+      }
     }
     
     return(x)
