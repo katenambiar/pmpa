@@ -9,7 +9,8 @@ Description:
 Depends:
     R (>= 2.14),
     Biobase,
-    methods
+    methods,
+    MASS
 Imports: 
 License: GPL-2
 URL: http://github.com/katenambiar/peparray
