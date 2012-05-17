@@ -9,18 +9,11 @@ Description:
 Depends:
     R (>= 2.14),
     Biobase,
-<<<<<<< HEAD
     methods,
     MASS
 Imports: 
 License: GPL-2
 URL: http://github.com/katenambiar/peparray
-=======
-    methods
-Imports:
-License: NA
-URL: NA
->>>>>>> 8393b043d6461c1675f72912884e96d3984ba026
 Collate:
     'AccessorMethods.R'
     'AllClasses.R'
@@ -33,4 +26,4 @@ Collate:
     'intraArrayNorm-methods.R'
     'readAnnotation-methods.R'
     'readArrays.R'
-ByteCompile: NA
+ByteCompile: TRUE
