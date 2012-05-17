@@ -2,6 +2,40 @@
 #   Generic methods for peparray
 #-----------------------------------------------------------------------------------------------------
 
+#' Accesses foreground intensity matrix of pepArrayPP object
+#' 
+#' @param x pepArrayPP object name
+#' 
+#' @return matrix of foreground intensities
+#' 
+#' @export
+#' @docType methods
+#' @rdname accessor-methods
+if(!isGeneric("fg")) {
+  setGeneric(
+    name = "fg", 
+    def = function(x) standardGeneric("fg")
+    )
+}
+
+
+#' Accesses background intensity matrix of pepArrayPP object
+#' 
+#' @param x pepArrayPP object name
+#' 
+#' @return matrix of background intensities
+#' 
+#' @export
+#' @docType methods
+#' @rdname accessor-methods
+if(!isGeneric("bg")) {
+  setGeneric(
+    name = "bg", 
+    def = function(x) standardGeneric("bg")
+    )
+}
+
+
 #' Read annotation files and add them to pepArrayPP or pepArray objects
 #'
 #' Some additional details go here.

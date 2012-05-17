@@ -1,12 +1,15 @@
+
 setMethod(
   f = "exprs",
   signature = "pepArray",
-  definition = function(x){
-    assayDataElement(x, "exprs")
+  definition = function(object){
+    assayDataElement(object, "exprs")
   }
   )
 
 
+#' @rdname accessor-methods
+#' @aliases fg, pepArrayPP
 setMethod(
   f = "fg",
   signature = "pepArrayPP",
@@ -15,7 +18,8 @@ setMethod(
   }
   )
 
-
+#' @rdname accessor-methods
+#' @aliases bg, pepArrayPP
 setMethod(
   f = "bg",
   signature = "pepArrayPP",
