@@ -8,7 +8,7 @@ if(!isGeneric("fg")) {
   #' 
   #' @param x A object of class \code{pepArrayPP}
   #' @return matrix of foreground intensities
-  #' @author Kate Nambiar \email{k.z.nambiar@bsms.ac.uk}
+  #' @author Kate Nambiar \email{k.z.nambiar@@bsms.ac.uk}
   #' @keywords methods
   #' @export
   #' @docType methods
