@@ -2,7 +2,7 @@
 #'
 #' Methods for accession and setting of data in pepArrayPP and pepArray slots
 #' 
-#' @author Kate Nambiar \email{k.z.nambiar@bsms.ac.uk}
+#' @author Kate Nambiar \email{k.z.nambiar@@bsms.ac.uk}
 #' @aliases peparray
 #' @docType methods
 #' @keywords methods
