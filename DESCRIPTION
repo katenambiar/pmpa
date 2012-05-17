@@ -10,19 +10,19 @@ Depends:
     R (>= 2.14),
     Biobase,
     methods
-Imports: 
-License: GPL-2
-URL: http://github.com/katenambiar/peparray
+Imports:
+License: NA
+URL: NA
 Collate:
+    'AccessorMethods.R'
     'AllClasses.R'
     'AllGenerics.R'
     'arrayAve-methods.R'
-    'arrayCV-methods.R'
     'arrayBGcorr-methods.R'
+    'arrayCV-methods.R'
     'arraySecAb-methods.R'
     'boxplot-methods.R'
     'intraArrayNorm-methods.R'
     'readAnnotation-methods.R'
     'readArrays.R'
-    'AccessorMethods.R'
-ByteCompile: TRUE
+ByteCompile: NA
