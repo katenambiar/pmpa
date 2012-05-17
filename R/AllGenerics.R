@@ -2,16 +2,17 @@
 #   Generic methods for peparray
 #-----------------------------------------------------------------------------------------------------
 
-#' Accesses foreground intensity matrix of pepArrayPP object
-#' 
-#' @param x pepArrayPP object name
-#' 
-#' @return matrix of foreground intensities
-#' 
-#' @export
-#' @docType methods
-#' @rdname accessor-methods
+
 if(!isGeneric("fg")) {
+  #' Accesses foreground intensity matrix of pepArrayPP object
+  #' 
+  #' @param x A object of class \code{pepArrayPP}
+  #' @return matrix of foreground intensities
+  #' @author Kate Nambiar \email{k.z.nambiar@bsms.ac.uk}
+  #' @keywords methods
+  #' @export
+  #' @docType methods
+  #' @rdname accessor-methods
   setGeneric(
     name = "fg", 
     def = function(x) standardGeneric("fg")
@@ -19,16 +20,18 @@ if(!isGeneric("fg")) {
 }
 
 
-#' Accesses background intensity matrix of pepArrayPP object
-#' 
-#' @param x pepArrayPP object name
-#' 
-#' @return matrix of background intensities
-#' 
-#' @export
-#' @docType methods
-#' @rdname accessor-methods
+
 if(!isGeneric("bg")) {
+  #' Accesses background intensity matrix of pepArrayPP object
+  #' 
+  #' @param x pepArrayPP object name
+  #' 
+  #' @return matrix of background intensities
+  #' 
+  #' @author Kate Nambiar \email{k.z.nambiar@bsms.ac.uk}
+  #' @export
+  #' @docType methods
+  #' @rdname accessor-methods
   setGeneric(
     name = "bg", 
     def = function(x) standardGeneric("bg")
@@ -36,25 +39,24 @@ if(!isGeneric("bg")) {
 }
 
 
-#' Read annotation files and add them to pepArrayPP or pepArray objects
-#'
-#' Some additional details go here.
-#'
-#' @param x Description of \code{x}.
-#' @param pheno Description of \code{pheno}.
-#' @param protocol Description of \code{protocol}.
-#' @param feature Description of \code{feature}.
-#'
-#' @usage readAnnotation(x, pheno, protocol, feature)
-#'
-#' @return peparrayPP or peparray object with added annotation
-#' 
-#' @export
-#' @docType methods
-#' @rdname readAnnotation-methods
-#'
-#' @examples ##
+
 if(!isGeneric("readAnnotation")) {
+  #' Read annotation files and add them to pepArrayPP or pepArray objects
+  #'
+  #' Some additional details go here.
+  #'
+  #' @param x Description of \code{x}.
+  #' @param pheno Description of \code{pheno}.
+  #' @param protocol Description of \code{protocol}.
+  #' @param feature Description of \code{feature}.
+  #'
+  #' @usage readAnnotation(x, pheno, protocol, feature)
+  #'
+  #' @return peparrayPP or peparray object with added annotation
+  #' 
+  #' @author Kate Nambiar \email{k.z.nambiar@bsms.ac.uk}
+  #' @export
+  #' @docType methods
   setGeneric(
     name = "readAnnotation", 
     def = function(x, ...) standardGeneric("readAnnotation")

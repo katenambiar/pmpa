@@ -1,9 +1,37 @@
-# pepArrayPP Class Definition - Pre-processing data class
+#' Peptide Microarray Pre-Processing and Analysis
+#'
+#' \tabular{ll}{
+#' Package: \tab peparray\cr
+#' Type: \tab Package\cr
+#' Version: \tab 0.1\cr
+#' Date: \tab 2012-05-17\cr
+#' Licence: \tab GPL-2\cr
+#' }
+#'
+#' Pre-processing methods for peptide microarrays [TODO] Complete description
+#' 
+#' @name peparray-package
+#' @aliases peparray
+#' @docType package
+#' @title Peptide Microarray Pre-Processing and Analysis
+#' @author Kate Nambiar \email{k.z.nambiar@bsms.ac.uk}
+#' @keywords package
+NULL
+
+
+#' pepArrayPP Class
+#'
+#' @name pepArrayPP-class
+#' @exportClass pepArrayPP
 setClass ("pepArrayPP",
           contains = "eSet"
           )
 
-# pepArray Class Definition - Analysis data class
+
+#' pepArray Class
+#'
+#' @name pepArray-class
+#' @exportClass pepArray
 setClass ("pepArray",
           contains = "eSet"
           )
