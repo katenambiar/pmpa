@@ -1,34 +1,4 @@
-#' Peptide Microarray Pre-Processing and Analysis
-#'
-#' \tabular{ll}{
-#' Package: \tab peparray\cr
-#' Type: \tab Package\cr
-#' Version: \tab 0.1\cr
-#' Date: \tab 2012-05-17\cr
-#' Licence: \tab GPL-2\cr
-#' }
-#'
-#' [TODO] Complete description
-#' 
-#' @name peparray-package
-#' @aliases peparray peparray-package
-#' @docType package
-#' @title Peptide Microarray Pre-Processing and Analysis
-#' @author Kate Nambiar \email{k.z.nambiar@@bsms.ac.uk}
-#' @keywords package
-NULL
-
-
-#' pepArrayPP Class
-#'
-#' Class representation for peptide microarray data and annotation undergoing pre-processing.
-#' Extends the \code{eSet} class.
-#' assayData Object of class \code{assayData} containing raw and/or pre-processed data. 
-#' A list of 3 matrices: fg - Foreground raw intensity, bg - background raw intensity, flags - spot weighting flags 
-#' phenoData Object of class \code{AnnotatedDataFrame} containing phenotype annotation
-#'
-#' @name pepArrayPP-class
-#' @exportClass pepArrayPP
+# pepArrayPP Class
 setClass ("pepArrayPP",
           contains = "eSet"
           )
@@ -65,15 +35,7 @@ setMethod ("initialize", "pepArrayPP",
 #--------------------------------------------------------------------------------------------
 
 
-#' pepArray Class
-#'
-#' Class representation for peptide microarray data and annotation undergoing pre-processing.
-#' Extends the \code{eSet} class.
-#' assayData Object of class \code{assayData} containing pre-processed data. 
-#' phenoData Object of class \code{AnnotatedDataFrame} containing phenotype annotation
-#'
-#' @name pepArray-class
-#' @exportClass pepArray
+# pepArray Class
 setClass ("pepArray",
           contains = "eSet"
           )

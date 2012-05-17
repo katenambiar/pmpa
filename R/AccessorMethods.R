@@ -1,15 +1,3 @@
-#' peparray Accessor Methods
-#'
-#' Methods for accession and setting of data in pepArrayPP and pepArray slots
-#' 
-#' @author Kate Nambiar \email{k.z.nambiar@@bsms.ac.uk}
-#' @aliases peparray
-#' @docType methods
-#' @keywords methods
-#' @rdname accessor-methods
-NULL
-
-
 setMethod(
   f = "exprs",
   signature = "pepArray",
@@ -18,9 +6,6 @@ setMethod(
   }
   )
 
-
-#' @rdname accessor-methods
-#' @aliases fg, pepArrayPP
 setMethod(
   f = "fg",
   signature = "pepArrayPP",
@@ -29,8 +14,6 @@ setMethod(
   }
   )
 
-#' @rdname accessor-methods
-#' @aliases bg, pepArrayPP
 setMethod(
   f = "bg",
   signature = "pepArrayPP",
