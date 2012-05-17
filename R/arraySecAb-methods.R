@@ -32,7 +32,7 @@ setMethod(
 setMethod(
   f = "arraySecAb",
   signature = "pepArray",
-  definition = function(x, secabID, transform = "none"){
+  definition = function(x, secabID, transform = "none", method = "lm"){
     
     if (transform == "none"){
       secabdata <- assayDataElement(x[ , sampleNames(x) == secabID], "exprs")
@@ -50,8 +50,18 @@ setMethod(
       arraydata <- transformFunc(arraydata)
     }
     
-    fitlm <- apply(arraydata, 2, function (y) lm(y ~ secabdata))
-    normdata <- sapply(fitlm, function(y) y$resid)
+    if (method == "lm"){
+      fitlm <- apply(arraydata, 2, function (y) lm(y ~ secabdata))
+      
+    } else if (method == "rlm"){
+      fitlm <- apply(arraydata, 2, function (y) rlm(y ~ secabdata))
+      
+    } else {
+      stop("Method must be either 'lm' or 'rlm'")
+      
+    }
+    
+      normdata <- sapply(fitlm, function(y) y$resid)
     
     z <- x[ , sampleNames(x) != secabID]
     assayDataElement(z, "exprs") <- normdata
