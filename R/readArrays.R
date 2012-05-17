@@ -42,7 +42,7 @@ readArrays <- function(files, col = "R") {
   
   colHeaders <- list()
   for (i in 1:length(filePath)){
-    colHeaders[[i]] <- read.table(filePath[i], skip = skip[i], nrows = 1, stringsAsFactors = FALSE)
+    colHeaders[[i]] <- read.table(filePath[i], skip = skip[i], nrows = 1, stringsAsFactors = FALSE, sep = "\t")
     colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", dataHeader, "Flags")
   }
   
@@ -61,7 +61,8 @@ readArrays <- function(files, col = "R") {
                             skip = skip[i], 
                             header = TRUE, 
                             stringsAsFactors = FALSE, 
-                            colClasses = colClasses[[i]]
+                            colClasses = colClasses[[i]],
+                            sep = "\t"
                             )
     }
 
