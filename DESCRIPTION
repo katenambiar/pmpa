@@ -24,4 +24,5 @@ Collate:
     'intraArrayNorm-methods.R'
     'readAnnotation-methods.R'
     'readArrays.R'
+    'AccessorMethods.R'
 ByteCompile: TRUE
