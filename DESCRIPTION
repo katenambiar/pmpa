@@ -15,9 +15,9 @@ Imports:
 License: GPL-2
 URL: http://github.com/katenambiar/peparray
 Collate:
-    'AccessorMethods.R'
     'AllClasses.R'
     'AllGenerics.R'
+    'AccessorMethods.R'
     'arrayAve-methods.R'
     'arrayBGcorr-methods.R'
     'arrayCV-methods.R'
