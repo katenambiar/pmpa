@@ -1,0 +1,3 @@
+export(readArrays)
+exportClasses(pepArray)
+exportClasses(pepArrayPP)

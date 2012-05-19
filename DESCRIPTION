@@ -1,0 +1,29 @@
+Package: peparray
+Type: Package
+Title: Peptide Microarray Pre-Processing and Analysis
+Version: 0.1
+Date: 2012-05-06
+Author: Kate Nambiar
+Maintainer: Kate Nambiar <k.z.nambiar@bsms.ac.uk>
+Description: 
+Depends:
+    R (>= 2.14),
+    Biobase,
+    methods,
+    MASS
+Imports: 
+License: GPL-2
+URL: http://github.com/katenambiar/peparray
+Collate:
+    'AllClasses.R'
+    'AllGenerics.R'
+    'AccessorMethods.R'
+    'arrayAve-methods.R'
+    'arrayBGcorr-methods.R'
+    'arrayCV-methods.R'
+    'arraySecAb-methods.R'
+    'boxplot-methods.R'
+    'intraArrayNorm-methods.R'
+    'readAnnotation-methods.R'
+    'readArrays.R'
+ByteCompile: TRUE
