@@ -1,5 +1,0 @@
-sampleName	CasesxControls	Severe Baseline	Severe 4W	Relapse_4w	Relapse_12W	Death_4w	Sex	Age	BMI
-LVP086	0	0	0	0		0	F	68.5	30.8
-LVP109	1	0	0	1	1	0	F	100.9	24.7
-LVP074	0	0	0	0		0	F	62.8	22.3
-NCTRL
