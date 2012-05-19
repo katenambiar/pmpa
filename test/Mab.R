@@ -2,7 +2,6 @@ library(devtools)
 pkg <- as.package("../peparray")
 load_all(pkg)
 # reload(pkg)
-# document(pkg)
 # install_github("peparray", username = "katenambiar")
 
 
@@ -19,7 +18,7 @@ boxplot(R, col = "orange")
 R <- readAnnotation(R, feature = feature)
 
 # Get CV of replicates
-R.CV <- arrayCV(R, ndups = 3, spacing = 5184)
+R.CV <- arrayCV(R)
 
 # BG correction
 R.BG <- arrayBGcorr(R, method = "none")
@@ -33,6 +32,17 @@ boxplot(R.Norm)
 R.ave <- arrayAve(R.BG)
 boxplot(R.ave, transform = "log2")
 
+# Pep181 plot
+pep181 <- exprs(R.ave)[which(fData(R.ave)$pos630 == 181 & fData(R.ave)$protein == "TcdB"),]
+pep181 <- pep181[-c(5,6,7)]
+conc181 <- c(1000, 100, 10, 1, 0)
+titration181 <- data.frame(conc = conc181, intensity = pep181)
+plot(log10(intensity) ~ log10(conc), data = titration181)
+library(calibFit)
+fplmodel <- calib.fit(titration181$conc, titration181$intensity)
+fplPredResp <- fplmodel@fitted.values
+lines(log10(titration181$conc),log10(fplPredResp))
+
 # TcdB plots
 TcdB <- grep("TcdB", fData(R.ave)$Name)
 tstRaw <- R.ave[TcdB, ]
@@ -43,7 +53,7 @@ tstRaw1.df <- na.omit(tstRaw1.df)
 tstRaw1.df <- tstRaw1.df[order(tstRaw1.df[,2]), ]
 plot(exprs ~ pos, data = tstRaw1.df, type = "l")
 
-tstRaw1 <- tstRaw[ ,5]
+tstRaw1 <- tstRaw[ ,8]
 tstRaw1.df <- data.frame (exprs = assayDataElement(tstRaw1, "exprs"), pos = fData(tstRaw1)$pos630)
 tstRaw1.df <- na.omit(tstRaw1.df)
 tstRaw1.df <- tstRaw1.df[order(tstRaw1.df[,2]), ]
@@ -52,7 +62,7 @@ plot(exprs ~ pos, data = tstRaw1.df, type = "l")
 
 
 # Secab filtering
-R.secab <- arraySecAb(R.ave, secabID = "NCTRL", transform = "log2")
+R.secab <- arraySecAb(R.ave, secabID = "NCTRL", transform = "log2", method = "rlm")
 
 norm <- log2(assayDataElement(R.ave, "exprs"))
 norm.mean <- apply(norm, 2, mean, na.rm = TRUE)
@@ -73,10 +83,18 @@ tst1.df <- data.frame (exprs = assayDataElement(tst1, "exprs"), pos = fData(tst1
 tst1.df <- na.omit(tst1.df)
 tst1.df <- tst1.df[order(tst1.df[,2]), ]
 
+tst1q.df <- data.frame (exprs = assayDataElement(tst1, "exprs"), pos = fData(tst1)$posQCD)
+tst1q.df <- na.omit(tst1q.df)
+tst1q.df <- tst1q.df[order(tst1q.df[,2]), ]
+
 tst2 <- tst[ ,2]
 tst2.df <- data.frame (exprs = assayDataElement(tst2, "exprs"), pos = fData(tst2)$pos630)
 tst2.df <- na.omit(tst2.df)
 tst2.df <- tst2.df[order(tst2.df[,2]), ]
+
+tst2q.df <- data.frame (exprs = assayDataElement(tst2, "exprs"), pos = fData(tst2)$posQCD)
+tst2q.df <- na.omit(tst2q.df)
+tst2q.df <- tst2q.df[order(tst2q.df[,2]), ]
 
 tst3 <- tst[ ,3]
 tst3.df <- data.frame (exprs = assayDataElement(tst3, "exprs"), pos = fData(tst3)$pos630)
@@ -91,9 +109,36 @@ tst4.df <- tst4.df[order(tst4.df[,2]), ]
 
 layout(matrix(1:4, 4, 1))
 plot(2^exprs ~ pos, data = tst1.df, type = "l", ylim = c(0, 36))
+plot(2^exprs ~ pos, data = tst1q.df, type = "l", ylim = c(0, 36))
+
 plot(2^exprs ~ pos, data = tst2.df, type = "l", ylim = c(0, 36))
+plot(2^exprs ~ pos, data = tst2q.df, type = "l", ylim = c(0, 36))
+
 plot(2^exprs ~ pos, data = tst3.df, type = "l", ylim = c(0, 36))
 plot(2^exprs ~ pos, data = tst4.df, type = "l", ylim = c(0, 36))
+
+#MAB 2
+tst5 <- tst[ ,5]
+tst5.df <- data.frame (exprs = assayDataElement(tst5, "exprs"), pos = fData(tst5)$pos630)
+tst5.df <- na.omit(tst5.df)
+tst5.df <- tst5.df[order(tst5.df[,2]), ]
+plot(2^exprs ~ pos, data = tst5.df, type = "l", ylim = c(0, 36))
+
+tst6 <- tst[ ,6]
+tst6.df <- data.frame (exprs = assayDataElement(tst6, "exprs"), pos = fData(tst6)$pos630)
+tst6.df <- na.omit(tst6.df)
+tst6.df <- tst6.df[order(tst6.df[,2]), ]
+plot(2^exprs ~ pos, data = tst6.df, type = "l", ylim = c(0, 36))
+
+tst7 <- tst[ ,7]
+tst7.df <- data.frame (exprs = assayDataElement(tst7, "exprs"), pos = fData(tst7)$pos630)
+tst7.df <- na.omit(tst7.df)
+tst7.df <- tst7.df[order(tst7.df[,2]), ]
+plot(2^exprs ~ pos, data = tst7.df, type = "l", ylim = c(0, 36))
+
+
+
+
 
 # Secab Plots
 plotdata <- assayDataElement(R.ave, "exprs")
