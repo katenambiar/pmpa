@@ -15,7 +15,8 @@
 
 \title{Class \code{"pepArrayPP"}}
 \description{
-%%  ~~ A concise (1-5 lines) description of what the class is. ~~
+Class representation for peptide microarray data requiring pre-processing.
+Extends \code{"\linkS4class{eSet}"}.
 }
 \section{Objects from the Class}{
 Objects can be created by calls of the form \code{new("pepArrayPP", assayData, fg, bg, flags, phenoData, featureData, experimentData, annotation, protocolData, ...)}.

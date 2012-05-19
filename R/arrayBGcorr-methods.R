@@ -30,7 +30,7 @@ setMethod(
       
     } else {
       
-      stop("Method must be either 'none', 'subtract' or 'SNR'")
+      stop("Method must be either 'none', 'subtract' or 'ratio'")
     }
   }
   )
