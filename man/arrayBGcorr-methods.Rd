@@ -2,9 +2,9 @@
 \docType{methods}
 \alias{arrayBGcorr}
 \alias{arrayBGcorr,pepArrayPP-method}
-\title{ ~~ Methods for Function \code{arrayBGcorr} in Package \pkg{peparray} ~~}
+\title{Methods for Function arrayBGcorr}
 \description{
- ~~ Methods for function \code{arrayBGcorr} in package \pkg{peparray} ~~
+Applies background correction algorithms to array data.
 }
 \section{Methods}{
 \describe{
