@@ -1,7 +1,7 @@
 \name{pepArrayPP-class}
 \Rdversion{1.1}
 \docType{class}
-\alias{pepArrayPP-class}
+\alias{pepArrayPP}
 \alias{arrayAve,pepArrayPP-method}
 \alias{arrayBGcorr,pepArrayPP-method}
 \alias{arrayCV,pepArrayPP-method}

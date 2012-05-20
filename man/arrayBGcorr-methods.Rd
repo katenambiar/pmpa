@@ -1,6 +1,6 @@
 \name{arrayBGcorr-methods}
 \docType{methods}
-\alias{arrayBGcorr-methods}
+\alias{arrayBGcorr}
 \alias{arrayBGcorr,pepArrayPP-method}
 \title{ ~~ Methods for Function \code{arrayBGcorr} in Package \pkg{peparray} ~~}
 \description{

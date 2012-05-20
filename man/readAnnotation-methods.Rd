@@ -1,6 +1,6 @@
 \name{readAnnotation-methods}
 \docType{methods}
-\alias{readAnnotation-methods}
+\alias{readAnnotation}
 \alias{readAnnotation,pepArray-method}
 \alias{readAnnotation,pepArrayPP-method}
 \title{ ~~ Methods for Function \code{readAnnotation} in Package \pkg{peparray} ~~}

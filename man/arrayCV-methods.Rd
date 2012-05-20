@@ -1,6 +1,6 @@
 \name{arrayCV-methods}
 \docType{methods}
-\alias{arrayCV-methods}
+\alias{arrayCV}
 \alias{arrayCV,matrix-method}
 \alias{arrayCV,pepArrayPP-method}
 \title{ ~~ Methods for Function \code{arrayCV} in Package \pkg{peparray} ~~}

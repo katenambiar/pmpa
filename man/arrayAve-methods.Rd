@@ -1,6 +1,6 @@
 \name{arrayAve-methods}
 \docType{methods}
-\alias{arrayAve-methods}
+\alias{arrayAve}
 \alias{arrayAve,pepArrayPP-method}
 \title{ ~~ Methods for Function \code{arrayAve} in Package \pkg{peparray} ~~}
 \description{
