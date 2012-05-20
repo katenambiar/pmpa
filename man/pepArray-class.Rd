@@ -45,7 +45,7 @@ Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 %%  ~~put references to the literature/web site here~~
 }
 \author{
-%%  ~~who you are~~
+Kate Nambiar <k.z.nambiar@bsms.ac.uk>
 }
 \note{
 %%  ~~further notes~~
