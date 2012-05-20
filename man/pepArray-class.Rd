@@ -1,12 +1,8 @@
 \name{pepArray-class}
 \Rdversion{1.1}
 \docType{class}
+\alias{pepArray}
 \alias{pepArray-class}
-\alias{arraySecAb,pepArray-method}
-\alias{boxplot,pepArray-method}
-\alias{exprs,pepArray-method}
-\alias{initialize,pepArray-method}
-\alias{readAnnotation,pepArray-method}
 
 \title{Class \code{"pepArray"}}
 \description{

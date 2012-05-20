@@ -2,16 +2,7 @@
 \Rdversion{1.1}
 \docType{class}
 \alias{pepArrayPP}
-\alias{arrayAve,pepArrayPP-method}
-\alias{arrayBGcorr,pepArrayPP-method}
-\alias{arrayCV,pepArrayPP-method}
-\alias{arraySecAb,pepArrayPP-method}
-\alias{bg,pepArrayPP-method}
-\alias{boxplot,pepArrayPP-method}
-\alias{fg,pepArrayPP-method}
-\alias{initialize,pepArrayPP-method}
-\alias{intraArrayNorm,pepArrayPP-method}
-\alias{readAnnotation,pepArrayPP-method}
+\alias{pepArrayPP-class}
 
 \title{Class \code{"pepArrayPP"}}
 \description{
@@ -56,7 +47,7 @@ Class \code{"\linkS4class{Versioned}"}, by class "eSet", distance 3.
 %%  ~~put references to the literature/web site here~~
 }
 \author{
-%%  ~~who you are~~
+Kate Nambiar <k.z.nambiar@bsms.ac.uk>
 }
 \note{
 %%  ~~further notes~~
