@@ -10,8 +10,9 @@ Calculates the mean of intra-array replicate features.
 \describe{
 
 \item{\code{signature(x = "pepArrayPP")}}{
-%%  ~~describe this method here~~
+Calculates the mean of the foreground intensity from a pepArrayPP object and produces a new pepArray object with the averaged intensities in the exprs slot
 }
-}}
+}
+}
+
 \keyword{methods}
-\keyword{ ~~ other possible keyword(s) ~~ }
