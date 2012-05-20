@@ -2,9 +2,9 @@
 \docType{methods}
 \alias{arrayAve}
 \alias{arrayAve,pepArrayPP-method}
-\title{ ~~ Methods for Function \code{arrayAve} in Package \pkg{peparray} ~~}
+\title{Methods for function arrayAve}
 \description{
- ~~ Methods for function \code{arrayAve} in package \pkg{peparray} ~~
+Calculates the mean of intra-array replicate features.
 }
 \section{Methods}{
 \describe{
