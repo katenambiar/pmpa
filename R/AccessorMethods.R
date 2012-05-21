@@ -10,7 +10,7 @@ setMethod(
   f = "fg",
   signature = "pepArrayPP",
   definition = function(x){
-    assayDataElement(x, "fg")
+    assayDataElement(x, "fMedian")
   }
   )
 
@@ -18,6 +18,6 @@ setMethod(
   f = "bg",
   signature = "pepArrayPP",
   definition = function(x){
-    assayDataElement(x, "bg")
+    assayDataElement(x, "bMedian")
   }
   )
