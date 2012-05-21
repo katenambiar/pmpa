@@ -1,3 +1,4 @@
-export(readArrays)
-exportClasses(pepArray)
 exportClasses(pepArrayPP)
+exportClasses(pepArray)
+export(readArrays)
+exportMethods(boxplot)
