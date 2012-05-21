@@ -3,7 +3,7 @@ pkg <- as.package("../peparray")
 load_all(pkg)
 # reload(pkg)
 # document(pkg)
-# install_github("peparray", username = "katenambiar")
+install_github("peparray", username = "katenambiar")
 
 
 files <- "../peparray/test/fileNames.txt"

@@ -4,7 +4,7 @@ load_all(pkg)
 # reload(pkg)
 # document(pkg)
 # install_github("peparray", username = "katenambiar")
-
+library(limma)
 
 files <- "../peparray/test/mab_fileNames.txt"
 # protocol <- "../peparray/test/protocolAnnotation.txt"
@@ -31,7 +31,7 @@ boxplot(R.Norm)
 
 # Average intraArray Replicates
 R.ave <- arrayAve(R.BG)
-boxplot(R.ave, transform = "log2")
+boxplot(R.ave, transform = "log2", col = "orange")
 
 # TcdB plots
 TcdB <- grep("TcdB", fData(R.ave)$Name)
@@ -100,11 +100,11 @@ plotdata <- assayDataElement(R.ave, "exprs")
 plotdata <- log2(plotdata)
 Cdiff <- grep("TcdA|TcdB|FbpA|FliC|FliD|SlpA|CdtA|CdtB|Cwp66|Cwp84", fData(R.ave)$Name)
 plotdata.cdiff <- plotdata[Cdiff, ]
-plot(plotdata.cdiff[,3], plotdata.cdiff[,2])
+plot(plotdata.cdiff[,5], plotdata.cdiff[,2])
 
 TcdB <- grep("TcdB", fData(R.ave)$Name)
 plot.tcdB <- plotdata[TcdB,]
-points(plot.tcdB[,3], plot.tcdB[,2], col = "red", pch = 20)
+points(plot.tcdB[,5], plot.tcdB[,2], col = "red", pch = 20)
 
 TcdA <- grep("TcdA", fData(R.ave)$Name)
 plot.tcdA <- plotdata[TcdA,]

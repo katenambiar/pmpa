@@ -1,6 +1,1 @@
-sampleName	fileName	path
-mab1_1ng	1510_53_mabMCA4738_1ng_PMT700.gpr	C:/Users/Kate/git/peparray/test
-mab1_10ng	1510_52_mabMCA4738_10ng_PMT700.gpr	C:/Users/Kate/git/peparray/test
-mab1_100ng	1510_51_mabMCA4738_100ng_PMT700.gpr	C:/Users/Kate/git/peparray/test
-mab1_1000ng	1510_50_mabMCA4738_1ug_PMT700.gpr	C:/Users/Kate/git/peparray/test
-NCTRL	1510_58_NCTRL_PMT600.gpr	C:/Users/Kate/git/peparray/test
+sampleName	fileName	pathmab1_1ng	1510_53_mabMCA4738_1ng_PMT700.gpr	../peparray/testmab1_10ng	1510_52_mabMCA4738_10ng_PMT700.gpr	../peparray/testmab1_100ng	1510_51_mabMCA4738_100ng_PMT700.gpr	../peparray/testmab1_1000ng	1510_50_mabMCA4738_1ug_PMT700.gpr	../peparray/testNCTRL	1510_58_NCTRL_PMT600.gpr	../peparray/test
