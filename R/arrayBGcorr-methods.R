@@ -25,7 +25,7 @@ setMethod(
       
     } else if (method == "ratio"){
       
-      assayDataElement(x, "fg") <- log2(assayDataElement(x, "fg")) / log2(assayDataElement(x, "bg"))
+      assayDataElement(x, "fg") <- log2(assayDataElement(x, "fg") / assayDataElement(x, "bg"))
       return(x)
       
     } else {

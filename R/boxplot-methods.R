@@ -1,7 +1,7 @@
 setMethod(
   f = "boxplot",
   signature = "pepArrayPP",
-  definition = function(x, slot = "fg", transform = "log2", ...){
+  definition = function(x, slot = "fg", transform = "none", ...){
     
     if (transform == "none"){
       plotdata <- assayDataElement(x, slot)
