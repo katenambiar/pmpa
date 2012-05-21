@@ -82,7 +82,7 @@ readArrays <- function(files, col = "R") {
                                    bSD = sapply(gpr, function(x) x$B635.SD),
                                    fSat = sapply(gpr, function(x) x$F635...Sat.),
                                    fPixels = sapply(gpr, function(x) x$F.Pixels),
-                                   flags = sapply(gpr, function(x) as.numeric(x$Flags > -99))
+                                   flags = sapply(gpr, function(x) x$Flags)
                                    )
     pData(obj) <- data.frame (fileName = files$fileName,
                              row.names = files$sampleName
@@ -107,7 +107,7 @@ readArrays <- function(files, col = "R") {
                                    bSD = sapply(gpr, function(x) x$B532.SD),
                                    fSat = sapply(gpr, function(x) x$F532...Sat.),
                                    fPixels = sapply(gpr, function(x) x$F.Pixels),
-                                   flags = sapply(gpr, function(x) as.numeric(x$Flags > -99))
+                                   flags = sapply(gpr, function(x) x$Flags)
                                    )
     pData(obj) <- data.frame (fileName = files$fileName,
                              row.names = files$sampleName
