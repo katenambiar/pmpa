@@ -19,10 +19,24 @@ readArrays <- function(files, col = "R") {
   }
   
   if (col == "R"){
-    dataHeader <- c("F635 Median", "B635 Median")
+    dataHeader <- c("F635 Median", 
+                    "F635 Mean",
+                    "F635 CV",
+                    "B635 Median", 
+                    "B635 Mean", 
+                    "B635 SD", 
+                    "F635 % Sat."
+                    )
     
   } else if (col == "G"){
-    dataHeader <- c("F532 Median", "B532 Median")
+    dataHeader <- c("F532 Median", 
+                    "F532 Mean",
+                    "F532 CV",
+                    "B532 Median", 
+                    "B532 Mean", 
+                    "B532 SD", 
+                    "F532 % Sat."
+                    )
     
   } else {
     stop("Colour must be 'R' or 'G'")
@@ -32,7 +46,7 @@ readArrays <- function(files, col = "R") {
   colHeaders <- list()
   for (i in 1:length(filePath)){
     colHeaders[[i]] <- read.table(filePath[i], skip = skip[[i]], nrows = 1, stringsAsFactors = FALSE, sep = "\t")
-    colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", dataHeader, "Flags")
+    colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", dataHeader, "F Pixels", "Flags")
   }
   
   colClasses <- list()
@@ -60,8 +74,14 @@ readArrays <- function(files, col = "R") {
   
   if (col == "R"){
     obj <- new("pepArrayPP")
-    assayData(obj) <- assayDataNew(fg = sapply(gpr, function(x) x$F635.Median),
-                                   bg = sapply(gpr, function(x) x$B635.Median),
+    assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x$F635.Median),
+                                   fMean = sapply(gpr, function(x) x$F635.Mean),
+                                   fCV = sapply(gpr, function(x) x$F635.CV),
+                                   bMedian = sapply(gpr, function(x) x$B635.Median),
+                                   bMean = sapply(gpr, function(x) x$B635.Mean),
+                                   bSD = sapply(gpr, function(x) x$B635.SD),
+                                   fSat = sapply(gpr, function(x) x$F635...Sat.),
+                                   fPixels = sapply(gpr, function(x) x$F.Pixels),
                                    flags = sapply(gpr, function(x) as.numeric(x$Flags > -99))
                                    )
     pData(obj) <- data.frame (fileName = files$fileName,
@@ -79,8 +99,14 @@ readArrays <- function(files, col = "R") {
   
   if (col == "G"){
     obj <- new("pepArrayPP") 
-    assayData(obj) <- assayDataNew(fg = sapply(gpr, function(x) x$F532.Median),
-                                   bg = sapply(gpr, function(x) x$B532.Median),
+    assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x$F532.Median),
+                                   fMean = sapply(gpr, function(x) x$F532.Mean),
+                                   fCV = sapply(gpr, function(x) x$F532.CV),
+                                   bMedian = sapply(gpr, function(x) x$B532.Median),
+                                   bMean = sapply(gpr, function(x) x$B532.Mean),
+                                   bSD = sapply(gpr, function(x) x$B532.SD),
+                                   fSat = sapply(gpr, function(x) x$F532...Sat.),
+                                   fPixels = sapply(gpr, function(x) x$F.Pixels),
                                    flags = sapply(gpr, function(x) as.numeric(x$Flags > -99))
                                    )
     pData(obj) <- data.frame (fileName = files$fileName,
