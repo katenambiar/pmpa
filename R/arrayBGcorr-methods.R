@@ -23,9 +23,14 @@ setMethod(
       assayDataElement(x, "fg") <- assayDataElement(x, "fg") - assayDataElement(x, "bg")
       return(x)
       
+    } else if (method == "ratio"){
+      
+      assayDataElement(x, "fg") <- log2(assayDataElement(x, "fg")) / log2(assayDataElement(x, "bg"))
+      return(x)
+      
     } else {
       
-      stop("Method must be either 'none', 'subtract' or 'SNR'")
+      stop("Method must be either 'none', 'subtract' or 'ratio'")
     }
   }
   )

@@ -1,25 +1,22 @@
-#' Read peptide microarray raw data files in genepix GPR format
-#'
-#' This function imports the foreground intensity, background intensity,
-#' flags and feature annotation from GPR files and produces an object of class
-#' pepArrayPP - an extension of the eSet class.
-#'
-#' @param files tab delimited text file with 3 columns - fileName, path and sampleName
-#' @param col a character vector (either "R" to import the 635nm channel or "G" for the 532nm channel)
-#' @export
+# Read Arrays Function
+
 readArrays <- function(files, col = "R") {
   files <- read.delim(files, stringsAsFactors = FALSE)
   filePath <- file.path(files$path, files$fileName)
   atfHeader <- lapply(filePath, function(x) read.table(x, nrows = 2, stringsAsFactors = FALSE))
   
-  if (any(sapply(atfHeader, function(x)x[1,1]) == "ATF")){
-    skip <- as.numeric(sapply(atfHeader, function(x)x[2,1])) + 2
-    ncols <- as.numeric(sapply(atfHeader, function(x)x[2,2]))
+  if(all(grepl("^ATF", sapply(atfHeader, function(x)x[1,1])))){
+    skip <- list()
+    for (i in 1:length(filePath)){
+      gprHeader <- readLines(filePath[i], n = 100)
+      skip[[i]] <- intersect(grep("Name", gprHeader), grep("ID", gprHeader)) - 1
+    }
     
   } else {
-    stop("Invalid Axon Text File (ATF) header")
+    missingATF <- files$fileName[which(grepl("^ATF", sapply(atfHeader, function(x)x[1,1])) == FALSE)]
+    stop("Axon Text File (ATF) header not found in files: ", missingATF)
     
-    }
+  }
   
   if (col == "R"){
     dataHeader <- c("F635 Median", "B635 Median")
@@ -34,26 +31,27 @@ readArrays <- function(files, col = "R") {
   
   colHeaders <- list()
   for (i in 1:length(filePath)){
-    colHeaders[[i]] <- read.table(filePath[i], skip = skip[i], nrows = 1, stringsAsFactors = FALSE)
+    colHeaders[[i]] <- read.table(filePath[i], skip = skip[[i]], nrows = 1, stringsAsFactors = FALSE, sep = "\t")
     colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", dataHeader, "Flags")
   }
   
   colClasses <- list()
+  ncols <- sapply(colHeaders, length)
   for (i in 1:length(filePath)){
     colClasses[[i]] <- rep("NULL", ncols[i])
     colClasses[[i]][colHeaders[[i]]] <- NA
   }
-  
   
   gpr <- list()
   for (i in 1:length(filePath)){
     
     cat("Reading GPR file:", filePath[i], "\n")
     gpr[[i]] <- read.table (file = filePath[i], 
-                            skip = skip[i], 
+                            skip = skip[[i]], 
                             header = TRUE, 
                             stringsAsFactors = FALSE, 
-                            colClasses = colClasses[[i]]
+                            colClasses = colClasses[[i]],
+                            sep = "\t"
                             )
     }
 
