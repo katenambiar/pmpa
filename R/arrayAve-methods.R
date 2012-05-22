@@ -22,7 +22,7 @@ setMethod(
   
     y <- assayDataElement(x, "fMedian")
     flags <- assayDataElement(x, "flags")
-    y[flags == 0] <- NA
+    y[flags < -99] <- NA
     sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
     n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
     ave <- sum.y/n
