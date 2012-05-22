@@ -20,7 +20,7 @@ setMethod(
       
     }
   
-    y <- assayDataElement(x, "fg")
+    y <- assayDataElement(x, "fMedian")
     flags <- assayDataElement(x, "flags")
     y[flags == 0] <- NA
     sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
