@@ -24,12 +24,15 @@ setMethod(
     flags <- assayDataElement(x, "flags")
     y[flags < -99] <- NA
     sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
+    sumsq.y <- rowsum(y^2, ID, reorder = FALSE, na.rm = TRUE)
     n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
     ave <- sum.y/n
-    se <- aggregate(y, list(ID), function(z) sqrt(var(z)/length(z)))
+    
+    var.y <- (sumsq.y / n) - ave^2
+    se <- sqrt(var.y / n)
     
     obj <- new("pepArray")
-    assayData(obj) <- assayDataNew(exprs = ave, exprs.se = se[ ,-1])
+    assayData(obj) <- assayDataNew(exprs = ave, exprs.se = se)
     phenoData(obj) <- phenoData(x)
     fData(obj) <- fData(x)[!duplicated(fData(x)$ID), ]
     featureNames(obj) <- fData(obj)$ID
