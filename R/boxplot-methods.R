@@ -1,7 +1,7 @@
 setMethod(
   f = "boxplot",
   signature = "pepArrayPP",
-  definition = function(x, slot = "fg", transform = "none", ...){
+  definition = function(x, slot = "fMedian", transform = "none", ...){
     
     if (transform == "none"){
       plotdata <- assayDataElement(x, slot)
