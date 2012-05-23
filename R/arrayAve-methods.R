@@ -32,7 +32,7 @@ setMethod(
     se <- sqrt(var.y / n)
     
     obj <- new("pepArray")
-    assayData(obj) <- assayDataNew(exprs = ave, exprs.se = se)
+    assayData(obj) <- assayDataNew(exprs = ave, exprs.se = se, nreps = n)
     phenoData(obj) <- phenoData(x)
     fData(obj) <- fData(x)[!duplicated(fData(x)$ID), ]
     featureNames(obj) <- fData(obj)$ID
