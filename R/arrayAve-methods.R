@@ -26,7 +26,7 @@ setMethod(
     sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
     n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
     ave <- sum.y/n
-    se.y <- aggregate(y, list(ID), function(z) sqrt(var(z)/length(z)))
+    se <- aggregate(y, list(ID), function(z) sqrt(var(z)/length(z)))
     
     obj <- new("pepArray")
     assayData(obj) <- assayDataNew(exprs = ave, exprs.se = se[ ,-1])
