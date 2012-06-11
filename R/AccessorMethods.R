@@ -1,5 +1,5 @@
 setMethod(
-  f = "cv.exprs",
+  f = "cv",
   signature = "ExpressionSet",
   definition = function(x){
     assayDataElement(x, "cv.exprs")
