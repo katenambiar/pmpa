@@ -15,7 +15,7 @@
 setMethod(
   f = "arrayCV",
   signature = "pepArrayPP",
-  definition = function(x, transform = "log2"){
+  definition = function(x, transform = "none"){
     
     if (!is.null(fData(x)$ID)){
       ID <- fData(x)$ID
@@ -48,18 +48,6 @@ setMethod(
     sd.y <- aggregate(y, by = list(ID), FUN = "sd", simplify = TRUE)
     cv <- sd.y[,-1]/mean.y[,-1]
     rownames(cv) <- mean.y$Group.1
-    return(cv)
-    
-  }
-  )
-
-
-setMethod(
-  f = "arrayCV",
-  signature = "matrix",
-  definition = function(x, ndups, spacing){
-    dim(x) <- c(spacing, ndups, ncol(x))
-    cv <- apply(x, c(1,3), sd) / apply(x, c(1,3), mean)
     return(cv)
     
   }
