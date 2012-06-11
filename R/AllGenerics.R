@@ -19,10 +19,10 @@ if(!isGeneric("bg")) {
 }
 
 # ExpressionSet CV Accessor
-if(!isGeneric("cv.exprs")) {
+if(!isGeneric("cv")) {
   setGeneric(
-    name = "cv.exprs", 
-    def = function(x) standardGeneric("cv.exprs")
+    name = "cv", 
+    def = function(x) standardGeneric("cv")
     )
 }
 
