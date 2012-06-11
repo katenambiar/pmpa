@@ -9,28 +9,57 @@
 # Output:    matrix of CV values with samples in columns and unique probes in rows
 #
 # Kate Nambiar
-# Last Updated: 30.4.2012
+# Last Updated: 23.5.2012
 setMethod(
   f = "arrayBGcorr",
   signature = "pepArrayPP",
-  definition = function(x, method){
+  definition = function(x, method, transform = "log2"){
     
-    if (method == "none"){
+    if (transform == "none"){
       
-      return (x)
-    } else if (method == "subtract"){
-      
-      assayDataElement(x, "fg") <- assayDataElement(x, "fg") - assayDataElement(x, "bg")
-      return(x)
-      
-    } else if (method == "ratio"){
-      
-      assayDataElement(x, "fg") <- log2(assayDataElement(x, "fg") / assayDataElement(x, "bg"))
-      return(x)
+      if (method == "none"){
+        
+        return (x)
+      } else if (method == "subtract"){
+        
+        assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian")
+        return(x)
+        
+      } else if (method == "ratio"){
+        
+        assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") / assayDataElement(x, "bMedian")
+        return(x)
+        
+      } else {
+        
+        stop("Method must be either 'none', 'subtract' or 'ratio'")
+      }
       
     } else {
+      transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
+      transformFunc <- function (y){
+        eval(transformExpression)
+      }
+    
+      if (method == "none"){
       
-      stop("Method must be either 'none', 'subtract' or 'ratio'")
+        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
+        return (x)
+      } else if (method == "subtract"){
+        
+        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian"))
+        x <- x[complete.cases(assayDataElement(x, "fMedian"), ]
+        return(x)
+      
+      } else if (method == "ratio"){
+      
+        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian") / assayDataElement(x, "bMedian"))
+        return(x)
+      
+      } else {
+      
+        stop("Method must be either 'none', 'subtract' or 'ratio'")
+      }
     }
   }
   )

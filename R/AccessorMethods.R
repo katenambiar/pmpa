@@ -7,6 +7,14 @@ setMethod(
   )
 
 setMethod(
+  f = "se.exprs",
+  signature = "pepArray",
+  definition = function(object){
+    assayDataElement(object, "se.exprs")
+  }
+  )
+
+setMethod(
   f = "fg",
   signature = "pepArrayPP",
   definition = function(x){

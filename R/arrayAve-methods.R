@@ -20,15 +20,19 @@ setMethod(
       
     }
   
-    y <- assayDataElement(x, "fg")
+    y <- assayDataElement(x, "fMedian")
     flags <- assayDataElement(x, "flags")
-    y[flags == 0] <- NA
+    y[flags < -99] <- NA
     sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
+    sumsq.y <- rowsum(y^2, ID, reorder = FALSE, na.rm = TRUE)
     n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
     ave <- sum.y/n
-  
+    
+    var.y <- (sumsq.y / n) - ave^2
+    se <- sqrt(var.y / n)
+    
     obj <- new("pepArray")
-    assayData(obj) <- assayDataNew(exprs = ave)
+    assayData(obj) <- assayDataNew(exprs = ave, se.exprs = se, nreps = n)
     phenoData(obj) <- phenoData(x)
     fData(obj) <- fData(x)[!duplicated(fData(x)$ID), ]
     featureNames(obj) <- fData(obj)$ID
