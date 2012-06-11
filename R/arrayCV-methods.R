@@ -44,10 +44,13 @@ setMethod(
     flags <- assayDataElement(x, "flags")
     y[flags == 0] <- NA
     
-    mean.y <- aggregate(y, by = list(ID), FUN = "mean", simplify = TRUE)
-    sd.y <- aggregate(y, by = list(ID), FUN = "sd", simplify = TRUE)
-    cv <- sd.y[,-1]/mean.y[,-1]
-    rownames(cv) <- mean.y$Group.1
+    sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
+    sumsq.y <- rowsum(y^2, ID, reorder = FALSE, na.rm = TRUE)
+    n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
+    ave <- sum.y/n
+    var.y <- ((n * sumsq.y) - sum.y^2)/n^2
+    cv <- sqrt(var.y) / ave
+    
     return(cv)
     
   }
