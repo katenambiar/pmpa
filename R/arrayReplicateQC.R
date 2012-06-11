@@ -32,32 +32,5 @@ setMethod(
     
     mean.y <- aggregate(y, by = list(ID), FUN = "mean", simplify = TRUE)
     
-
-    
   }
-  )
-
-
-
-
-ID <- fData(rawdata)$ID
-ID <- factor(ID, levels = unique(ID))
-
-y <- assayDataElement(rawdata, "fg")
-y <- log2(y)
-colnames(y) <- sampleNames(rawdata)
-
-flags <- assayDataElement(rawdata, "flags")
-y[flags == 0] <- NA
-
-mean.y <- aggregate(y, by = list(ID), FUN = "mean", simplify = TRUE)
-
-array1 <- y[,1]
-lmfit.array1 <- lm(array1 ~ ID)
-
-
-
-
-
-
-
+)
