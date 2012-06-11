@@ -27,7 +27,7 @@ setMethod(
     n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
     ave <- sum.y/n
     
-    var.y <- ((n * sumsq.y) - sum.y^2)/n^2
+    var.y <- abs(((n * sumsq.y) - sum.y^2)/n^2)
     cv <- sqrt(var.y) / ave
     
     obj <- new("ExpressionSet")
