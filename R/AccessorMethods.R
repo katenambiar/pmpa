@@ -1,3 +1,4 @@
+# Coefficient of Variation Accessor
 setMethod(
   f = "cv",
   signature = "ExpressionSet",
@@ -6,6 +7,7 @@ setMethod(
   }
   )
 
+# Foreground intensity accessor
 setMethod(
   f = "fg",
   signature = "pepArrayPP",
@@ -14,6 +16,7 @@ setMethod(
   }
   )
 
+# Background intensity accessor
 setMethod(
   f = "bg",
   signature = "pepArrayPP",
