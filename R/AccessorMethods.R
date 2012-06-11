@@ -1,16 +1,8 @@
 setMethod(
-  f = "exprs",
-  signature = "pepArray",
+  f = "cv.exprs",
+  signature = "ExpressionSet",
   definition = function(object){
-    assayDataElement(object, "exprs")
-  }
-  )
-
-setMethod(
-  f = "se.exprs",
-  signature = "pepArray",
-  definition = function(object){
-    assayDataElement(object, "se.exprs")
+    assayDataElement(object, "cv.exprs")
   }
   )
 
