@@ -1,4 +1,21 @@
 # Read Arrays Function
+#
+# Description: Reads Genepix GPR files (in Axon ATF format) and creates new pepArrayPP object
+#
+# Usage: readArrays(files = NULL, col = "R")
+# Arguments:
+#   files - path to tab delimited text file containing 3 columns:
+#           1. sampleName - unique identifier for sample
+#           2. fileName - GPR file name and extension
+#           3. path - full path or URL to the GPR file
+#   col - either "R" (default) to import data from the 635nm channel or "G" to import 532nm data
+#
+# Output: A pepArrayPP object (extending eSet) containing the following slots
+#   assayData - annotated data frame containing 3 components: fg, bg, flags
+#   phenoData - 
+#   featureData - 
+#   Other eSet slots are present but not written to by this function
+#
 
 readArrays <- function(files, col = "R") {
   files <- read.delim(files, stringsAsFactors = FALSE)

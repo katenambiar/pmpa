@@ -1,19 +1,13 @@
+# Coefficient of Variation Accessor
 setMethod(
-  f = "exprs",
-  signature = "pepArray",
-  definition = function(object){
-    assayDataElement(object, "exprs")
+  f = "cv",
+  signature = "ExpressionSet",
+  definition = function(x){
+    assayDataElement(x, "cv.exprs")
   }
   )
 
-setMethod(
-  f = "se.exprs",
-  signature = "pepArray",
-  definition = function(object){
-    assayDataElement(object, "se.exprs")
-  }
-  )
-
+# Foreground intensity accessor
 setMethod(
   f = "fg",
   signature = "pepArrayPP",
@@ -22,6 +16,7 @@ setMethod(
   }
   )
 
+# Background intensity accessor
 setMethod(
   f = "bg",
   signature = "pepArrayPP",

@@ -46,9 +46,16 @@ setMethod(
         assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
         return (x)
       } else if (method == "subtract"){
+<<<<<<< HEAD
       
         assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian"))
         
+        return(x)
+      
+      } else if (method == "ratio"){
+      
+        
+        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian"))
         return(x)
       
       } else if (method == "ratio"){
