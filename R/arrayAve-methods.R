@@ -1,10 +1,9 @@
 # Calculate the mean of intra-array replicates with flagged values excluded
 # Dependencies: 
-# Arguments: x = matrix of intensity values with probes as rows and samples in columns
-#            ndups = number of technical replicates on the microarray
-#            spacing = number of rows separating a probe from its replicate
-# Output: matrix of mean intensity values with samples in colums and unique probes in rows
-# Last Updated: 3.2.2012
+# Arguments: x = peparrayPP object
+#
+# Output: ExpressionSet with mean intensity values in exprs slot and CV in cv.exprs slot
+# Last Updated: 11.6.2012
 
 setMethod(
   f = "arrayAve",
@@ -28,11 +27,11 @@ setMethod(
     n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
     ave <- sum.y/n
     
-    var.y <- (sumsq.y / n) - ave^2
-    se <- sqrt(var.y / n)
+    var.y <- abs(((n * sumsq.y) - sum.y^2)/n^2)
+    cv <- sqrt(var.y) / ave
     
-    obj <- new("pepArray")
-    assayData(obj) <- assayDataNew(exprs = ave, se.exprs = se, nreps = n)
+    obj <- new("ExpressionSet")
+    assayData(obj) <- assayDataNew(exprs = ave, cv.exprs = cv, nreps = n)
     phenoData(obj) <- phenoData(x)
     fData(obj) <- fData(x)[!duplicated(fData(x)$ID), ]
     featureNames(obj) <- fData(obj)$ID

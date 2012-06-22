@@ -20,7 +20,7 @@ setMethod(
     }
   
     fitlm <- apply(arraydata, 2, function (y) lm(y ~ secabdata))
-    normdata <- sapply(fitlm, function(y) y$resid)
+    normdata <- sapply(fitlm, function(y) y$resid + y$coef[1])
   
     z <- x[ , sampleNames(x) != secabID]
     assayDataElement(z, "fg") <- normdata
@@ -61,7 +61,7 @@ setMethod(
       
     }
     
-      normdata <- sapply(fitlm, function(y) y$resid)
+      normdata <- sapply(fitlm, function(y) y$resid + y$coef[1])
     
     z <- x[ , sampleNames(x) != secabID]
     assayDataElement(z, "exprs") <- normdata

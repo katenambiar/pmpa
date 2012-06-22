@@ -18,6 +18,14 @@ if(!isGeneric("bg")) {
     )
 }
 
+# ExpressionSet CV Accessor
+if(!isGeneric("cv")) {
+  setGeneric(
+    name = "cv", 
+    def = function(x) standardGeneric("cv")
+    )
+}
+
 
 if(!isGeneric("readAnnotation")) {
   setGeneric(
