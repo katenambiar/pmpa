@@ -20,6 +20,7 @@ Collate:
     'AccessorMethods.R'
     'arrayAve-methods.R'
     'arrayBGcorr-methods.R'
+    'betweenArrayNorm-methods.R'
     'arrayCV-methods.R'
     'arraySecAb-methods.R'
     'boxplot-methods.R'
