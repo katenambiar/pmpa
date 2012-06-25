@@ -5,7 +5,7 @@
 setMethod(
   f = "betweenArrayNorm",
   signature = "pepArrayPP",
-  definition = function(x, omitCols = NULL, method = "lm"){
+  definition = function(x){
     ndata <- fg(x)
     ndata <- as.numeric(ndata)
     ndata <- data.frame(Intensity = ndata, ID = rep(sampleNames(x), each = nrow(x)))
