@@ -50,6 +50,13 @@ if(!isGeneric("intraArrayNorm")) {
     )
 }
 
+if(!isGeneric("betweenArrayNorm")) {
+  setGeneric(
+    name = "betweenArrayNorm", 
+    def = function(x, ...) standardGeneric("betweenArrayNorm")
+    )
+}
+
 # Calculate CV of intra-array replicates
 if(!isGeneric("arrayCV")) {
   setGeneric(
