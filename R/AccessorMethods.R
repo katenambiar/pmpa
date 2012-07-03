@@ -10,7 +10,7 @@ setMethod(
 # Foreground intensity accessor
 setMethod(
   f = "fg",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x){
     assayDataElement(x, "fMedian")
   }
@@ -19,7 +19,7 @@ setMethod(
 # Background intensity accessor
 setMethod(
   f = "bg",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x){
     assayDataElement(x, "bMedian")
   }
