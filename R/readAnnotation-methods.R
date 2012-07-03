@@ -1,6 +1,6 @@
 setMethod(
   f = "readAnnotation",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x, pheno = NULL, protocol = NULL, feature = NULL){
     if (!is.null(pheno)){
       phAnnot <- read.AnnotatedDataFrame(pheno, stringsAsFactors = FALSE, row.names = "sampleName")
@@ -44,7 +44,7 @@ setMethod(
 
 setMethod(
   f = "readAnnotation",
-  signature = "pepArray",
+  signature = "ExpressionSet",
   definition = function(x, pheno = NULL, protocol = NULL, feature = NULL){
     if (!is.null(pheno)){
       phAnnot <- read.AnnotatedDataFrame(pheno, stringsAsFactors = FALSE, row.names = "sampleName")
