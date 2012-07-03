@@ -7,7 +7,7 @@
 
 setMethod(
   f = "arrayAve",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x){
     
     if (!is.null(fData(x)$ID)){

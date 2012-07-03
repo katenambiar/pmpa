@@ -12,7 +12,7 @@
 # Last Updated: 23.5.2012
 setMethod(
   f = "arrayBGcorr",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x, method, transform = "log2"){
     
     if (transform == "none"){

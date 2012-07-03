@@ -90,7 +90,7 @@ readArrays <- function(files, col = "R") {
   
   
   if (col == "R"){
-    obj <- new("pepArrayPP")
+    obj <- new("MultiSet")
     assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x$F635.Median),
                                    fMean = sapply(gpr, function(x) x$F635.Mean),
                                    fCV = sapply(gpr, function(x) x$F635.CV),
@@ -115,7 +115,7 @@ readArrays <- function(files, col = "R") {
   }
   
   if (col == "G"){
-    obj <- new("pepArrayPP") 
+    obj <- new("MultiSet") 
     assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x$F532.Median),
                                    fMean = sapply(gpr, function(x) x$F532.Mean),
                                    fCV = sapply(gpr, function(x) x$F532.CV),

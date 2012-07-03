@@ -4,7 +4,7 @@
 
 setMethod(
   f = "betweenArrayNorm",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x){
     ndata <- fg(x)
     ndata <- as.numeric(ndata)
