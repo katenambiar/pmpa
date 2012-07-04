@@ -14,7 +14,7 @@
 # Last Updated: 30.4.2012
 setMethod(
   f = "arrayCV",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x, transform = "none"){
     
     if (!is.null(fData(x)$ID)){

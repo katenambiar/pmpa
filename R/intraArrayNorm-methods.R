@@ -4,7 +4,7 @@
 
 setMethod(
   f = "intraArrayNorm",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x, controlSeq, method = "lm"){
     normdata <- NULL
     for (i in seq(1:ncol(x))){

@@ -1,6 +1,6 @@
 setMethod(
   f = "arraySecAb",
-  signature = "pepArrayPP",
+  signature = "MultiSet",
   definition = function(x, secabID, transform = "none"){
   
     if (transform == "none"){
