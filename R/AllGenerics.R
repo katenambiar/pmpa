@@ -65,11 +65,11 @@ if(!isGeneric("arrayCV")) {
     )
   }
 
-# Calculate the average of intra-array replicates
-if(!isGeneric("arrayAve")) {
+# Summarise intra-array replicates
+if(!isGeneric("arraySummary")) {
   setGeneric(
-    name = "arrayAve", 
-    def = function(x, ...) standardGeneric("arrayAve")
+    name = "arraySummary", 
+    def = function(x, ...) standardGeneric("arraySummary")
     )
   }
 
