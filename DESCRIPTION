@@ -16,7 +16,6 @@ Imports:
 License: GPL-2
 URL: http://github.com/katenambiar/peparray
 Collate:
-    'AllClasses.R'
     'AllGenerics.R'
     'AccessorMethods.R'
     'arraySummary-methods.R'
