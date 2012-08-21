@@ -11,13 +11,14 @@ Depends:
     Biobase,
     methods,
 Imports:
-    MASS
+    MASS,
+    preprocessCore
 License: GPL-2
 URL: http://github.com/katenambiar/peparray
 Collate:
     'AllGenerics.R'
     'AccessorMethods.R'
-    'arrayAve-methods.R'
+    'arraySummary-methods.R'
     'arrayBGcorr-methods.R'
     'betweenArrayNorm-methods.R'
     'arrayCV-methods.R'
