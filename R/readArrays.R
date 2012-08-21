@@ -1,6 +1,6 @@
 # Read Arrays Function
 #
-# Description: Reads Genepix GPR files (in Axon ATF format) and creates new pepArrayPP object
+# Description: Reads Genepix GPR files (in Axon ATF format) and creates new MultiSet object
 #
 # Usage: readArrays(files = NULL, col = "R")
 # Arguments:
