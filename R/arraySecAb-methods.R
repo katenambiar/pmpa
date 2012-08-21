@@ -31,7 +31,7 @@ setMethod(
 
 setMethod(
   f = "arraySecAb",
-  signature = "pepArray",
+  signature = "ExpressionSet",
   definition = function(x, secabID, transform = "none", method = "lm"){
     
     if (transform == "none"){
