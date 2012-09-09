@@ -13,7 +13,7 @@ setMethod(
       
     } else if(method == "Quantile"){
       
-      exprs(x) <- normalize.quantiles(exprs(x))
+      assayDataElement(x, "fMedian") <- normalize.quantiles(fg(x))
       return(x)
       
       } else if (method == "LM"){
