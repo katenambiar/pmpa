@@ -30,7 +30,9 @@ setMethod(
         assayDataElement(x, "fMedian") <- normdata
         return (x)
         
-      } stop("Method must be either 'Scale', 'Quantile', 'LM' or 'None'")
+      } 
+    
+      stop("Method must be either 'Scale', 'Quantile', 'LM' or 'None'")
     
     }
 )
