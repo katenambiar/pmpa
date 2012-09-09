@@ -50,10 +50,10 @@ if(!isGeneric("intraArrayNorm")) {
     )
 }
 
-if(!isGeneric("betweenArrayNorm")) {
+if(!isGeneric("normalizeArrays")) {
   setGeneric(
-    name = "betweenArrayNorm", 
-    def = function(x, ...) standardGeneric("betweenArrayNorm")
+    name = "normalizeArrays", 
+    def = function(x, ...) standardGeneric("normalizeArrays")
     )
 }
 

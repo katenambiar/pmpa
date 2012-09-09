@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------------------
 
 setMethod(
-  f = "betweenArrayNorm",
+  f = "normalizeArrays",
   signature = "MultiSet",
   definition = function(x, method = "None"){
     
