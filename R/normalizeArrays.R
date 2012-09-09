@@ -14,6 +14,7 @@ setMethod(
     } else if(method == "Quantile"){
       
       assayDataElement(x, "fMedian") <- normalize.quantiles(fg(x))
+      fg(x) <- normalize.quantiles(fg(x))
       return(x)
       
       } else if (method == "LM"){
