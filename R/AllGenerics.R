@@ -79,8 +79,3 @@ if(!isGeneric("arraySecAb")) {
     def = function(x, ...) standardGeneric("arraySecAb")
     )
 }
-
-# Extension to Boxplot S3 methods
-if(!isGeneric("boxplot")) {
-  setGeneric("boxplot")
-}
