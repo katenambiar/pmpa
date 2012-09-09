@@ -20,7 +20,7 @@ Collate:
     'AccessorMethods.R'
     'arraySummary-methods.R'
     'arrayBGcorr-methods.R'
-    'betweenArrayNorm-methods.R'
+    'normalizeArrays.R'
     'arrayCV-methods.R'
     'arraySecAb-methods.R'
     'intraArrayNorm-methods.R'
