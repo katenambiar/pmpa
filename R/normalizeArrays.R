@@ -13,7 +13,7 @@ setMethod(
       
     } else if(method == "Quantile"){
       
-      exprs(x) <- normalize.quantiles(exprs(x))
+      fg(x) <- normalize.quantiles(fg(x))
       return(x)
       
       } else if (method == "LM"){
