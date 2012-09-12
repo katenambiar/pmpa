@@ -42,7 +42,7 @@ setMethod(
         
       } 
     
-      stop("Method must be either 'Scale', 'Quantile', 'LM' or 'None'")
+      stop("Method must be either 'scale', 'quantile', 'cyclic', 'LM' or 'none'")
     
     }
 )
