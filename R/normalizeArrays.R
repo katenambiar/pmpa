@@ -5,17 +5,27 @@
 setMethod(
   f = "normalizeArrays",
   signature = "MultiSet",
-  definition = function(x, method = "None"){
+  definition = function(x, method = "none"){
     
-    if (method == "None"){
+    if (method == "none"){
       
       return(x)
       
-    } else if(method == "Quantile"){
+    } else if(method == "quantile"){
       
       assayDataElement(x, "fMedian") <- normalize.quantiles(fg(x))
       return(x)
       
+      } else if(method == "scale"){
+        
+        assayDataElement(x, "fMedian") <- normalizeBetweenArrays(fg(x), method = "scale")
+        return(x)
+      
+      } else if(method == "cyclic"){
+        
+        assayDataElement(x, "fMedian") <- normalizeCyclicLoess(fg(x), method = "affy")
+        return(x)
+        
       } else if (method == "LM"){
         
         ndata <- fg(x)
