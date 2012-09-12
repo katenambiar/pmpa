@@ -12,6 +12,7 @@ Depends:
     methods,
 Imports:
     MASS,
+    limma,
     preprocessCore
 License: GPL-2
 URL: http://github.com/katenambiar/peparray
