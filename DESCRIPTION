@@ -1,4 +1,4 @@
-Package: peparray
+Package: parray
 Type: Package
 Title: Peptide Microarray Pre-Processing and Analysis
 Version: 0.1
