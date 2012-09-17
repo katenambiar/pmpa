@@ -10,8 +10,8 @@
 #           3. path - full path or URL to the GPR file
 #   col - either "R" (default) to import data from the 635nm channel or "G" to import 532nm data
 #
-# Output: A pepArrayPP object (extending eSet) containing the following slots
-#   assayData - annotated data frame containing 3 components: fg, bg, flags
+# Output: A MultiSet object containing the following slots
+#   assayData - annotated data frame
 #   phenoData - 
 #   featureData - 
 #   Other eSet slots are present but not written to by this function
