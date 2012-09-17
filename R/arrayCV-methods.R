@@ -5,7 +5,7 @@
 #
 # Calculate the CV of intra-array replicates
 # Dependencies: 
-# Arguments: x = PepArrayRaw object or matrix of intensity values with probes as rows and samples in columns
+# Arguments: x = MultiSet object or matrix of intensity values with probes as rows and samples in columns
 #            ndups = number of technical replicates on the microarray
 #            spacing = number of rows separating a probe from its replicate
 # Output:    matrix of CV values with samples in columns and unique probes in rows
