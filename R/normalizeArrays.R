@@ -13,7 +13,7 @@ setMethod(
     
     } else if(method == "scale"){
       
-      ndata <- aply(x, 2, median, na.rm = TRUE)
+      ndata <- apply(fg(x), 2, median, na.rm = TRUE)
       ndata <- ndata - exp(mean(log(ndata)))
       assayDataElement(x, "fMedian") <- sweep(fg(x), 2, ndata)
       return(x)
