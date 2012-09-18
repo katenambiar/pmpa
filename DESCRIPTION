@@ -15,7 +15,7 @@ Imports:
     limma,
     preprocessCore
 License: GPL-2
-URL: http://github.com/katenambiar/peparray
+URL: http://github.com/katenambiar/parray
 Collate:
     'AllGenerics.R'
     'AccessorMethods.R'
