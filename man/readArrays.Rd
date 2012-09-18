@@ -14,7 +14,7 @@
 \description{
   This function imports the foreground intensity,
   background intensity, flags and feature annotation from
-  GPR files and produces an object of class pepArrayPP - an
+  GPR files and produces an object of class MultiSet - an
   extension of the eSet class.
 }
 
