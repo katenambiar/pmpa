@@ -5,12 +5,12 @@
 # Output:    matrix of CV values with samples in columns and unique probes in rows
 #
 
-arrayCV <- function(y, ID){
-  sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
-  sumsq.y <- rowsum(y^2, ID, reorder = FALSE, na.rm = TRUE)
-  n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
-  ave <- sum.y/n
-  var.y <- ((n * sumsq.y) - sum.y^2)/n^2
-  cv <- sqrt(var.y) / ave
+arrayCV <- function(x, ID){
+  sum.x <- rowsum(x, ID, reorder = FALSE, na.rm = TRUE)
+  sumsq.x <- rowsum(x^2, ID, reorder = FALSE, na.rm = TRUE)
+  n <- rowsum(1L - is.na(x), ID, reorder = FALSE)
+  ave <- sum.x/n
+  var.x <- ((n * sumsq.x) - sum.x^2)/n^2
+  cv <- sqrt(var.x) / ave
   return(cv)
 }
