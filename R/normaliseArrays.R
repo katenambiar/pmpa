@@ -3,7 +3,7 @@
 #-----------------------------------------------------------------------------------------------------
 
 setMethod(
-  f = "normalizeArrays",
+  f = "normaliseArrays",
   signature = "MultiSet",
   definition = function(x, method = "none"){
     
