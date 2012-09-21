@@ -1,6 +1,6 @@
-\name{peparray-package}
-\alias{peparray-package}
-\alias{peparray}
+\name{pippa-package}
+\alias{pippa-package}
+\alias{pippa}
 \docType{package}
 \title{
 Pre-processing and analysis of peptide microarray data.
@@ -10,11 +10,11 @@ peparray is a package for the pre-processing and exploratory analysis of spotted
 }
 \details{
 \tabular{ll}{
-Package: \tab peparray\cr
+Package: \tab pippa\cr
 Type: \tab Package\cr
 Version: \tab 0.1\cr
-Date: \tab 2012-05-20\cr
-License: \tab GPL-2\cr
+Date: \tab 2012-09-21\cr
+License: \tab GPL-3\cr
 }
 
 }
