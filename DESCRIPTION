@@ -1,8 +1,8 @@
-Package: parray
+Package: pippa
 Type: Package
 Title: Peptide Microarray Pre-Processing and Analysis
 Version: 0.1
-Date: 2012-05-06
+Date: 2012-09-21
 Author: Kate Nambiar
 Maintainer: Kate Nambiar <k.z.nambiar@bsms.ac.uk>
 Description: 
@@ -12,16 +12,15 @@ Depends:
     methods,
 Imports:
     MASS,
-    limma,
     preprocessCore
-License: GPL-2
+License: GPL-3
 URL: http://github.com/katenambiar/parray
 Collate:
     'AllGenerics.R'
     'AccessorMethods.R'
     'arraySummary-methods.R'
     'arrayBGcorr-methods.R'
-    'normalizeArrays.R'
+    'normaliseArrays.R'
     'arrayCV-methods.R'
     'arraySecAb-methods.R'
     'intraArrayNorm-methods.R'
