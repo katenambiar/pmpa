@@ -10,7 +10,7 @@ setMethod(
         phenoData(x) <- combine(protocolData(x), phAnnot)
         
       } else {
-        stop("Sample names of pepArrayPP object and phenotype annotation do not match")
+        stop("Sample names of MultiSet object and phenotype annotation do not match")
       }
     }
     
@@ -22,7 +22,7 @@ setMethod(
         protocolData(x) <- combine(protocolData(x), prAnnot)
         
       } else {
-        stop("Sample names of pepArrayPP object and protocol annotation do not match")
+        stop("Sample names of MultiSet object and protocol annotation do not match")
       }
     }
     
@@ -54,7 +54,7 @@ setMethod(
         phenoData(x) <- combine(protocolData(x), phAnnot)
         
       } else {
-        stop("Sample names of pepArrayPP object and phenotype annotation do not match")
+        stop("Sample names of ExpressionSet object and phenotype annotation do not match")
       }
     }
     
@@ -66,7 +66,7 @@ setMethod(
         protocolData(x) <- combine(protocolData(x), prAnnot)
         
       } else {
-        stop("Sample names of pepArrayPP object and protocol annotation do not match")
+        stop("Sample names of ExpressionSet object and protocol annotation do not match")
       }
     }
     
