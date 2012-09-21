@@ -3,7 +3,7 @@
 # Arguments: x = MultiSet object
 #            method = c("TukeyBiweight", "MedianPolish", "Mean")
 #
-# Output: ExpressionSet with summarised intensity values in exprs slot and CV in cv.exprs slot
+# Output: ExpressionSet with summarised intensity values in exprs slot
 # Last Updated: 2.8.2012
 
 setMethod(
@@ -24,23 +24,21 @@ setMethod(
     flags <- assayDataElement(x, "flags")
     y[flags < -99] <- NA
     
-    sum.y <- rowsum(y, ID, reorder = FALSE, na.rm = TRUE)
-    sumsq.y <- rowsum(y^2, ID, reorder = FALSE, na.rm = TRUE)
-    n <- rowsum(1L - is.na(y), ID, reorder = FALSE)
-    arraySumm <- sum.y/n
-    
-    var.y <- abs(((n * sumsq.y) - sum.y^2)/n^2)
-    cv <- sqrt(var.y) / arraySumm
-    
-    if (method == "TukeyBiweight"){
+    if (method == "mean"){
+      arraySumm <- subColSummarizeAvg(y, ID)
+      
+    } else if (method == "median"){
+      arraySumm <- subColSummarizeMedian(y, ID)
+      
+    } else if (method == "tukeybiweight"){
       arraySumm <- subColSummarizeBiweight(y, ID)
     
-    } else if(method == "MedianPolish"){
-      arraySumm <- subColSummarizeBiweight(y, ID)
+    } else if(method == "medianpolish"){
+      arraySumm <- subColSummarizeMedianpolish(y, ID)
     } 
     
     obj <- new("ExpressionSet")
-    assayData(obj) <- assayDataNew(exprs = arraySumm, cv.exprs = cv, nreps = n)
+    assayData(obj) <- assayDataNew(exprs = arraySumm)
     phenoData(obj) <- phenoData(x)
     fData(obj) <- fData(x)[!duplicated(fData(x)$ID), ]
     featureNames(obj) <- fData(obj)$ID
