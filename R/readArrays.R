@@ -20,7 +20,7 @@
 readArrays <- function(files, col = "R") {
   files <- read.delim(files, stringsAsFactors = FALSE)
   filePath <- file.path(files$path, files$fileName)
-  atfHeader <- lapply(filePath, function(x) read.table(x, nrows = 2, stringsAsFactors = FALSE))
+  atfHeader <- lapply(filePath, function(x) read.table(x, nrows = 1, stringsAsFactors = FALSE))
   
   if(all(grepl("^ATF", sapply(atfHeader, function(x)x[1,1])))){
     skip <- list()
