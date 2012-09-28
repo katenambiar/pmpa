@@ -1,4 +1,5 @@
 export(readArrays)
+export(buildAnnotation)
 exportMethods(readAnnotation)
 exportMethods(fg)
 exportMethods(bg)

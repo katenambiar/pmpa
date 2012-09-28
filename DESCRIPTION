@@ -26,4 +26,5 @@ Collate:
     'intraArrayNorm-methods.R'
     'readAnnotation-methods.R'
     'readArrays.R'
+    'buildAnnotation.R'
 ByteCompile: TRUE
