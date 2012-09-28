@@ -21,7 +21,7 @@ Collate:
     'arraySummary-methods.R'
     'arrayBGcorr-methods.R'
     'normaliseArrays.R'
-    'arrayCV-methods.R'
+    'arrayCV.R'
     'arraySecAb-methods.R'
     'intraArrayNorm-methods.R'
     'readAnnotation-methods.R'
