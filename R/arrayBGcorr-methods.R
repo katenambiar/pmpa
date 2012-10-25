@@ -52,7 +52,7 @@ setMethod(
         assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian")
         minval <- min(assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") > 0])
         assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- minval
-        assayDataElement(x, "fMedian") <- transformfunc(assayDataElement(x, "fMedian"))
+        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
         return(x)
       
       } else if (method == "ratio"){
