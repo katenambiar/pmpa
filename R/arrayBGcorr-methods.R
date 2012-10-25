@@ -23,7 +23,8 @@ setMethod(
       } else if (method == "subtract"){
         
         assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian")
-        assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- 1
+        minval <- min(assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") > 0])
+        assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- minval
         return(x)
         
       } else if (method == "ratio"){
@@ -48,8 +49,10 @@ setMethod(
         return (x)
       } else if (method == "subtract"){
       
-        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian"))
-        assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- 1
+        assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian")
+        minval <- min(assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") > 0])
+        assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- minval
+        assayDataElement(x, "fMedian") <- transformfunc(assayDataElement(x, "fMedian"))
         return(x)
       
       } else if (method == "ratio"){
