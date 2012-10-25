@@ -9,7 +9,7 @@
 # Output:    matrix of CV values with samples in columns and unique probes in rows
 #
 # Kate Nambiar
-# Last Updated: 23.5.2012
+# Last Updated: 21.10.2012
 setMethod(
   f = "arrayBGcorr",
   signature = "MultiSet",
@@ -23,6 +23,7 @@ setMethod(
       } else if (method == "subtract"){
         
         assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian")
+        assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- 1
         return(x)
         
       } else if (method == "ratio"){
