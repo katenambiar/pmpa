@@ -33,7 +33,7 @@ setMethod(
         fData(x) <- combine(fData(x), featureAnnot)
         
       } else {
-        stop("Feature IDs of pepArrayPP object and feature annotation do not match")
+        stop("Feature IDs of MultiSet object and feature annotation do not match")
       }
     }
     
