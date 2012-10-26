@@ -24,7 +24,8 @@ buildAnnotation <- function(galfile, subarrays = 1) {
                                   Name = gal$Name,
                                   Block = gal$Block,
                                   Row = gal$Row,
-                                  Column = gal$Column
+                                  Column = gal$Column,
+                                  stringsAsFactors = FALSE
                                   )
   return(peptideAnnotation)
 }
