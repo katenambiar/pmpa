@@ -8,6 +8,6 @@ For Linux and MacOS X platforms the latest development build can be installed di
 ```R
 install.packages("devtools")
 library(devtools)
-install_github("parray", "katenambiar")
+install_github("pippa", "katenambiar")
 ```
 
