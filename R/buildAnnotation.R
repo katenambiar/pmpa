@@ -21,10 +21,11 @@ buildAnnotation <- function(galfile, subarrays = 1) {
   subarrays <- rep(1:subarrays, each = nrow(gal)/subarrays)
   peptideAnnotation <- data.frame(ID = gal$ID,
                                   Subarray = subarrays,
-                                  Name = gal$Name,
                                   Block = gal$Block,
                                   Row = gal$Row,
-                                  Column = gal$Column
+                                  Column = gal$Column,
+                                  Name = gal$Name,
+                                  stringsAsFactors = FALSE
                                   )
   return(peptideAnnotation)
 }
