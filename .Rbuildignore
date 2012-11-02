@@ -3,3 +3,4 @@
 \.user$
 \.gitignore
 \.md
+^.*\.Rproj$
