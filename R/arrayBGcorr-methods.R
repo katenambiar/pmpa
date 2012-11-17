@@ -32,6 +32,11 @@ setMethod(
         assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") / assayDataElement(x, "bMedian")
         return(x)
         
+      } else if (method == "normexp"){
+        
+        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp")
+        return(x)
+        
       } else {
         
         stop("Method must be either 'none', 'subtract' or 'ratio'")
@@ -61,9 +66,10 @@ setMethod(
         assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian"))
         return(x)
       
-      } else if (method == "ratio"){
-      
-        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian") / assayDataElement(x, "bMedian"))
+      } else if (method == "normexp"){
+        
+        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp")
+        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
         return(x)
       
       } else {
