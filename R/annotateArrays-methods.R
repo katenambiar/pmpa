@@ -1,5 +1,5 @@
 setMethod(
-  f = "readAnnotation",
+  f = "annotateArrays",
   signature = "MultiSet",
   definition = function(x, pheno = NULL, protocol = NULL, feature = NULL){
     if (!is.null(pheno)){
@@ -43,7 +43,7 @@ setMethod(
 
 
 setMethod(
-  f = "readAnnotation",
+  f = "annotateArrays",
   signature = "ExpressionSet",
   definition = function(x, pheno = NULL, protocol = NULL, feature = NULL){
     if (!is.null(pheno)){

@@ -24,7 +24,7 @@ Collate:
     'arrayCV.R'
     'arraySecAb-methods.R'
     'intraArrayNorm-methods.R'
-    'readAnnotation-methods.R'
+    'annotateArrays-methods.R'
     'readArrays.R'
     'buildAnnotation.R'
 ByteCompile: TRUE

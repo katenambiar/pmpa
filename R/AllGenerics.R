@@ -27,10 +27,10 @@ if(!isGeneric("cv")) {
 }
 
 
-if(!isGeneric("readAnnotation")) {
+if(!isGeneric("annotateArrays")) {
   setGeneric(
-    name = "readAnnotation", 
-    def = function(x, ...) standardGeneric("readAnnotation")
+    name = "annotateArrays", 
+    def = function(x, ...) standardGeneric("annotateArrays")
     )
 }
 

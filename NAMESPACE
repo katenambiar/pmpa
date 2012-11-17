@@ -1,7 +1,7 @@
 export(readArrays)
 export(buildAnnotation)
 export(arrayCV)
-#exportMethods(readAnnotation)
+exportMethods(annotateArrays)
 exportMethods(fg)
 exportMethods(bg)
 exportMethods(arrayBGcorr)
