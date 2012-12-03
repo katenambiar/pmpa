@@ -1,3 +1,5 @@
+importFrom(limma, backgroundCorrect)
+import(preprocessCore)
 export(readArrays)
 export(buildAnnotation)
 export(arrayCV)
