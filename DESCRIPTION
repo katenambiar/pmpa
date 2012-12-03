@@ -12,6 +12,7 @@ Depends:
     methods,
 Imports:
     MASS,
+    limma,
     preprocessCore
 License: GPL-3
 URL: http://github.com/katenambiar/pippa
