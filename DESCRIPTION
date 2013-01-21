@@ -19,6 +19,7 @@ URL: http://github.com/katenambiar/pippa
 Collate:
     'AllGenerics.R'
     'AccessorMethods.R'
+    'getArrayLayout-methods.R'
     'arraySummary-methods.R'
     'arrayBGcorr-methods.R'
     'normaliseArrays.R'
