@@ -27,6 +27,14 @@ if(!isGeneric("cv")) {
 }
 
 
+# Array Layout Accessor
+if(!isGeneric("getArrayLayout")) {
+  setGeneric(
+    name = "getArrayLayout",
+    def = function(x, ...) standardGeneric("getArrayLayout")
+  )
+}
+
 if(!isGeneric("annotateArrays")) {
   setGeneric(
     name = "annotateArrays", 
