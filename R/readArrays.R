@@ -1,22 +1,13 @@
-# Read Arrays Function
-#
-# Description: Reads Genepix GPR files (in Axon ATF format) and creates new MultiSet object
-#
-# Usage: readArrays(files = NULL, col = "R")
-# Arguments:
-#   files - a data frame with 3 columns:
-#           1. sampleName - unique identifier for sample
-#           2. fileName - GPR file name and extension
-#           3. path - full path or URL to the GPR file
-#   col - either "R" (default) to import data from the 635nm channel or "G" to import 532nm data
-#
-# Output: A MultiSet object containing the following slots
-#   assayData - annotated data frame
-#   phenoData - 
-#   featureData - 
-#   Other eSet slots are present but not written to by this function
-#
-
+#' Reads peptide microarray data from Axon ATF format (Genepix GPR files)
+#' 
+#' \code{readArrays} is a function used to read in microarray data from Genepix GPR files. 
+#' It removes the header information and only imports the median foreground and background
+#' intensities as well as other data for QC purposes.
+#' 
+#' @param files a data with 3 columns: sampleName - unique identifier for the sample, fileName - GPR file name and extension, path - full path or URL to the GPR file
+#' @param col either "R" (default) to import data from the 635nm channel or "G" to import 532nm data
+#' @return an object of class MultiSet
+#' @export
 readArrays <- function(files, col = "R") {
   filePath <- file.path(files$path, files$fileName)
   atfHeader <- lapply(filePath, function(x) read.table(x, nrows = 1, stringsAsFactors = FALSE))
