@@ -87,3 +87,11 @@ if(!isGeneric("arraySecAb")) {
     def = function(x, ...) standardGeneric("arraySecAb")
     )
 }
+
+if(!isGeneric("plotImage")) {
+  setGeneric(
+    name = "plotImage", 
+    def = function(x, ...) standardGeneric("plotImage")
+  )
+}
+

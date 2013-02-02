@@ -29,4 +29,5 @@ Collate:
     'annotateArrays-methods.R'
     'readArrays.R'
     'buildAnnotation.R'
+    'plotImage-methods.R'
 ByteCompile: TRUE
