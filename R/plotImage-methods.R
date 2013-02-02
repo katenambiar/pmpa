@@ -21,9 +21,9 @@ setMethod(
     
     low <- col2rgb(lowcol)/255
     high <- col2rgb(highcol)/255
-    col <- rgb(seq(low[1], high[1], len = ncolors),
-               seq(low[2], high[2], len = ncolors),
-               seq(low[3], high[3], len = ncolors)
+    col <- rgb(seq(low[1], high[1], len = ncols),
+               seq(low[2], high[2], len = ncols),
+               seq(low[3], high[3], len = ncols)
     )
     
     nr <- spotrows * blockrows
