@@ -4,7 +4,7 @@
 #
 # Usage: readArrays(files = NULL, col = "R")
 # Arguments:
-#   files - path to tab delimited text file containing 3 columns:
+#   files - a data frame with 3 columns:
 #           1. sampleName - unique identifier for sample
 #           2. fileName - GPR file name and extension
 #           3. path - full path or URL to the GPR file
@@ -18,7 +18,6 @@
 #
 
 readArrays <- function(files, col = "R") {
-  files <- read.delim(files, stringsAsFactors = FALSE)
   filePath <- file.path(files$path, files$fileName)
   atfHeader <- lapply(filePath, function(x) read.table(x, nrows = 1, stringsAsFactors = FALSE))
   
@@ -63,7 +62,7 @@ readArrays <- function(files, col = "R") {
   colHeaders <- list()
   for (i in 1:length(filePath)){
     colHeaders[[i]] <- read.table(filePath[i], skip = skip[[i]], nrows = 1, stringsAsFactors = FALSE, sep = "\t")
-    colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", dataHeader, "F Pixels", "Flags")
+    colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", "Dia.", dataHeader, "F Pixels", "Flags")
   }
   
   colClasses <- list()
@@ -99,6 +98,7 @@ readArrays <- function(files, col = "R") {
                                    bSD = sapply(gpr, function(x) x$B635.SD),
                                    fSat = sapply(gpr, function(x) x$F635...Sat.),
                                    fPixels = sapply(gpr, function(x) x$F.Pixels),
+                                   dia = sapply(gpr, function(x) x$Dia.),
                                    flags = sapply(gpr, function(x) x$Flags)
                                    )
     pData(obj) <- data.frame (fileName = files$fileName,
@@ -124,6 +124,7 @@ readArrays <- function(files, col = "R") {
                                    bSD = sapply(gpr, function(x) x$B532.SD),
                                    fSat = sapply(gpr, function(x) x$F532...Sat.),
                                    fPixels = sapply(gpr, function(x) x$F.Pixels),
+                                   dia = sapply(gpr, function(x) x$Dia.),
                                    flags = sapply(gpr, function(x) x$Flags)
                                    )
     pData(obj) <- data.frame (fileName = files$fileName,
