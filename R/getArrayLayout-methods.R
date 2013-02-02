@@ -1,6 +1,6 @@
 setMethod(
   f = "getArrayLayout",
-  signature = "MultiSet",
+  signature = "eSet",
   definition = function(x, ncols = 4, subarrays = 3){
     
     if(!all(c("Block", "Row", "Column") %in% names(fData(x))))
