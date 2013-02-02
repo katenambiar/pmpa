@@ -10,7 +10,7 @@ setMethod(
     } else if (slot =="bg"){
        x <- bg(x)
     } else {
-      stop("Only 'fg' or 'bg' slots can be plotted as a microarray image.")
+      stop("Only 'fg' or 'bg'  slots can be plotted as a microarray image.")
     }
     
     blockrows <- max(layout[,'block.row'])
