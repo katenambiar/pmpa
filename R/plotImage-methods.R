@@ -2,8 +2,11 @@ setMethod(
   f = "plotImage",
   signature = "MultiSet",
   definition = function(x, slot = "bg", lowcol, highcol, ncols = 123, ...){
-    
     layout <- getArrayLayout(x)
+    
+    if (ncol(x) > 1){
+      warning("Multiple arrays found in MultiSet object. Only the first array will be displayed")
+    }
     
     if (slot == "fg"){
       x <- fg(x)
