@@ -1,20 +1,25 @@
 \name{readArrays}
 \alias{readArrays}
-\title{Read peptide microarray raw data files in genepix GPR format}
+\title{Reads peptide microarray data from Axon ATF format (Genepix GPR files)}
 \usage{
   readArrays(files, col = "R")
 }
 \arguments{
-  \item{files}{tab delimited text file with 3 columns -
-  fileName, path and sampleName}
+  \item{files}{a data with 3 columns: sampleName - unique
+  identifier for the sample, fileName - GPR file name and
+  extension, path - full path or URL to the GPR file}
 
-  \item{col}{a character vector (either "R" to import the
-  635nm channel or "G" for the 532nm channel)}
+  \item{col}{either "R" (default) to import data from the
+  635nm channel or "G" to import 532nm data}
+}
+\value{
+  an object of class MultiSet
 }
 \description{
-  This function imports the foreground intensity,
-  background intensity, flags and feature annotation from
-  GPR files and produces an object of class MultiSet - an
-  extension of the eSet class.
+  \code{readArrays} is a function used to read in
+  microarray data from Genepix GPR files. It removes the
+  header information and only imports the median foreground
+  and background intensities as well as other data for QC
+  purposes.
 }
 

@@ -1,17 +1,23 @@
-\name{arrayBGcorr-methods}
 \docType{methods}
+\name{arrayBGcorr}
 \alias{arrayBGcorr}
-\alias{arrayBGcorr,pepArrayPP-method}
-\title{Methods for Function arrayBGcorr}
-\description{
-Applies background correction algorithms to array data.
-}
-\section{Methods}{
-\describe{
+\title{Local background feature correction algorithms}
+\arguments{
+  \item{x}{MultiSet object with fMedian and bMedian
+  matrices in the assayData slot}
 
-\item{\code{signature(x = "pepArrayPP")}}{
-%%  ~~describe this method here~~
+  \item{method}{One of 'none', 'subtract', 'ratio' or
+  'normexp'}
+
+  \item{transform}{Expression to transform raw data.
+  Defaults to log2}
 }
-}}
-\keyword{methods}
-\keyword{ ~~ other possible keyword(s) ~~ }
+\value{
+  MultiSet object with transformed and background corrected
+  foreground signal in the fMedian matrix
+}
+\description{
+  Implements local background correction for peptide
+  microarray data
+}
+
