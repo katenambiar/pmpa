@@ -7,10 +7,10 @@
   matrices in the assayData slot and layout data (block,
   column and row) in the fData slot.}
 
-  \item{lowcol}{COlour associated with low signal
+  \item{lowcol}{Colour associated with low signal
   intensities}
 
-  \item{highcol}{COlour associated with high signal
+  \item{highcol}{Colour associated with high signal
   intensities}
 
   \item{ncols}{number of colour shades used}
