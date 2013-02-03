@@ -1,5 +1,4 @@
 Package: pippa
-Type: Package
 Title: Peptide Microarray Pre-Processing and Analysis
 Version: 0.1
 Date: 2012-09-21
@@ -9,25 +8,22 @@ Description:
 Depends:
     R (>= 2.14),
     Biobase,
-    methods,
-Imports:
-    MASS,
+    methods
+Imports: 
     limma,
     preprocessCore
 License: GPL-3
 URL: http://github.com/katenambiar/pippa
 Collate:
-    'AllGenerics.R'
     'AccessorMethods.R'
     'getArrayLayout-methods.R'
     'arraySummary-methods.R'
     'arrayBGcorr-methods.R'
     'normaliseArrays.R'
+    'lmNorm.R'
     'arrayCV.R'
-    'arraySecAb-methods.R'
     'intraArrayNorm-methods.R'
     'annotateArrays-methods.R'
     'readArrays.R'
-    'buildAnnotation.R'
     'plotImage-methods.R'
 ByteCompile: TRUE
