@@ -23,17 +23,13 @@ setGeneric(
 setMethod(
   f = "plotImage",
   signature = "MultiSet",
-  definition = function(x, slot = "bg", lowcol, highcol, ncols = 123, ...){
+  definition = function(x, arr = 1, slot = "bg", lowcol, highcol, ncols = 123, ...){
     layout <- getArrayLayout(x)
     
-    if (ncol(x) > 1){
-      warning("Multiple arrays found in MultiSet object. Only the first array will be displayed")
-    }
-    
     if (slot == "fg"){
-      x <- fg(x)
+      y <- fg(x)[ ,arr]
     } else if (slot =="bg"){
-       x <- bg(x)
+       y <- bg(x)[ ,arr]
     } else {
       stop("Only 'fg' or 'bg'  slots can be plotted as a microarray image.")
     }
@@ -57,12 +53,13 @@ setMethod(
     col.ind <- (layout[,'block.col'] - 1) * spotcols + layout[,'spot.col']
     ord <- order(row.ind, col.ind)
     
-    z <- matrix(x[ord], nrow = nr, ncol = nc, byrow = TRUE)
+    z <- matrix(y[ord], nrow = nr, ncol = nc, byrow = TRUE)
     z <- t(z)[, nr:1]
     
-    image(1:nc, 1:nr, z, axes = F, xlab = "", ylab = "", col = col)
+    image(1:nc, 1:nr, z, axes = F, xlab = "", ylab = "", col = col, ...)
     box(lwd = 1)
     abline(v = ((1:blockcols - 1) * spotcols + 0.5), lwd = 1)
     abline(h = ((1:blockrows - 1) * spotrows + 0.5), lwd = 1)
+    title(sampleNames(x)[arr])
   }
 )
