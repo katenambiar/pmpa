@@ -1,3 +1,9 @@
+setGeneric(
+  name = "annotateArrays", 
+  def = function(x, ...) standardGeneric("annotateArrays")
+)
+
+
 setMethod(
   f = "annotateArrays",
   signature = "MultiSet",
