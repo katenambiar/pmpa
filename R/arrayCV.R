@@ -1,10 +1,9 @@
-# Calculate the CV of intra-array replicates
-# Dependencies: 
-# Arguments: x = matrix of intensity values with probes as rows and samples in columns
-#            ID = 
-# Output:    matrix of CV values with samples in columns and unique probes in rows
-#
-
+#' Calculate the CV of intra-array replicates
+#' 
+#' @param x matrix of intensity values with probes as rows and samples in columns
+#' @param ID vector of probe IDs
+#' @return matrix of CV values with samples in columns and unique probes in rows
+#' @export
 arrayCV <- function(x, ID){
   sum.x <- rowsum(x, ID, reorder = FALSE, na.rm = TRUE)
   sumsq.x <- rowsum(x^2, ID, reorder = FALSE, na.rm = TRUE)
