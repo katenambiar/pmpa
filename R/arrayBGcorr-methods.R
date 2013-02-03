@@ -1,15 +1,23 @@
-#-----------------------------------------------------------------------------------------------------
-#   arrayBGcorr Methods
-#-----------------------------------------------------------------------------------------------------
-#
-# Local background feature correction algorithms
-# Arguments: x = PepArrayRaw object or matrix of intensity values with probes as rows and samples in columns
-#            ndups = number of technical replicates on the microarray
-#            spacing = number of rows separating a probe from its replicate
-# Output:    matrix of CV values with samples in columns and unique probes in rows
-#
-# Kate Nambiar
-# Last Updated: 21.10.2012
+#' Local background feature correction algorithms
+#' 
+#' Implements local background correction for peptide microarray data
+#' 
+#' @param x MultiSet object with fMedian and bMedian matrices in the assayData slot
+#' @param method One of 'none', 'subtract', 'ratio' or 'normexp'
+#' @param transform Expression to transform raw data. Defaults to log2
+#' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
+#'  
+#' @export
+#' @docType methods
+#' @rdname arrayBGcorr-methods
+setGeneric(
+  name = "arrayBGcorr", 
+  def = function(x, ...) standardGeneric("arrayBGcorr")
+)
+
+
+#' @rdname arrayBGcorr-methods
+#' @aliases arrayBGcorr
 setMethod(
   f = "arrayBGcorr",
   signature = "MultiSet",

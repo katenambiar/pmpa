@@ -1,3 +1,25 @@
+#' Image plot of microarray data
+#' 
+#' Creates image plot representing the microarray foreground or background signal intensity
+#' organised by the spatial location of the spots on the array.
+#' 
+#' @param x MultiSet object with fMedian and/or bMedian matrices in the assayData slot
+#' and layout data (block, column and row) in the fData slot.
+#' @param lowcol Colour associated with low signal intensities
+#' @param highcol Colour associated with high signal intensities
+#' @param ncols number of colour shades used
+#' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
+#'  
+#' @export
+#' @docType methods
+#' @rdname plotImage-methods
+setGeneric(
+  name = "plotImage", 
+  def = function(x, ...) standardGeneric("plotImage")
+)
+
+#' @rdname plotImage-methods
+#' @aliases plotImage
 setMethod(
   f = "plotImage",
   signature = "MultiSet",
