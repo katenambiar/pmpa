@@ -1,3 +1,19 @@
+#' Array Layout Accessor
+#' 
+#' Gets microarray layout information matrix
+#' Used to obtain the layout information for \link{plotImage}
+#' 
+#' @param x MultiSet object with block, column and row information in the fData slot
+#' @return layout matrix
+#' @export
+#' @docType methods
+#' @rdname getArrayLayout-methods
+setGeneric(
+  name = "getArrayLayout",
+  def = function(x, ...) standardGeneric("getArrayLayout")
+)
+#' @rdname getArrayLayout-methods
+#' @aliases getArrayLayout
 setMethod(
   f = "getArrayLayout",
   signature = "eSet",
