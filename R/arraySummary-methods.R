@@ -1,11 +1,19 @@
-# Summarises intra-array replicates with flagged values excluded
-# Dependencies: 
-# Arguments: x = MultiSet object
-#            method = c("TukeyBiweight", "MedianPolish", "Mean")
-#
-# Output: ExpressionSet with summarised intensity values in exprs slot
-# Last Updated: 2.8.2012
+#' Summarises intra-array replicates with flagged values excluded
+#'
+#' @param x MultiSet object
+#' @param method c("TukeyBiweight", "MedianPolish", "Mean")
+#' @return ExpressionSet with summarised intensity values in exprs slot
+#' @export
+#' @docType methods
+#' @rdname arraySummary-methods
+setGeneric(
+  name = "arraySummary", 
+  def = function(x, ...) standardGeneric("arraySummary")
+)
 
+
+#' @rdname arraySummary-methods
+#' @aliases arraySummary
 setMethod(
   f = "arraySummary",
   signature = "MultiSet",
