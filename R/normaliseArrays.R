@@ -1,7 +1,7 @@
- #-----------------------------------------------------------------------------------------------------
-#   Between Array Normalisation
-#-----------------------------------------------------------------------------------------------------
-
+setGeneric(
+  name = "normaliseArrays", 
+  def = function(x, ...) standardGeneric("normaliseArrays")
+)
 setMethod(
   f = "normaliseArrays",
   signature = "MultiSet",

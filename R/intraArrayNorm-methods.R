@@ -1,6 +1,7 @@
-#-----------------------------------------------------------------------------------------------------
-#   Intra Array Normalisation
-#-----------------------------------------------------------------------------------------------------
+setGeneric(
+  name = "intraArrayNorm", 
+  def = function(x, ...) standardGeneric("intraArrayNorm")
+)
 
 setMethod(
   f = "intraArrayNorm",
