@@ -19,7 +19,7 @@ Collate:
     'getArrayLayout-methods.R'
     'arraySummary-methods.R'
     'arrayBGcorr-methods.R'
-    'normaliseArrays.R'
+    'arrayNorm-methods.R'
     'lmNorm.R'
     'arrayCV.R'
     'intraArrayNorm-methods.R'

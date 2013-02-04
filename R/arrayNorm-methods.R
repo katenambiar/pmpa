@@ -1,9 +1,9 @@
 setGeneric(
-  name = "normaliseArrays", 
-  def = function(x, ...) standardGeneric("normaliseArrays")
+  name = "arrayNorm", 
+  def = function(x, ...) standardGeneric("arrayNorm")
 )
 setMethod(
-  f = "normaliseArrays",
+  f = "arrayNorm",
   signature = "MultiSet",
   definition = function(x, method = "none", controlID = NULL){
     
