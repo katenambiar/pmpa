@@ -5,7 +5,7 @@ setGeneric(
 setMethod(
   f = "normaliseArrays",
   signature = "MultiSet",
-  definition = function(x, method = "none"){
+  definition = function(x, method = "none", controlID = NULL){
     
     if (method == "none"){
       
@@ -30,16 +30,7 @@ setMethod(
         
     } else if (method == "LM"){
       
-      ndata <- fg(x)
-      ndata <- as.numeric(ndata)
-      ndata <- data.frame(Intensity = ndata, 
-                          ID = rep(sampleNames(x), each = nrow(x)), 
-                          SA = rep(fData(x)$Subarray, ncol(x))
-                          )
-      fit <- lm(Intensity ~ as.factor(ID) + as.factor(ID):as.factor(SA), data = ndata)
-      normdata <- resid(fit) + coef(fit)[1]
-      normdata <- matrix(normdata, ncol = ncol(x))
-      assayDataElement(x, "fMedian") <- normdata
+      assayDataElement(x, "fMedian") <- lmNorm(fg(x), sampleID = sampleNames(x), featureID = fData(x)$ID, controlID = controlID)
       return (x)
         
     } 
