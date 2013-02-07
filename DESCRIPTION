@@ -21,6 +21,7 @@ Collate:
     'arrayBGcorr-methods.R'
     'arrayNorm-methods.R'
     'lmNorm.R'
+    'scaleNorm.R'
     'arrayCV.R'
     'intraArrayNorm-methods.R'
     'annotateArrays-methods.R'
