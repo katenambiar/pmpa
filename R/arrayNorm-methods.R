@@ -12,10 +12,8 @@ setMethod(
       return(x)
     
     } else if(method == "scale"){
-      
-      ndata <- apply(fg(x), 2, median, na.rm = TRUE)
-      ndata <- ndata - exp(mean(log(ndata)))
-      assayDataElement(x, "fMedian") <- sweep(fg(x), 2, ndata)
+
+      assayDataElement(x, "fMedian") <- scaleNorm(fg(x))
       return(x)
       
     } else if(method == "quantile"){
