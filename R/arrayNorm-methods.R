@@ -5,7 +5,7 @@ setGeneric(
 setMethod(
   f = "arrayNorm",
   signature = "MultiSet",
-  definition = function(x, method = "none", controlID = NULL){
+  definition = function(x, method = "none", ...){
     
     if (method == "none"){
       
@@ -28,7 +28,7 @@ setMethod(
         
     } else if (method == "LM"){
       
-      assayDataElement(x, "fMedian") <- lmNorm(fg(x), sampleID = sampleNames(x), featureID = fData(x)$ID, controlID = controlID)
+      assayDataElement(x, "fMedian") <- lmNorm(x, ...)
       return (x)
         
     } 
