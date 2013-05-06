@@ -1,3 +1,4 @@
+import(preprocessCore)
 export(arrayCV)
 export(bg)
 export(fg)
