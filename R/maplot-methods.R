@@ -11,7 +11,8 @@ setMethod(
     M <- y[ ,arr1] - y[ ,arr2]
     A <- (y[ ,arr1] + y[ ,arr2])/2
     plot(A, M,
-         pch = 20
+         pch = 20,
+         ...
          )
   }
 )
@@ -25,7 +26,8 @@ setMethod(
     M <- y[ ,arr1] - y[ ,arr2]
     A <- (y[ ,arr1] + y[ ,arr2])/2
     plot(A, M,
-         pch = 20
+         pch = 20,
+         ...
     )
   }
 )
