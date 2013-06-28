@@ -27,4 +27,5 @@ Collate:
     'annotateArrays-methods.R'
     'readArrays.R'
     'plotImage-methods.R'
+    'maplot-methods.R'
 ByteCompile: TRUE
