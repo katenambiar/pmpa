@@ -21,7 +21,7 @@ setGeneric(
 setMethod(
   f = "arrayBGcorr",
   signature = "MultiSet",
-  definition = function(x, method, transform = "log2"){
+  definition = function(x, method, offset = 0, transform = "log2"){
     
     if (transform == "none"){
       
@@ -62,7 +62,7 @@ setMethod(
         return (x)
       } else if (method == "subtract"){
       
-        assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian")
+        assayDataElement(x, "fMedian") <- (assayDataElement(x, "fMedian") + offset) - assayDataElement(x, "bMedian")
         minval <- min(assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") > 0])
         assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- minval
         assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
