@@ -30,7 +30,7 @@ setMethod(
         return (x)
       } else if (method == "subtract"){
         
-        assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian")
+        assayDataElement(x, "fMedian") <- (assayDataElement(x, "fMedian") + offset) - assayDataElement(x, "bMedian")
         minval <- min(assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") > 0])
         assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- minval
         return(x)
@@ -78,6 +78,13 @@ setMethod(
         
         assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian") - assayDataElement(x, "bMedian"))
         return(x)
+      
+      } else if (method == "edwards"){
+        
+        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "edwards")
+        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
+        return(x)  
+        
       
       } else if (method == "normexp"){
         
