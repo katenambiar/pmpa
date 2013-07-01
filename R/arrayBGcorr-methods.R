@@ -39,6 +39,11 @@ setMethod(
         
         assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") / assayDataElement(x, "bMedian")
         return(x)
+      
+      } else if (method == "edwards"){
+        
+        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "edwards")
+        return(x)
         
       } else if (method == "normexp"){
         
