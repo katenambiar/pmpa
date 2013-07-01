@@ -52,7 +52,7 @@ setMethod(
         
       } else {
         
-        stop("Method must be either 'none', 'subtract' or 'ratio'")
+        stop("Method must be either 'none', 'subtract', 'ratio', 'edwards' or 'normexp'")
       }
       
     } else {
