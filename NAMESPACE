@@ -1,3 +1,4 @@
+import(limma)
 import(preprocessCore)
 export(arrayCV)
 export(bg)
