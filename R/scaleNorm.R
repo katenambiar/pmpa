@@ -5,7 +5,7 @@
 #' @export
 scaleNorm <- function(x){
   y <- apply(x, 2, median, na.rm = TRUE)
-  y <- y - exp(mean(log(y)))
+  y <- y - exp(mean(log(abs(y))))
   y <- sweep(x, 2, y)
   return(y)
 }
