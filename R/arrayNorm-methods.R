@@ -21,11 +21,6 @@ setMethod(
       assayDataElement(x, "fMedian") <- normalize.quantiles(fg(x))
       return(x)
     
-    } else if(method == "cyclic"){
-      
-      assayDataElement(x, "fMedian") <- normalizeCyclicLoess(fg(x), method = "affy")
-      return(x)
-        
     } else if (method == "LM"){
       
       assayDataElement(x, "fMedian") <- lmNorm(x, ...)
