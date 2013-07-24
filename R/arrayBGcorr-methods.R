@@ -3,7 +3,9 @@
 #' Implements local background correction for peptide microarray data
 #' 
 #' @param x MultiSet object with fMedian and bMedian matrices in the assayData slot
-#' @param method One of 'none', 'subtract', 'ratio' or 'normexp'
+#' @param method Character string specifying background correction method. 
+#' Valid methods are 'none', 'subtract', 'edwards', ratio' or 'normexp'. Defaults to 'none' if no method is specified.
+#' @param offset numeric value added to raw signal intensity before background correction is implemented
 #' @param transform Expression to transform raw data. Defaults to log2
 #' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
 #'  
@@ -21,7 +23,7 @@ setGeneric(
 setMethod(
   f = "arrayBGcorr",
   signature = "MultiSet",
-  definition = function(x, method, offset = 0, transform = "log2", ...){
+  definition = function(x, method = "none", offset = 0, transform = "log2", ...){
     
     if (transform == "none"){
       

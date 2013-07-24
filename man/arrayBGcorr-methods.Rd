@@ -6,8 +6,13 @@
   \item{x}{MultiSet object with fMedian and bMedian
   matrices in the assayData slot}
 
-  \item{method}{One of 'none', 'subtract', 'ratio' or
-  'normexp'}
+  \item{method}{Character string specifying background
+  correction method. Valid methods are 'none', 'subtract',
+  'edwards', ratio' or 'normexp'. Defaults to 'none' if no
+  method is specified.}
+
+  \item{offset}{numeric value added to raw signal intensity
+  before background correction is implemented}
 
   \item{transform}{Expression to transform raw data.
   Defaults to log2}

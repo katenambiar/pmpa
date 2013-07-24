@@ -9,7 +9,7 @@ Depends:
     R (>= 2.14),
     Biobase,
     methods
-Imports: 
+Imports:
     limma,
     preprocessCore
 License: GPL-3
