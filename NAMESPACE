@@ -1,4 +1,5 @@
 import(limma)
+import(mixtools)
 import(preprocessCore)
 export(arrayCV)
 export(bg)
