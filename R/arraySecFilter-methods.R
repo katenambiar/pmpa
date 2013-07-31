@@ -23,19 +23,29 @@ setGeneric(
 setMethod(
   f = "arraySecFilter",
   signature = "MultiSet",
-  definition = function(x, control.arrays, ...){
+  definition = function(x, control.arrays, remove.control.arrays = FALSE, plot = FALSE, ...){
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
       nctrl <- arraySummary(nctrl, method = "median")
     } else {
-      stop("control.arrays must be a numeric index corresponding to the negative control arrays.")
+      stop("control.arrays must be a numeric value corresponding to the negative control array.")
     }
     
-    sec.gmm <- normalmixEM(exprs(nctrl),k=2,maxit=100,epsilon=0.001)
+    sec.gmm <- normalmixEM(exprs(nctrl), k=2, maxit=100, epsilon=0.001)
     cutoff <- qnorm(0.95, sec.gmm$mu[1], sec.gmm$sig[1])
     secbinder <- nctrl[exprs(nctrl) > cutoff, ]
     x <- x[-which(fData(x)$ID %in% featureNames(secbinder)), ]
+    
+    if(remove.control.arrays){
+      x <- x[ ,-control.arrays]
+    }
+    
+    if(plot){
+    plot(hist(exprs(nctrl), breaks = 100, col = "black"), ...)  
+    curve(sec.gmm$lambda[1] * dnorm(x,mean = mixture$mu[1], sd = mixture$sigma[1]), col = "red")
+    curve(sec.gmm$lambda[2] * dnorm(x,mean = sec.gmm$mu[2], sd = sec.gmm$sigma[2]), col = "blue", add=TRUE)
+    }
     return(x)
     
   }
