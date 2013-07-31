@@ -43,8 +43,8 @@ setMethod(
     }
     
     if(plot){
-    plot(hist(exprs(nctrl), breaks = 100, col = "black"), ...)  
-    curve(sec.gmm$lambda[1] * dnorm(x,mean = sec.gmm$mu[1], sd = sec.gmm$sigma[1]), col = "red")
+    hist(exprs(nctrl), breaks = 100, freq=FALSE, col = "black", ...)  
+    curve(sec.gmm$lambda[1] * dnorm(x,mean = sec.gmm$mu[1], sd = sec.gmm$sigma[1]), col = "red", add = TRUE)
     curve(sec.gmm$lambda[2] * dnorm(x,mean = sec.gmm$mu[2], sd = sec.gmm$sigma[2]), col = "blue", add=TRUE)
     }
     return(x)
