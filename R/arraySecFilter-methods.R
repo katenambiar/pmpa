@@ -27,6 +27,7 @@ setMethod(
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
+      nctrl <- arrayBGcorr(nctrl, transform = "log2", method = "none")
       nctrl <- arraySummary(nctrl, method = "median")
     } else {
       stop("control.arrays must be a numeric value corresponding to the negative control array.")
@@ -43,7 +44,7 @@ setMethod(
     
     if(plot){
     plot(hist(exprs(nctrl), breaks = 100, col = "black"), ...)  
-    curve(sec.gmm$lambda[1] * dnorm(x,mean = mixture$mu[1], sd = mixture$sigma[1]), col = "red")
+    curve(sec.gmm$lambda[1] * dnorm(x,mean = sec.gmm$mu[1], sd = sec.gmm$sigma[1]), col = "red")
     curve(sec.gmm$lambda[2] * dnorm(x,mean = sec.gmm$mu[2], sd = sec.gmm$sigma[2]), col = "blue", add=TRUE)
     }
     return(x)
