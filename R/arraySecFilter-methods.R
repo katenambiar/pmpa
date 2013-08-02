@@ -1,13 +1,18 @@
 #' Filter Secondary Antibody Binding Peptide Probes
 #' 
-#' Implements local background correction for peptide microarray data
+#' Implements filtering of signal from peptides that specifically bind to the secondary antibody.
+#' Using a control array incubated just with the secondary antibody, significantly binding probes are
+#' identified by fitting the data to a two-component Gaussian general mixture model. A cutoff signal intensity
+#' is set at the 95th percentile of the distribution from the non-binding peptides. Any probes showing signal greater
+#' than the cutoff are excluded.  
 #' 
-#' @param x MultiSet object with fMedian and bMedian matrices in the assayData slot
-#' @param method Character string specifying background correction method. 
-#' Valid methods are 'none', 'subtract', 'edwards', ratio' or 'normexp'. Defaults to 'none' if no method is specified.
-#' @param offset numeric value added to raw signal intensity before background correction is implemented
-#' @param transform Expression to transform raw data. Defaults to log2
-#' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
+#' @param x MultiSet object after background correction and log transformation
+#' @param control.arrays Numeric vector specifying negative control (secondary antibody only) arrays. 
+#' @param removecontrol.arrays either TRUE to remove the control array after filtering or FALSE to leave the control array in the dataset. (default = TRUE)
+#' @param plot Either TRUE to return a histogram with overlying density plots of the two mixture components on the current graphics device, 
+#' or FALSE to implement the filtration without returning a plot. (default = FALES)
+#' @param ... further arguments passed to \link{hist}
+#' @return MultiSet object filtered to remove probes with high secondary binding
 #'  
 #' @export
 #' @docType methods
@@ -23,11 +28,10 @@ setGeneric(
 setMethod(
   f = "arraySecFilter",
   signature = "MultiSet",
-  definition = function(x, control.arrays, remove.control.arrays = FALSE, plot = FALSE, ...){
+  definition = function(x, control.arrays, remove.control.arrays = TRUE, plot = FALSE, ...){
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
-      nctrl <- arrayBGcorr(nctrl, transform = "log2", method = "none")
       nctrl <- arraySummary(nctrl, method = "median")
     } else {
       stop("control.arrays must be a numeric value corresponding to the negative control array.")
