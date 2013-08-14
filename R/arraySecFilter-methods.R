@@ -32,6 +32,7 @@ setMethod(
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
+      nctrl <- arrayBGcorr(nctrl, method = "none", transform = "log2")
       nctrl <- arraySummary(nctrl, method = "median")
     } else {
       stop("control.arrays must be a numeric value corresponding to the negative control array.")
