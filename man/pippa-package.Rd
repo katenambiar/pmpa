@@ -12,8 +12,8 @@ peparray is a package for the pre-processing and exploratory analysis of spotted
 \tabular{ll}{
 Package: \tab pippa\cr
 Type: \tab Package\cr
-Version: \tab 0.1\cr
-Date: \tab 2012-09-21\cr
+Version: \tab 0.1.2\cr
+Date: \tab 2013-08-14\cr
 License: \tab GPL-3\cr
 }
 
