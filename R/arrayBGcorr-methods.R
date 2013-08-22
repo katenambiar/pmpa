@@ -49,7 +49,7 @@ setMethod(
         
       } else if (method == "normexp"){
         
-        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp")
+        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp", offset = offset)
         return(x)
         
       } else {
@@ -88,7 +88,7 @@ setMethod(
         
       
       } else if (method == "normexp"){
-        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp", ...)
+        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp", offset = offset, ...)
         assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
         return(x)
       
