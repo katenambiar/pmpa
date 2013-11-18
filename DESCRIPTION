@@ -25,6 +25,7 @@ Collate:
     'lmNorm.R'
     'scaleNorm.R'
     'arrayCV.R'
+    'preprocess.R'
     'intraArrayNorm-methods.R'
     'annotateArrays-methods.R'
     'readArrays.R'
