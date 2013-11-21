@@ -14,8 +14,8 @@ preprocess <- function (rawdata, sec.filter = TRUE, control.arrays = NULL, bg.me
   bgcorrdata <- arrayBGcorr(secdata, method = bg.method, offset = bg.offset)
   normdata <- arrayNorm(bgcorrdata, method = norm.method)
   cv <- arrayCV(fg(normdata), ID = fData(normdata)$ID)
-  cv30 <- unique(names(unlist(apply(cv, 2, function(x) x[which(x > 0.30)]))))
+  cv20 <- unique(names(unlist(apply(cv, 2, function(x) x[which(x > 0.20)]))))
   summarydata <- arraySummary(normdata, method = summary.method)
-  summarydata <- summarydata[-which(featureNames(summarydata) %in% cv30), ]
+  summarydata <- summarydata[!featureNames(summarydata) %in% cv20, ]
   return (summarydata)
 } 
