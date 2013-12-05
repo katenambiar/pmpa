@@ -8,12 +8,12 @@ setMethod(
   signature = "ExpressionSet",
   definition = function(arraydata, epitope.length, protein.sequence) {
     
-    peptide <- fData(arraydata)$ID
+    peptide <- featureNames(arraydata)
     
     window.seqs <- sapply(seq(1,nchar(protein.sequence),1), function(i) substr(protein.sequence, i, i + epitope.length - 1))
     window.seqs <- window.seqs[-which(nchar(window.seqs) < epitope.length)]
     
-    index <- sapply(window, function(x) grep(x, peptide), simplify = FALSE)
+    index <- sapply(window.seqs, function(x) grep(x, peptide), simplify = FALSE)
     window.intensity <- lapply(index, function(x) exprs(arraydata)[x, ])
     
     window.mean.intensity <- lapply(window.intensity, function(x){
