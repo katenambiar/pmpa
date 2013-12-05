@@ -28,6 +28,7 @@ Collate:
     'preprocess.R'
     'intraArrayNorm-methods.R'
     'annotateArrays-methods.R'
+    'meanEpitopeWindow-methods.R'
     'readArrays.R'
     'plotImage-methods.R'
     'maplot-methods.R'
