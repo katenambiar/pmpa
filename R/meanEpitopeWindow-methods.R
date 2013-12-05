@@ -1,0 +1,37 @@
+setGeneric(
+  name = "meanEpitopeWindow", 
+  def = function(arraydata, ...) standardGeneric("meanEpitopeWindow")
+)
+
+setMethod(
+  f = "meanEpitopeWindow",
+  signature = "ExpressionSet",
+  definition = function(arraydata, epitope.length, protein.sequence) {
+    
+    peptide <- fData(arraydata)$ID
+    
+    window.seqs <- sapply(seq(1,nchar(protein.sequence),1), function(i) substr(protein.sequence, i, i + epitope.length - 1))
+    window.seqs <- window.seqs[-which(nchar(window.seqs) < epitope.length)]
+    
+    index <- sapply(window, function(x) grep(x, peptide), simplify = FALSE)
+    window.intensity <- lapply(index, function(x) exprs(arraydata)[x, ])
+    
+    window.mean.intensity <- lapply(window.intensity, function(x){
+      if(is.matrix(x)){
+        y <-  colMeans(x)
+        return(y)
+      } else{
+        return(x)
+      }
+    }
+    )
+    
+    window.mean.intensity <- do.call(rbind.data.frame, window.mean.intensity)
+    names(window.mean.intensity) <- sampleNames(arraydata)
+    
+    return(window.mean.intensity)
+  }
+)
+
+
+
