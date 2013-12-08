@@ -6,10 +6,13 @@ setGeneric(
 setMethod(
   f = "meanEpitopeWindow",
   signature = "ExpressionSet",
-  definition = function(arraydata, epitope.length, protein.sequence) {
+  definition = function(arraydata, epitope.length, protein.sequence, filter.secbinders = TRUE) {
+    
+    if(filter.secbinders){
+      arraydata <- arraydata[-which(fData(arraydata)$secbinder == TRUE), ]
+    }
     
     peptide <- featureNames(arraydata)
-    
     window.seqs <- sapply(seq(1,nchar(protein.sequence),1), function(i) substr(protein.sequence, i, i + epitope.length - 1))
     window.seqs <- window.seqs[-which(nchar(window.seqs) < epitope.length)]
     
