@@ -12,7 +12,8 @@ Depends:
 Imports:
     limma,
     preprocessCore,
-    mixtools
+    mixtools,
+    sva
 License: GPL-3
 URL: http://github.com/katenambiar/pippa
 Collate:
@@ -22,6 +23,7 @@ Collate:
     'arraySummary-methods.R'
     'arrayBGcorr-methods.R'
     'arrayNorm-methods.R'
+    'arrayBatchCorrect-methods.R'
     'lmNorm.R'
     'scaleNorm.R'
     'arrayCV.R'
