@@ -28,7 +28,7 @@ setGeneric(
 setMethod(
   f = "arraySecFilter",
   signature = "MultiSet",
-  definition = function(x, control.arrays, remove.control.arrays = TRUE, plot = FALSE, ...){
+  definition = function(x, control.arrays, remove.control.arrays = TRUE, remove.probes = FALSE, plot = FALSE, ...){
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
@@ -41,7 +41,12 @@ setMethod(
     sec.gmm <- normalmixEM(exprs(nctrl), k=2, maxit=100, epsilon=0.001)
     cutoff <- qnorm(0.95, sec.gmm$mu[1], sec.gmm$sig[1])
     secbinder <- nctrl[exprs(nctrl) > cutoff, ]
-    x <- x[-which(fData(x)$ID %in% featureNames(secbinder)), ]
+    fData(x)$secbinder <- FALSE
+    fData(x)$secbinder[which(fData(x)$ID %in% featureNames(secbinder))] <- TRUE
+    
+    if(remove.probes){
+      x <- x[-which(fData(x)$ID %in% featureNames(secbinder)), ]
+    }
     
     if(remove.control.arrays){
       x <- x[ ,-control.arrays]
