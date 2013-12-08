@@ -3,8 +3,9 @@
 \title{Preprocess peptide microarray data}
 \usage{
   preprocess(rawdata, sec.filter = TRUE,
-    control.arrays = NULL, bg.method = "subtract",
-    bg.offset = 100, norm.method, summary.method)
+    control.arrays = NULL, remove.probes = FALSE,
+    bg.method = "subtract", bg.offset = 100, norm.method,
+    summary.method)
 }
 \arguments{
   \item{rawdata}{}
