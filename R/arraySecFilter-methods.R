@@ -28,24 +28,30 @@ setGeneric(
 setMethod(
   f = "arraySecFilter",
   signature = "MultiSet",
-  definition = function(x, control.arrays, remove.control.arrays = TRUE, remove.probes = FALSE, plot = FALSE, ...){
+  definition = function(x, control.arrays, bg.offset = 1024, control.probes = NULL, remove.probes = TRUE, remove.control.arrays = TRUE, plot = FALSE, ...){
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
-      nctrl <- arrayBGcorr(nctrl, method = "none", transform = "log2")
+      nctrl <- arrayBGcorr(nctrl, method = "subtract", offset = bg.offset, transform = "log2")
       nctrl <- arraySummary(nctrl, method = "median")
     } else {
-      stop("control.arrays must be a numeric value corresponding to the negative control array.")
+      stop("control.arrays must be a numeric value or vector corresponding to the negative control array(s).")
     }
     
-    sec.gmm <- normalmixEM(exprs(nctrl), k=2, maxit=100, epsilon=0.001)
-    cutoff <- qnorm(0.95, sec.gmm$mu[1], sec.gmm$sig[1])
-    secbinder <- nctrl[exprs(nctrl) > cutoff, ]
+    secbinder <- list()
+    for (i in 1: length(control.arrays)){
+      sec.gmm <- normalmixEM(exprs(nctrl)[,i], k=2, maxit=100, epsilon=0.001, fast = TRUE)
+      cutoff <- qnorm(0.95, sec.gmm$mu[1], sec.gmm$sig[1])
+      secbinder[[i]] <- nctrl[exprs(nctrl)[,i] > cutoff, i]
+    }
+    
+    common.secbinder <- Reduce(intersect, lapply(secbinder, featureNames))
+
     fData(x)$secbinder <- FALSE
-    fData(x)$secbinder[which(fData(x)$ID %in% featureNames(secbinder))] <- TRUE
+    fData(x)$secbinder[which(fData(x)$ID %in% common.secbinder)] <- TRUE
     
     if(remove.probes){
-      x <- x[-which(fData(x)$ID %in% featureNames(secbinder)), ]
+      x <- x[-which(fData(x)$ID %in% common.secbinder), ]
     }
     
     if(remove.control.arrays){
