@@ -46,3 +46,29 @@ setMethod(
     assayDataElement(x, "bMedian")
   }
   )
+
+
+#---------------------------------------------------------------------------------------------------------------
+#' Flags Accessor
+#' 
+#' Extracts the matrix of flagged values from a MultiSet object created by \link{readArrays}
+#' 
+#' @param x MultiSet object
+#' @return matrix of background intensities
+#' @export flags
+#' @docType methods
+#' @rdname flags-methods
+setGeneric(
+  name = "flags", 
+  def = function(x) standardGeneric("flags")
+)
+
+#' @rdname flags-methods
+#' @aliases flags
+setMethod(
+  f = "flags",
+  signature = "MultiSet",
+  definition = function(x){
+    assayDataElement(x, "flags")
+  }
+)
