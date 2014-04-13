@@ -1,4 +1,4 @@
-# pippa: Peptide Microarray Pre-Processing and Analysis
+# pampa: Peptide Array Management, Pre-Processing and Analysis
 
 A package for peptide microarray pre-processing and analysis using R (S4 methods)
 
