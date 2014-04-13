@@ -13,7 +13,7 @@ setMethod(
       if (identical (sampleNames(x), sampleNames(phAnnot))){
         
         dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
-        phenoData(x) <- combine(protocolData(x), phAnnot)
+        phenoData(x) <- BiocGenerics::combine(protocolData(x), phAnnot)
         
       } else {
         stop("Sample names of MultiSet object and phenotype annotation do not match")
@@ -25,7 +25,7 @@ setMethod(
       if (identical (sampleNames(x), sampleNames(prAnnot))){
         
         dimLabels(prAnnot) <- c("sampleNames", "sampleColumns")
-        protocolData(x) <- combine(protocolData(x), prAnnot)
+        protocolData(x) <- BiocGenerics::combine(protocolData(x), prAnnot)
         
       } else {
         stop("Sample names of MultiSet object and protocol annotation do not match")
@@ -36,7 +36,7 @@ setMethod(
       featureAnnot <- read.delim(feature, stringsAsFactors = FALSE)
       if (identical (fData(x)$ID, featureAnnot$ID)){
         
-        fData(x) <- combine(fData(x), featureAnnot)
+        fData(x) <- BiocGenerics::combine(fData(x), featureAnnot)
         
       } else {
         stop("Feature IDs of MultiSet object and feature annotation do not match")
@@ -57,7 +57,7 @@ setMethod(
       if (identical (sampleNames(x), rownames(phAnnot))){
         
         dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
-        phenoData(x) <- combine(protocolData(x), phAnnot)
+        phenoData(x) <- BiocGenerics::combine(protocolData(x), phAnnot)
         
       } else {
         stop("Sample names of ExpressionSet object and phenotype annotation do not match")
@@ -69,7 +69,7 @@ setMethod(
       if (identical (sampleNames(x), sampleNames(prAnnot))){
         
         dimLabels(prAnnot) <- c("sampleNames", "sampleColumns")
-        protocolData(x) <- combine(protocolData(x), prAnnot)
+        protocolData(x) <- BiocGenerics::combine(protocolData(x), prAnnot)
         
       } else {
         stop("Sample names of ExpressionSet object and protocol annotation do not match")
