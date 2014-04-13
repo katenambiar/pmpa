@@ -1,12 +1,12 @@
-Package: pampa
-Title: Peptide Array Management, Pre-Processing and Analysis
+Package: pippa
+Title: Peptide Microarray Pre-Processing and Analysis
 Version: 0.1.2
 Date: 2013-08-14
 Author: Kate Nambiar
 Maintainer: Kate Nambiar <k.z.nambiar@bsms.ac.uk>
 Description: 
 Depends:
-    R (>= 3.0),
+    R (>= 2.14),
     Biobase,
     methods
 Imports:
