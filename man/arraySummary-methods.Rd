@@ -1,18 +1,24 @@
 \docType{methods}
 \name{arraySummary}
 \alias{arraySummary}
+\alias{arraySummary,MultiSet-method}
 \title{Summarises intra-array replicates with flagged values excluded}
+\usage{
+arraySummary(x, ...)
+
+\S4method{arraySummary}{MultiSet}(x, method, ...)
+}
 \arguments{
   \item{x}{MultiSet object}
 
   \item{method}{c("TukeyBiweight", "MedianPolish", "Mean")}
 }
 \value{
-  ExpressionSet with summarised intensity values in exprs
-  slot
+ExpressionSet with summarised intensity values in exprs
+slot
 }
 \description{
-  Summarises intra-array replicates with flagged values
-  excluded
+Summarises intra-array replicates with flagged values
+excluded
 }
 

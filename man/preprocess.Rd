@@ -2,10 +2,9 @@
 \alias{preprocess}
 \title{Preprocess peptide microarray data}
 \usage{
-  preprocess(rawdata, sec.filter = TRUE,
-    control.arrays = NULL, remove.probes = FALSE,
-    bg.method = "subtract", bg.offset = 100, norm.method,
-    summary.method)
+preprocess(rawdata, sec.filter = TRUE, control.arrays = NULL,
+  remove.probes = FALSE, bg.method = "subtract", bg.offset = 100,
+  norm.method, summary.method)
 }
 \arguments{
   \item{rawdata}{}
@@ -13,11 +12,11 @@
   \item{sec.filter}{}
 }
 \value{
-  an object of class ExpressionSet
+an object of class ExpressionSet
 }
 \description{
-  \code{preprocess} is a wrapper function that executes the
-  4 pre-processing functions (arraySecFilter, arrayBGcorr,
-  arayNorm, arraySummary) within the pippa package.
+\code{preprocess} is a wrapper function that executes the 4
+pre-processing functions (arraySecFilter, arrayBGcorr,
+arayNorm, arraySummary) within the pippa package.
 }
 

@@ -2,6 +2,9 @@
 \name{maplot}
 \alias{maplot}
 \title{MA-Plot}
+\usage{
+maplot(x, ...)
+}
 \arguments{
   \item{x}{MultiSet or ExpressionSet object}
 
@@ -14,9 +17,9 @@
   \item{...}{other arguments passed to plot}
 }
 \value{
-  Plot created on current graphics device
+Plot created on current graphics device
 }
 \description{
-  Creates simple MA plot
+Creates simple MA plot
 }
 

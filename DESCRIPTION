@@ -1,12 +1,12 @@
-Package: pippa
-Title: Peptide Microarray Pre-Processing and Analysis
+Package: pampa
+Title: Peptide Array Management, Pre-Processing and Analysis
 Version: 0.1.2
 Date: 2013-08-14
 Author: Kate Nambiar
 Maintainer: Kate Nambiar <k.z.nambiar@bsms.ac.uk>
 Description: 
 Depends:
-    R (>= 2.14),
+    R (>= 3.0),
     Biobase,
     methods
 Imports:
@@ -16,22 +16,4 @@ Imports:
     sva
 License: GPL-3
 URL: http://github.com/katenambiar/pippa
-Collate:
-    'AccessorMethods.R'
-    'getArrayLayout-methods.R'
-    'arraySecFilter-methods.R'
-    'arraySummary-methods.R'
-    'arrayBGcorr-methods.R'
-    'arrayNorm-methods.R'
-    'arrayBatchCorrect-methods.R'
-    'lmNorm.R'
-    'scaleNorm.R'
-    'arrayCV.R'
-    'preprocess.R'
-    'intraArrayNorm-methods.R'
-    'annotateArrays-methods.R'
-    'meanEpitopeWindow-methods.R'
-    'readArrays.R'
-    'plotImage-methods.R'
-    'maplot-methods.R'
 ByteCompile: TRUE

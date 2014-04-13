@@ -2,7 +2,7 @@
 \alias{arrayCV}
 \title{Calculate the CV of intra-array replicates}
 \usage{
-  arrayCV(x, ID)
+arrayCV(x, ID)
 }
 \arguments{
   \item{x}{matrix of intensity values with probes as rows
@@ -11,10 +11,10 @@
   \item{ID}{vector of probe IDs}
 }
 \value{
-  matrix of CV values with samples in columns and unique
-  probes in rows
+matrix of CV values with samples in columns and unique
+probes in rows
 }
 \description{
-  Calculate the CV of intra-array replicates
+Calculate the CV of intra-array replicates
 }
 

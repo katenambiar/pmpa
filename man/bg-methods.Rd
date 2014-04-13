@@ -1,15 +1,21 @@
 \docType{methods}
 \name{bg}
 \alias{bg}
+\alias{bg,MultiSet-method}
 \title{Background Intensity Accessor}
+\usage{
+bg(x)
+
+\S4method{bg}{MultiSet}(x)
+}
 \arguments{
   \item{x}{MultiSet object}
 }
 \value{
-  matrix of background intensities
+matrix of background intensities
 }
 \description{
-  Extracts the matrix of background intensities (bMedian)
-  from a MultiSet object created by \link{readArrays}
+Extracts the matrix of background intensities (bMedian)
+from a MultiSet object created by \link{readArrays}
 }
 

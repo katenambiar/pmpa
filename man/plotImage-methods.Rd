@@ -1,7 +1,14 @@
 \docType{methods}
 \name{plotImage}
 \alias{plotImage}
+\alias{plotImage,MultiSet-method}
 \title{Image plot of microarray data}
+\usage{
+plotImage(x, ...)
+
+\S4method{plotImage}{MultiSet}(x, arr = 1, slot = "bg", lowcol, highcol,
+  ncols = 123, ...)
+}
 \arguments{
   \item{x}{MultiSet object with fMedian and/or bMedian
   matrices in the assayData slot and layout data (block,
@@ -16,12 +23,12 @@
   \item{ncols}{number of colour shades used}
 }
 \value{
-  MultiSet object with transformed and background corrected
-  foreground signal in the fMedian matrix
+MultiSet object with transformed and background corrected
+foreground signal in the fMedian matrix
 }
 \description{
-  Creates image plot representing the microarray foreground
-  or background signal intensity organised by the spatial
-  location of the spots on the array.
+Creates image plot representing the microarray foreground
+or background signal intensity organised by the spatial
+location of the spots on the array.
 }
 

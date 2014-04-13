@@ -2,9 +2,8 @@
 \alias{lmNorm}
 \title{Linear Model Normalisation}
 \usage{
-  lmNorm(x, sampleID = sampleNames(x),
-    featureID = fData(x)$ID, controlID = NULL,
-    include.subarrays = TRUE)
+lmNorm(x, sampleID = sampleNames(x), featureID = fData(x)$ID,
+  controlID = NULL, include.subarrays = TRUE)
 }
 \arguments{
   \item{x}{MultiSet Object}
@@ -21,12 +20,11 @@
   factor in the linear model (default = TRUE)}
 }
 \value{
-  matrix of normalised intensities
+matrix of normalised intensities
 }
 \description{
-  This function normalises microarray data by fitting a
-  linear model and then using the residuals of the fit as
-  the normalised data. It is normally called from
-  arrayNorm().
+This function normalises microarray data by fitting a
+linear model and then using the residuals of the fit as the
+normalised data. It is normally called from arrayNorm().
 }
 

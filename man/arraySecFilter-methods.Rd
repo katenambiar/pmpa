@@ -1,7 +1,15 @@
 \docType{methods}
 \name{arraySecFilter}
 \alias{arraySecFilter}
+\alias{arraySecFilter,MultiSet-method}
 \title{Filter Secondary Antibody Binding Peptide Probes}
+\usage{
+arraySecFilter(x, ...)
+
+\S4method{arraySecFilter}{MultiSet}(x, control.arrays, bg.offset = 1024,
+  control.probes = NULL, remove.probes = TRUE,
+  remove.control.arrays = TRUE, plot = FALSE, ...)
+}
 \arguments{
   \item{x}{MultiSet object after background correction and
   log transformation}
@@ -21,18 +29,17 @@
   \item{...}{further arguments passed to \link{hist}}
 }
 \value{
-  MultiSet object filtered to remove probes with high
-  secondary binding
+MultiSet object filtered to remove probes with high
+secondary binding
 }
 \description{
-  Implements filtering of signal from peptides that
-  specifically bind to the secondary antibody. Using a
-  control array incubated just with the secondary antibody,
-  significantly binding probes are identified by fitting
-  the data to a two-component Gaussian general mixture
-  model. A cutoff signal intensity is set at the 95th
-  percentile of the distribution from the non-binding
-  peptides. Any probes showing signal greater than the
-  cutoff are excluded.
+Implements filtering of signal from peptides that
+specifically bind to the secondary antibody. Using a
+control array incubated just with the secondary antibody,
+significantly binding probes are identified by fitting the
+data to a two-component Gaussian general mixture model. A
+cutoff signal intensity is set at the 95th percentile of
+the distribution from the non-binding peptides. Any probes
+showing signal greater than the cutoff are excluded.
 }
 

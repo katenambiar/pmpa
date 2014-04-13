@@ -1,16 +1,22 @@
 \docType{methods}
 \name{getArrayLayout}
 \alias{getArrayLayout}
+\alias{getArrayLayout,eSet-method}
 \title{Array Layout Accessor}
+\usage{
+getArrayLayout(x, ...)
+
+\S4method{getArrayLayout}{eSet}(x, ncols = 4, subarrays = 3)
+}
 \arguments{
   \item{x}{MultiSet object with block, column and row
   information in the fData slot}
 }
 \value{
-  layout matrix
+layout matrix
 }
 \description{
-  Gets microarray layout information matrix Used to obtain
-  the layout information for \link{plotImage}
+Gets microarray layout information matrix Used to obtain
+the layout information for \link{plotImage}
 }
 
