@@ -1,4 +1,4 @@
-# pampa: Peptide Array Management, Pre-Processing and Analysis
+# pmpa: Peptide Microarray Pre-Processing and Analysis
 
 A package for peptide microarray pre-processing and analysis using R (S4 methods)
 
@@ -8,6 +8,6 @@ For Linux and MacOS X platforms the latest development build can be installed di
 ```R
 install.packages("devtools")
 library(devtools)
-install_github("pippa", "katenambiar")
+install_github("pmpa", "katenambiar")
 ```
 
