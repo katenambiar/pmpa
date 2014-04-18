@@ -26,77 +26,48 @@ setMethod(
   definition = function(x, method = "none", offset = 0, transform = "log2", ...){
     
     if (transform == "none"){
-      
-      if (method == "none"){
-        
-        return (x)
-      } else if (method == "subtract"){
-        
-        assayDataElement(x, "fMedian") <- (assayDataElement(x, "fMedian") + offset) - assayDataElement(x, "bMedian")
-        minval <- min(assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") > 0])
-        assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- minval
-        return(x)
-        
-      } else if (method == "ratio"){
-        
-        assayDataElement(x, "fMedian") <- assayDataElement(x, "fMedian") / assayDataElement(x, "bMedian")
-        return(x)
-      
-      } else if (method == "edwards"){
-        
-        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "edwards")
-        return(x)
-        
-      } else if (method == "normexp"){
-        
-        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp", offset = offset)
-        return(x)
-        
-      } else {
-        
-        stop("Method must be either 'none', 'subtract', 'ratio', 'edwards' or 'normexp'")
-      }
+      transformFunc <- function(y) identity(y)
       
     } else {
       transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
       transformFunc <- function (y){
         eval(transformExpression)
       }
+    }
     
-      if (method == "none"){
-        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
-        return (x)
-        
-        
-      } else if (method == "subtract"){
-        assayDataElement(x, "fMedian") <- (assayDataElement(x, "fMedian") + offset) - assayDataElement(x, "bMedian")
-        minval <- min(assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") > 0])
-        assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- minval
-        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
-        return(x)
+    if (method == "none"){
+      assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
+      return (x)
       
-        
-      } else if (method == "ratio"){
-        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian")) - transformFunc(assayDataElement(x, "bMedian"))
-        return(x)
       
-        
-      } else if (method == "edwards"){
-        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "edwards", ...)
-        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
-        return(x)  
-        
+    } else if (method == "subtract"){
+      assayDataElement(x, "fMedian") <- (assayDataElement(x, "fMedian") + offset) - assayDataElement(x, "bMedian")
+      minval <- min(assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") > 0])
+      assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- minval
+      assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
+      return(x)
       
-      } else if (method == "normexp"){
-        assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp", offset = offset, ...)
-        assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
-        return(x)
       
-        
-      } else {
+    } else if (method == "ratio"){
+      assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian")) - transformFunc(assayDataElement(x, "bMedian"))
+      return(x)
       
-        stop("Method must be either 'none', 'subtract', 'ratio', 'edwards' or 'normexp'")
-      }
+      
+    } else if (method == "edwards"){
+      assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "edwards", ...)
+      assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
+      return(x)  
+      
+      
+    } else if (method == "normexp"){
+      assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp", offset = offset, ...)
+      assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
+      return(x)
+      
+      
+    } else {
+      
+      stop("Method must be either 'none', 'subtract', 'ratio', 'edwards' or 'normexp'")
     }
   }
   )
