@@ -2,7 +2,7 @@
 \alias{arrayCV}
 \title{Calculate the CV of intra-array replicates}
 \usage{
-arrayCV(x, ID)
+arrayCV(x)
 }
 \arguments{
   \item{x}{matrix of intensity values with probes as rows
