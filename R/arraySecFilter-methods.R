@@ -31,7 +31,7 @@ setGeneric(
 setMethod(
   f = "arraySecFilter",
   signature = "MultiSet",
-  definition = function(x, control.arrays, bg.offset = 1024, control.probes = NULL, remove.probes = TRUE, remove.control.arrays = TRUE, plot = FALSE, ...){
+  definition = function(x, control.arrays, bg.offset = 1024, control.probes = NULL, cutoff.quantile = 0.95, remove.probes = TRUE, remove.control.arrays = TRUE){
     
     
     if(is.numeric(control.arrays)){
@@ -79,7 +79,7 @@ setMethod(
 setMethod(
   f = "arraySecFilter",
   signature = "ExpressionSet",
-  definition = function(x, control.arrays, control.probes = NULL, remove.probes = TRUE, remove.control.arrays = TRUE){
+  definition = function(x, control.arrays, control.probes = NULL, cutoff.quantile = 0.95, remove.probes = TRUE, remove.control.arrays = TRUE){
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]

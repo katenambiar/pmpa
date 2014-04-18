@@ -17,6 +17,14 @@ arraySecFilter(x, ...)
   \item{control.arrays}{Numeric vector specifying negative
   control (secondary antibody only) arrays.}
 
+  \item{cutoff.quantile}{Percentile of the non-binding
+  distributiion to set a cutoff (default = 0.95)}
+
+  \item{bg.offset}{A positive constant to offset the
+  foreground signal prior to subtractive background
+  correction. Improves variance stabilisation for low
+  intensity signal. See \link{arrayBGcorr}.}
+
   \item{removecontrol.arrays}{either TRUE to remove the
   control array after filtering or FALSE to leave the
   control array in the dataset. (default = TRUE)}
@@ -37,9 +45,10 @@ Implements filtering of signal from peptides that
 specifically bind to the secondary antibody. Using a
 control array incubated just with the secondary antibody,
 significantly binding probes are identified by fitting the
-data to a two-component Gaussian general mixture model. A
-cutoff signal intensity is set at the 95th percentile of
-the distribution from the non-binding peptides. Any probes
-showing signal greater than the cutoff are excluded.
+data to a two-component Gaussian general mixture model. The
+signal intensity cutoff is set can be set at any point but
+defaults to the 95th percentile of the distribution from
+the non-binding peptides. Any probes showing signal greater
+than the cutoff are excluded.
 }
 
