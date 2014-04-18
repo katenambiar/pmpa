@@ -5,8 +5,8 @@
 arrayCV(x)
 }
 \arguments{
-  \item{x}{matrix of intensity values with probes as rows
-  and samples in columns}
+  \item{x}{MultiSet object with probe identifiers stored in
+  fData(x)$ID}
 }
 \value{
 matrix of CV values with samples in columns and unique
