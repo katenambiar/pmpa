@@ -1,4 +1,4 @@
-Package: pampa
+Package: pmpa
 Title: Peptide Microarray Pre-Processing and Analysis
 Version: 0.1.2
 Date: 2013-08-14
@@ -15,5 +15,5 @@ Imports:
     mixtools,
     sva
 License: GPL-3
-URL: http://github.com/katenambiar/pampa
+URL: http://github.com/katenambiar/pmpa
 ByteCompile: TRUE
