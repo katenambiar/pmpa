@@ -32,3 +32,29 @@ setMethod(
     
     }
 )
+
+setMethod(
+  f = "arrayNorm",
+  signature = "ExpressionSet",
+  definition = function(x, method = "none", ...){
+    
+    if (method == "none"){
+      
+      return(x)
+      
+    } else if(method == "scale"){
+      
+      exprs(x) <- scaleNorm(exprs(x))
+      return(x)
+      
+    } else if(method == "quantile"){
+      
+      exprs(x) <- normalize.quantiles(exprs(x))
+      return(x)
+      
+    } 
+    
+    stop("Method must be either 'scale', 'quantile', or 'none'")
+    
+  }
+)
