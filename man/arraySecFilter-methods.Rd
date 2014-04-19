@@ -7,8 +7,8 @@
 arraySecFilter(x, ...)
 
 \S4method{arraySecFilter}{MultiSet}(x, control.arrays, bg.offset = 1024,
-  control.probes = NULL, remove.probes = TRUE,
-  remove.control.arrays = TRUE, plot = FALSE, ...)
+  control.probes = NULL, cutoff.quantile = 0.95, remove.probes = TRUE,
+  remove.control.arrays = TRUE)
 }
 \arguments{
   \item{x}{MultiSet object after background correction and
