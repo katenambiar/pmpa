@@ -102,11 +102,11 @@ setMethod(
     } 
     
     if(remove.probes){
-      x <- x[-which(fData(x)$ID %in% common.secbinder), ]
+      x <- x[-which(featureNames(x) %in% common.secbinder), ]
       cat(length(common.secbinder), "unique secondary antibody binding probes found and removed.")
     } else {
       fData(x)$secbinder <- FALSE
-      fData(x)$secbinder[which(fData(x)$ID %in% common.secbinder)] <- TRUE
+      fData(x)$secbinder[which(featureNames(x) %in% common.secbinder)] <- TRUE
       cat(length(common.secbinder), "unique secondary antibody binding probes found.")
     }
     
