@@ -37,7 +37,6 @@ setMethod(
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
       nctrl <- arrayBGcorr(nctrl, method = "subtract", offset = bg.offset, transform = "log2")
-      nctrl <- arrayNorm(nctrl, method = "quantile")
       nctrl <- arraySummary(nctrl, method = "median")
     } else {
       stop("control.arrays must be a numeric value or vector corresponding to the negative control array(s).")
@@ -83,7 +82,6 @@ setMethod(
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
-      nctrl <- arrayNorm(nctrl, method = "quantile")
     } else {
       stop("control.arrays must be a numeric value or vector corresponding to the negative control array(s).")
     }
