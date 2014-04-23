@@ -33,10 +33,9 @@ setMethod(
     }
     
     if (!is.null(feature)){
-      featureAnnot <- read.delim(feature, stringsAsFactors = FALSE)
-      if (identical (fData(x)$ID, featureAnnot$ID)){
+      if (identical (fData(x)$ID, feature$ID)){
         
-        fData(x) <- BiocGenerics::combine(fData(x), featureAnnot)
+        fData(x) <- BiocGenerics::combine(fData(x), feature)
         
       } else {
         stop("Feature IDs of MultiSet object and feature annotation do not match")
