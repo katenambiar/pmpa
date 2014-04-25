@@ -9,11 +9,10 @@ setMethod(
   signature = "MultiSet",
   definition = function(x, pheno = NULL, protocol = NULL, feature = NULL){
     if (!is.null(pheno)){
-      phAnnot <- read.AnnotatedDataFrame(pheno, stringsAsFactors = FALSE, row.names = "sampleName")
+      phAnnot <- as(pheno, "AnnotatedDataFrame")
       if (identical (sampleNames(x), sampleNames(phAnnot))){
         
-        dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
-        phenoData(x) <- BiocGenerics::combine(protocolData(x), phAnnot)
+        phenoData(x) <- BiocGenerics::combine(pData(x), phAnnot)
         
       } else {
         stop("Sample names of MultiSet object and phenotype annotation do not match")
@@ -21,10 +20,9 @@ setMethod(
     }
     
     if (!is.null(protocol)){
-      prAnnot <- read.AnnotatedDataFrame(protocol, stringsAsFactors = FALSE, row.names = "sampleName")
+      prAnnot <- as(protocol, "AnnotatedDataFrame")
       if (identical (sampleNames(x), sampleNames(prAnnot))){
-        
-        dimLabels(prAnnot) <- c("sampleNames", "sampleColumns")
+
         protocolData(x) <- BiocGenerics::combine(protocolData(x), prAnnot)
         
       } else {
@@ -55,8 +53,7 @@ setMethod(
       phAnnot <- read.AnnotatedDataFrame(pheno, stringsAsFactors = FALSE, row.names = "sampleName")
       if (identical (sampleNames(x), rownames(phAnnot))){
         
-        dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
-        phenoData(x) <- BiocGenerics::combine(protocolData(x), phAnnot)
+        phenoData(x) <- BiocGenerics::combine(phenoData(x), phAnnot)
         
       } else {
         stop("Sample names of ExpressionSet object and phenotype annotation do not match")
@@ -67,7 +64,6 @@ setMethod(
       prAnnot <- read.AnnotatedDataFrame(protocol, stringsAsFactors = FALSE, row.names = "sampleName")
       if (identical (sampleNames(x), sampleNames(prAnnot))){
         
-        dimLabels(prAnnot) <- c("sampleNames", "sampleColumns")
         protocolData(x) <- BiocGenerics::combine(protocolData(x), prAnnot)
         
       } else {
