@@ -11,8 +11,8 @@ setMethod(
     if (!is.null(pheno)){
       phAnnot <- as(pheno, "AnnotatedDataFrame")
       if (identical (sampleNames(x), sampleNames(phAnnot))){
-        
-        phenoData(x) <- BiocGenerics::combine(pData(x), phAnnot)
+        dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
+        phenoData(x) <- BiocGenerics::combine(phenoData(x), phAnnot)
         
       } else {
         stop("Sample names of MultiSet object and phenotype annotation do not match")
@@ -52,8 +52,8 @@ setMethod(
     if (!is.null(pheno)){
       phAnnot <- read.AnnotatedDataFrame(pheno, stringsAsFactors = FALSE, row.names = "sampleName")
       if (identical (sampleNames(x), rownames(phAnnot))){
-        
-        phenoData(x) <- BiocGenerics::combine(phenoData(x), phAnnot)
+
+        phenoData(x) <- BiocGenerics::combine(pData(x), phAnnot)
         
       } else {
         stop("Sample names of ExpressionSet object and phenotype annotation do not match")
