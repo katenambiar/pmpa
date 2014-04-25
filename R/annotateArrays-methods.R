@@ -13,7 +13,7 @@ setMethod(
       if (identical (sampleNames(x), sampleNames(phAnnot))){
         
         dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
-        phenoData(x) <- BiocGenerics::combine(protocolData(x), phAnnot)
+        phenoData(x) <- BiocGenerics::combine(phenoData(x), phAnnot)
         
       } else {
         stop("Sample names of MultiSet object and phenotype annotation do not match")
@@ -56,7 +56,7 @@ setMethod(
       if (identical (sampleNames(x), rownames(phAnnot))){
         
         dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
-        phenoData(x) <- BiocGenerics::combine(protocolData(x), phAnnot)
+        phenoData(x) <- BiocGenerics::combine(phenoData(x), phAnnot)
         
       } else {
         stop("Sample names of ExpressionSet object and phenotype annotation do not match")
