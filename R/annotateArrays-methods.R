@@ -11,7 +11,7 @@ setMethod(
     if (!is.null(pheno)){
       phAnnot <- as(pheno, "AnnotatedDataFrame")
       if (identical (sampleNames(x), sampleNames(phAnnot))){
-        
+
         phenoData(x) <- BiocGenerics::combine(pData(x), phAnnot)
         
       } else {
@@ -53,6 +53,10 @@ setMethod(
       phAnnot <- read.AnnotatedDataFrame(pheno, stringsAsFactors = FALSE, row.names = "sampleName")
       if (identical (sampleNames(x), rownames(phAnnot))){
         
+<<<<<<< HEAD
+=======
+        dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
+>>>>>>> adb260e0bf27ab846e0912f83387c2347070a406
         phenoData(x) <- BiocGenerics::combine(phenoData(x), phAnnot)
         
       } else {
