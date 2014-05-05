@@ -1,8 +1,8 @@
-\name{scaleNormControl}
-\alias{scaleNormControl}
-\title{Scale Normalisation To Control Probe}
+\name{scaleNormGMM}
+\alias{scaleNormGMM}
+\title{Scale Normalisation using GMM}
 \usage{
-scaleNormControl(x, controlID)
+scaleNormGMM(x)
 }
 \arguments{
   \item{x}{matrix of intensity values with probes as rows
@@ -12,6 +12,6 @@ scaleNormControl(x, controlID)
 matrix of normalised intensities
 }
 \description{
-Scale Normalisation To Control Probe
+Scale Normalisation using GMM
 }
 

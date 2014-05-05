@@ -6,7 +6,7 @@
 \usage{
 arrayBGcorr(x, ...)
 
-\S4method{arrayBGcorr}{MultiSet}(x, method = "none", offset = 0,
+\S4method{arrayBGcorr}{MultiSet}(x, method = "none", offset = 1,
   transform = "log2", ...)
 }
 \arguments{
