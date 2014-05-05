@@ -29,9 +29,12 @@ setMethod(
       stop("Offset value must be positive")
     }
     
-    if (transform == "none"){
-      transformFunc <- function(y) identity(y)
+    if (is.function(transform)){
+      transformFunc <- transform
       
+    } else if (transform == "none"){
+      transformFunc <- function(y) identity(y)
+    
     } else {
       transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
       transformFunc <- function (y){
