@@ -16,6 +16,11 @@ setMethod(
       assayDataElement(x, "fMedian") <- scaleNorm(fg(x))
       return(x)
       
+    } else if(method == "scaleGMM"){
+      
+      assayDataElement(x, "fMedian") <- scaleNormGMM(fg(x))
+      return(x)
+      
     } else if(method == "quantile"){
       
       assayDataElement(x, "fMedian") <- normalize.quantiles(fg(x))
@@ -45,6 +50,11 @@ setMethod(
     } else if(method == "scale"){
       
       exprs(x) <- scaleNorm(exprs(x))
+      return(x)
+      
+    } else if(method == "scaleGMM"){
+      
+      exprs(x) <- scaleNormGMM(exprs(x))
       return(x)
       
     } else if(method == "quantile"){
