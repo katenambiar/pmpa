@@ -14,7 +14,7 @@
 #' length as arraydata.
 #' @param cutoff.quantile Value indicating quantile of 1st gaussian distribution
 #' to set as a cutoff point. Defaults to 0.99
-#' @return logical vector of the same lenght as arraydata 
+#' @return logical vector of the same length as arraydata 
 #' (TRUE = valid probes, FALSE = filtered probes)
 #' @export
 filterGMM <- function(arraydata, controldata, cutoff.quantile = 0.99, plot = TRUE, 

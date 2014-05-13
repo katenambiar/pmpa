@@ -1,6 +1,7 @@
 #' Median Scale Normalisation
 #' 
-#' @param x matrix of intensity values with probes as rows and samples in columns
+#' @param x matrix of intensity values with 
+#' probes as rows and samples in columns
 #' @return matrix of normalised intensities
 #' @export
 scaleNorm <- function(x){
@@ -12,7 +13,8 @@ scaleNorm <- function(x){
 
 #' Scale Normalisation To Control Probe
 #' 
-#' @param x matrix of intensity values with probes as rows and samples in columns
+#' @param x matrix of intensity values with 
+#' probes as rows and samples in columns
 #' @return matrix of normalised intensities
 #' @export
 scaleNormControl <- function(x, controlID){
@@ -30,7 +32,8 @@ scaleNormControl <- function(x, controlID){
 
 #' Scale Normalisation using GMM
 #' 
-#' @param x matrix of intensity values with probes as rows and samples in columns
+#' @param x matrix of intensity values with 
+#' probes as rows and samples in columns
 #' @return matrix of normalised intensities
 #' @export
 scaleNormGMM <- function(x){
@@ -38,7 +41,8 @@ scaleNormGMM <- function(x){
   model.gmm <- list()
   for (i in 1:ncol(x)){
     set.seed(123)
-    model.gmm[[i]] <- normalmixEM(x[,i], k = 2, maxit = 100, epsilon = 0.001, fast = TRUE)
+    model.gmm[[i]] <- normalmixEM(x[,i], k = 2, maxit = 100, 
+                                  epsilon = 0.001, fast = TRUE)
   }
   
   mean.model.gmm <- sapply(model.gmm, function(x) x$mu[1])
