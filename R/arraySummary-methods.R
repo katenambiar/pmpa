@@ -1,10 +1,10 @@
 #' Summarises intra-array replicates with flagged values excluded
 #'
 #' @param x MultiSet object
-#' @param method c("TukeyBiweight", "MedianPolish", "Mean")
+#' @param method c("Median", "Mean")
 #' @return ExpressionSet with summarised intensity values in exprs slot
-#' @export
-#' @docType methods
+#' @exportMethod 
+#' @docType methods arraySummary
 #' @rdname arraySummary-methods
 setGeneric(
   name = "arraySummary", 
@@ -38,11 +38,6 @@ setMethod(
     } else if (method == "median"){
       arraySumm <- subColSummarizeMedian(y, ID)
       
-    } else if (method == "tukeybiweight"){
-      arraySumm <- subColSummarizeBiweight(y, ID)
-    
-    } else if(method == "medianpolish"){
-      arraySumm <- subColSummarizeMedianpolish(y, ID)
     } 
     
     obj <- new("ExpressionSet")
