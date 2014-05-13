@@ -1,7 +1,27 @@
+#' Normalisation
+#' 
+#' Implements local background correction for peptide microarray data
+#' 
+#' @param x MultiSet object with fMedian and bMedian matrices in the assayData slot
+#' @param method Character string specifying background correction method. 
+#' Valid methods are 'none', 'subtract', 'edwards', ratio' or 'normexp'. Defaults to 'none' if no method is specified.
+#' @param offset numeric value added to raw signal intensity before background correction is implemented
+#' @param transform Expression to transform raw data. Defaults to log2
+#' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
+#'  
+#' @import limma
+#' @exportMethod arrayNorm
+#' @docType methods
+#' @rdname arrayNorm-methods
 setGeneric(
   name = "arrayNorm", 
   def = function(x, ...) standardGeneric("arrayNorm")
 )
+
+
+
+#' @rdname arrayNorm-methods
+#' @aliases arrayNorm
 setMethod(
   f = "arrayNorm",
   signature = "MultiSet",
@@ -38,6 +58,8 @@ setMethod(
     }
 )
 
+#' @rdname arrayNorm-methods
+#' @aliases arrayNorm
 setMethod(
   f = "arrayNorm",
   signature = "ExpressionSet",

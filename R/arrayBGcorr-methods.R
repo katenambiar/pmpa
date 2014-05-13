@@ -9,13 +9,15 @@
 #' @param transform Expression to transform raw data. Defaults to log2
 #' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
 #'  
-#' @export
+#' @import limma
+#' @exportMethod arrayBGcorr
 #' @docType methods
 #' @rdname arrayBGcorr-methods
 setGeneric(
   name = "arrayBGcorr", 
   def = function(x, ...) standardGeneric("arrayBGcorr")
 )
+
 
 
 #' @rdname arrayBGcorr-methods

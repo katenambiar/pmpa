@@ -1,0 +1,37 @@
+\name{filterGMM}
+\alias{filterGMM}
+\title{Filter peptide microarray data}
+\usage{
+filterGMM(arraydata, controldata, cutoff.quantile = 0.99, plot = TRUE,
+  lhist = 50, num.dnorm = 5 * lhist, xlab = "", ylab = "",
+  plottitle = "", xsize = 1, colramp = colorRampPalette(rev(brewer.pal(11,
+  "RdYlBu"))), cleanup = TRUE, ...)
+}
+\arguments{
+  \item{arraydata}{Vector of log transformed normalised
+  signal intensities from the sample array}
+
+  \item{controldata}{Vector of log transformed normalised
+  signal intensities from the control array (incubated with
+  just secondary antibody). Must be same the length as
+  arraydata.}
+
+  \item{cutoff.quantile}{Value indicating quantile of 1st
+  gaussian distribution to set as a cutoff point. Defaults
+  to 0.99}
+}
+\value{
+logical vector of the same length as arraydata (TRUE =
+valid probes, FALSE = filtered probes)
+}
+\description{
+filterGMM is a function that filters peptide array data by
+identifying probes that specifically bind the secondary
+antibody and probes that are unreactive on the sample
+array. It does this by fitting a 2 component gaussian
+mixture model to the signal data from an array incubated
+with just secondary antibody (control array). Probes with
+signal exceeding the value of the cutoff quantile are
+flagged as secondary antibody binders.
+}
+

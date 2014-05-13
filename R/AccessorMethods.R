@@ -4,7 +4,7 @@
 #' 
 #' @param x MultiSet object
 #' @return matrix of foreground intensities
-#' @export fg
+#' @exportMethod fg
 #' @docType methods 
 #' @rdname fg-methods
 setGeneric(
@@ -29,7 +29,7 @@ setMethod(
 #' 
 #' @param x MultiSet object
 #' @return matrix of background intensities
-#' @export bg
+#' @exportMethod bg
 #' @docType methods
 #' @rdname bg-methods
 setGeneric(
@@ -55,7 +55,7 @@ setMethod(
 #' 
 #' @param x MultiSet object
 #' @return matrix of background intensities
-#' @export flags
+#' @exportMethod flags
 #' @docType methods
 #' @rdname flags-methods
 setGeneric(

@@ -1,9 +1,20 @@
-setGeneric(
+#' Adds annotation to peptide microarray data
+#' 
+#' 
+#' 
+#' @param x MultiSet object
+#' @return Multiset object
+#' @exportMethod annotateArrays
+#' @docType methods 
+#' @rdname annotateArrays-methods
+#' setGeneric(
   name = "annotateArrays", 
   def = function(x, ...) standardGeneric("annotateArrays")
 )
 
 
+#' @rdname annotateArrays-methods
+#' @aliases annotateArrays
 setMethod(
   f = "annotateArrays",
   signature = "MultiSet",
@@ -46,6 +57,8 @@ setMethod(
   )
 
 
+#' @rdname annotateArrays-methods
+#' @aliases annotateArrays
 setMethod(
   f = "annotateArrays",
   signature = "ExpressionSet",

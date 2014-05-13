@@ -5,13 +5,15 @@
 #' 
 #' @param x MultiSet object with block, column and row information in the fData slot
 #' @return layout matrix
-#' @export
+#' @exportMethod getArrayLayout
 #' @docType methods
 #' @rdname getArrayLayout-methods
 setGeneric(
   name = "getArrayLayout",
   def = function(x, ...) standardGeneric("getArrayLayout")
 )
+
+
 #' @rdname getArrayLayout-methods
 #' @aliases getArrayLayout
 setMethod(
