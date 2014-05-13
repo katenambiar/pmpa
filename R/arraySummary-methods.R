@@ -3,7 +3,7 @@
 #' @param x MultiSet object
 #' @param method c("Median", "Mean")
 #' @return ExpressionSet with summarised intensity values in exprs slot
-#' @exportMethod 
+#' @exportMethod arraySummary
 #' @docType methods arraySummary
 #' @rdname arraySummary-methods
 setGeneric(

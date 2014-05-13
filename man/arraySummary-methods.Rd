@@ -11,7 +11,7 @@ arraySummary(x, ...)
 \arguments{
   \item{x}{MultiSet object}
 
-  \item{method}{c("TukeyBiweight", "MedianPolish", "Mean")}
+  \item{method}{c("Median", "Mean")}
 }
 \value{
 ExpressionSet with summarised intensity values in exprs
