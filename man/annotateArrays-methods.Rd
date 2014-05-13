@@ -1,0 +1,25 @@
+\docType{methods}
+\name{annotateArrays}
+\alias{annotateArrays}
+\alias{annotateArrays,ExpressionSet-method}
+\alias{annotateArrays,MultiSet-method}
+\title{Adds annotation to peptide microarray data}
+\usage{
+annotateArrays(x, ...)
+
+\S4method{annotateArrays}{MultiSet}(x, pheno = NULL, protocol = NULL,
+  feature = NULL)
+
+\S4method{annotateArrays}{ExpressionSet}(x, pheno = NULL, protocol = NULL,
+  feature = NULL)
+}
+\arguments{
+  \item{x}{MultiSet object}
+}
+\value{
+Multiset object
+}
+\description{
+Adds annotation to peptide microarray data
+}
+
