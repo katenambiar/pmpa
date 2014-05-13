@@ -17,7 +17,7 @@
 #' @param ... further arguments passed to \link{hist}
 #' @return MultiSet object filtered to remove probes with high secondary binding
 #'  
-#' @export
+#' @exportMethod arraySecFilter
 #' @docType methods
 #' @rdname arraySecFilter-methods
 setGeneric(
@@ -31,12 +31,15 @@ setGeneric(
 setMethod(
   f = "arraySecFilter",
   signature = "MultiSet",
-  definition = function(x, control.arrays, bg.offset = 1024, control.probes = NULL, cutoff.quantile = 0.95, remove.probes = TRUE, remove.control.arrays = TRUE){
+  definition = function(x, control.arrays, bg.offset = 1024, 
+                        control.probes = NULL, cutoff.quantile = 0.95, 
+                        remove.probes = TRUE, remove.control.arrays = TRUE){
     
     
     if(is.numeric(control.arrays)){
       nctrl <- x[ ,control.arrays]
-      nctrl <- arrayBGcorr(nctrl, method = "subtract", offset = bg.offset, transform = "log2")
+      nctrl <- arrayBGcorr(nctrl, method = "subtract", 
+                           offset = bg.offset, transform = "log2")
       nctrl <- arraySummary(nctrl, method = "median")
     } else {
       stop("control.arrays must be a numeric value or vector corresponding to the negative control array(s).")
