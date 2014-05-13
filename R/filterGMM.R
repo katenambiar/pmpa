@@ -16,6 +16,8 @@
 #' to set as a cutoff point. Defaults to 0.99
 #' @return logical vector of the same length as arraydata 
 #' (TRUE = valid probes, FALSE = filtered probes)
+#' @import mixtools
+#' @import RColorBrewer
 #' @export
 filterGMM <- function(arraydata, controldata, cutoff.quantile = 0.99, plot = TRUE, 
                       lhist = 50, num.dnorm=5*lhist, xlab = "", ylab = "", 
