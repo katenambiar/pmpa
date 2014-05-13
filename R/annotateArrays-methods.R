@@ -7,7 +7,7 @@
 #' @exportMethod annotateArrays
 #' @docType methods 
 #' @rdname annotateArrays-methods
-#' setGeneric(
+setGeneric(
   name = "annotateArrays", 
   def = function(x, ...) standardGeneric("annotateArrays")
 )
