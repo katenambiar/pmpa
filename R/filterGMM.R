@@ -22,7 +22,7 @@
 filterGMM <- function(arraydata, controldata, cutoff.quantile = 0.99, plot = TRUE, 
                       lhist = 50, num.dnorm=5*lhist, xlab = "", ylab = "", 
                       plottitle="", xsize=1, 
-                      colramp = colorRampPalette(rev(brewer.pal(11, "RdYlBu")))
+                      colramp = colorRampPalette(rev(brewer.pal(11, "RdYlBu"))),
                       cleanup=TRUE,...){
   
   set.seed(123)
