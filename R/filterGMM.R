@@ -25,12 +25,12 @@ filterGMM <- function(arraydata, controldata, cutoff.quantile = 0.99, plot = TRU
                       colramp = colorRampPalette(rev(brewer.pal(11, "RdYlBu"))),
                       cleanup=TRUE,...){
   
-  set.seed(123)
-  control.gmm <- normalmixEM(controldata, k = 2, maxit = 100, epsilon = 0.001, fast = TRUE)
+  set.seed(100)
+  control.gmm <- normalmixEM(controldata, k = 2, maxit = 1000, epsilon = 1e-08, fast = TRUE)
   control.cutoff <- qnorm(cutoff.quantile, control.gmm$mu[1], control.gmm$sig[1])
   
-  set.seed(123)
-  array.gmm <- normalmixEM(arraydata, k = 2, maxit = 100, epsilon = 0.001, fast = TRUE)
+  set.seed(100)
+  array.gmm <- normalmixEM(arraydata, k = 2, maxit = 1000, epsilon = 1e-08, fast = TRUE)
   array.cutoff <- qnorm(cutoff.quantile, array.gmm$mu[1], array.gmm$sig[1])
   
   filterdata <- controldata < control.cutoff & arraydata > array.cutoff
