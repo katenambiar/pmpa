@@ -19,6 +19,6 @@ ExpressionSet object with M and A matrices added to the assayData environment
 }
 \description{
 Calculates M-values (log2 signal ratios) and A-values (log2 average signal) by comparison of
-each peptide array with a negative control array that was incubated with only the secondary antibody.
+each peptide array with a negative control array.
 }
 
