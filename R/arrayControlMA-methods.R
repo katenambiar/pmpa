@@ -22,11 +22,15 @@ setMethod(
   f = "arrayControlMA",
   signature = "ExpressionSet",
   definition = function(x, control.array){
-     
-    if(length(control.array) != 1){
-      stop("Only one control array can be used.")
-    }
-    
+
+    stopifnot(
+      tryCatch(length(control.array) == 1, 
+               error = function(err){
+                 message("Only one control array can be used.")
+               }
+               )
+      )
+
     tryCatch(
       {
         nctrl <- x[ ,control.array]
@@ -34,9 +38,9 @@ setMethod(
         assayDataElement(x, "A") <- (exprs(x) + as.vector(exprs(nctrl)))/2
         return(x)
       },
-      error=function(cond) {
+      error = function(err){
         message(paste("Control array in column", control.array, "cannot be found."))
-        message(cond)
+        message(err)
         return(NA)
       }
       )
