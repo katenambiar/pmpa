@@ -7,7 +7,7 @@
 maplot(x, ...)
 }
 \arguments{
-\item{x}{MultiSet or ExpressionSet object}
+\item{x}{ExpressionSet object}
 
 \item{arr1}{integer corresponding to 1st array to be plotted}
 
