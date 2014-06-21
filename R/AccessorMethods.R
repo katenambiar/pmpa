@@ -54,7 +54,7 @@ setMethod(
 #' Extracts the matrix of flagged values from a MultiSet object created by \link{readArrays}
 #' 
 #' @param x MultiSet object
-#' @return matrix of background intensities
+#' @return matrix of flagged values
 #' @exportMethod flags
 #' @docType methods
 #' @rdname flags-methods
@@ -70,5 +70,31 @@ setMethod(
   signature = "MultiSet",
   definition = function(x){
     assayDataElement(x, "flags")
+  }
+)
+
+
+#---------------------------------------------------------------------------------------------------------------
+#' Diameter Accessor
+#' 
+#' Extracts the matrix of feature diameter values from a MultiSet object created by \link{readArrays}
+#' 
+#' @param x MultiSet object
+#' @return matrix of feature diameters
+#' @exportMethod dia
+#' @docType methods
+#' @rdname dia-methods
+setGeneric(
+  name = "dia", 
+  def = function(x) standardGeneric("dia")
+)
+
+#' @rdname dia-methods
+#' @aliases dia
+setMethod(
+  f = "dia",
+  signature = "MultiSet",
+  definition = function(x){
+    assayDataElement(x, "dia")
   }
 )
