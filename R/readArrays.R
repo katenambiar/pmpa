@@ -14,24 +14,33 @@
 #' @param wavelength integer value for the scan wavelength (typically 635 for Cy5 and 532 for Cy3)
 #' @return an object of class MultiSet
 #' @export
-readArrays <- function(files, wavelength) {
-  filePath <- file.path(files$path, files$fileName)
-  atfHeader <- lapply(filePath, function(x) read.table(x, nrows = 1, stringsAsFactors = FALSE))
+readArrays <- function(files = NULL, wavelength = NULL, header.nlines = 50) {
+  if(is.null(files)){
+    stop("GPR input files must be specified.")
+  }
+  
+  if(setequal(names(files), c("sampleName","fileName","path"))){
+    filePath <- file.path(files$path, files$fileName)
+    atfHeader <- lapply(filePath, function(x) read.table(x, nrows = 1, stringsAsFactors = FALSE))
+    
+    } else {
+    stop("Files data frame must contain 'sampleName', 'fileName' and 'path' columns.")
+  }
   
   if(all(grepl("^ATF", sapply(atfHeader, function(x)x[1,1])))){
-    skip <- list()
-    gpr.datetime <- list()
+    gprHeader <- data.frame(sampleName = files$sampleName, skip = 0)
+    
     for (i in 1:length(filePath)){
-      gprHeader <- readLines(filePath[i], n = 100)
-      skip[[i]] <- intersect(grep("Name", gprHeader), grep("ID", gprHeader)) - 1
-      gpr.datetime[[i]] <- gsub("DateTime=", "", grep("DateTime=", scan(filePath[i], what = character(), n = skip[[i]]), value = TRUE))
-    }
+      header <- readLines(filePath[i], n = header.nlines)
+      gprHeader$skip[i] <- intersect(grep("Name", header), grep("ID", header)) - 1
+      gprHeader$datetime[i] <- gsub("^\"DateTime=|\"$", "", grep("DateTime=", header, value = T))
+      gprHeader$PMTGain[i] <- gsub("^\"PMTGain=|\"$", "", grep("PMTGain=", header, value = T))
+      }
     
-  } else {
+    } else {
     missingATF <- files$fileName[which(grepl("^ATF", sapply(atfHeader, function(x)x[1,1])) == FALSE)]
-    stop("Axon Text File (ATF) header not found in files: ", missingATF)
-    
-  }
+    stop("Axon Text File (ATF) header not found in files: ", missingATF)  
+    }
   
   dataHeader <- c(paste("F", wavelength, " Median", sep = ""), 
                   paste("F", wavelength, " Mean", sep = ""),
@@ -44,7 +53,7 @@ readArrays <- function(files, wavelength) {
      
   colHeaders <- list()
   for (i in 1:length(filePath)){
-    colHeaders[[i]] <- read.table(filePath[i], skip = skip[[i]], nrows = 1, stringsAsFactors = FALSE, sep = "\t")
+    colHeaders[[i]] <- read.table(filePath[i], skip = gprHeader$skip[i], nrows = 1, stringsAsFactors = FALSE, sep = "\t")
     colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", "Dia.", dataHeader, "F Pixels", "Flags")
   }
   
@@ -60,7 +69,7 @@ readArrays <- function(files, wavelength) {
     
     cat("Reading GPR file:", filePath[i], "\n")
     gpr[[i]] <- read.table (file = filePath[i], 
-                            skip = skip[[i]], 
+                            skip = gprHeader$skip[i], 
                             header = TRUE, 
                             stringsAsFactors = FALSE, 
                             colClasses = colClasses[[i]],
@@ -92,7 +101,7 @@ readArrays <- function(files, wavelength) {
                            Name = gpr[[1]]$Name,
                            stringsAsFactors = FALSE
                            )
-  protocolData(obj) <- AnnotatedDataFrame(data = data.frame(ScanDate = unlist(gpr.datetime)))
+  protocolData(obj) <- AnnotatedDataFrame(data = gprHeader[,-c(1,2)])
   
   return(obj)
    
