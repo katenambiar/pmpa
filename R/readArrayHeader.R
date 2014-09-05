@@ -1,3 +1,11 @@
+#' Read peptide microarray data from GPR files
+#' 
+#' \code{readArrayHeader} is usually called by \code{readArrays} rather than being called directly by the user.
+#' 
+#' @param x filename including full path for the array header to be read
+#' @param wavelength integer value for the scan wavelength (typically 635 for Cy5 and 532 for Cy3)
+#' @return data frame
+#' @export
 readArrayHeader <- function(x, wavelength){
   con <- file(x, open = "r")
   on.exit(close(con))
@@ -13,10 +21,6 @@ readArrayHeader <- function(x, wavelength){
     }
   }
   header[[i]] <- NULL
-  
-  if(!grepl("^ATF", header[[1]][1])){
-    stop("Axon Text File (ATF) header not found in file: ", x)
-  }
   
   if(any(header[[grep("Wavelengths", header)]] == wavelength)){
     wl.index <- which(header[[grep("Wavelengths", header)]] == wavelength)
