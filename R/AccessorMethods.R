@@ -25,7 +25,7 @@ setMethod(
 #---------------------------------------------------------------------------------------------------------------
 #' Background Intensity Accessor
 #' 
-#' Extracts the matrix of background intensities (bMedian) from a MultiSet object created by \link{readArrays}
+#' Extracts the matrix of background intensities (bg) from a MultiSet object created by \link{readArrays}
 #' 
 #' @param x MultiSet object
 #' @return matrix of background intensities
@@ -43,9 +43,59 @@ setMethod(
   f = "bg",
   signature = "MultiSet",
   definition = function(x){
-    assayDataElement(x, "bMedian")
+    assayDataElement(x, "bg")
   }
   )
+
+#---------------------------------------------------------------------------------------------------------------
+#' Median Background Intensity Accessor
+#' 
+#' Extracts the matrix of median background intensities (bMedian) from a MultiSet object created by \link{readArrays}
+#' 
+#' @param x MultiSet object
+#' @return matrix of median background intensities
+#' @exportMethod bmedian
+#' @docType methods
+#' @rdname bmedian-methods
+setGeneric(
+  name = "bmedian", 
+  def = function(x) standardGeneric("bmedian")
+)
+
+#' @rdname bmedian-methods
+#' @aliases bmedian
+setMethod(
+  f = "bmedian",
+  signature = "MultiSet",
+  definition = function(x){
+    assayDataElement(x, "bMedian")
+  }
+)
+
+#---------------------------------------------------------------------------------------------------------------
+#' Mean Background Intensity Accessor
+#' 
+#' Extracts the matrix of mean background intensities (bMean) from a MultiSet object created by \link{readArrays}
+#' 
+#' @param x MultiSet object
+#' @return matrix of mean background intensities
+#' @exportMethod bmean
+#' @docType methods
+#' @rdname bmean-methods
+setGeneric(
+  name = "bmean", 
+  def = function(x) standardGeneric("bmean")
+)
+
+#' @rdname bmean-methods
+#' @aliases bmean
+setMethod(
+  f = "bmean",
+  signature = "MultiSet",
+  definition = function(x){
+    assayDataElement(x, "bMean")
+  }
+)
 
 
 #---------------------------------------------------------------------------------------------------------------
