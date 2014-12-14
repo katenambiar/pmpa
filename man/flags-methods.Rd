@@ -13,7 +13,7 @@ flags(x)
 \item{x}{MultiSet object}
 }
 \value{
-matrix of background intensities
+matrix of flagged values
 }
 \description{
 Extracts the matrix of flagged values from a MultiSet object created by \link{readArrays}
