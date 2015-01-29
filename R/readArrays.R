@@ -54,7 +54,7 @@ readArrays <- function(files = NULL, wavelength = NULL, header.nlines = 50) {
   colHeaders <- list()
   for (i in 1:length(filePath)){
     colHeaders[[i]] <- read.table(filePath[i], skip = gprHeader$skip[i], nrows = 1, stringsAsFactors = FALSE, sep = "\t")
-    colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", "Dia.", dataHeader, "F Pixels", "Flags")
+    colHeaders[[i]] <- colHeaders[[i]] %in% c("Block", "Column", "Row", "Name", "ID", "X", "Y", "Dia.", dataHeader, "F Pixels", "Flags")
   }
   
   colClasses <- list()
@@ -80,13 +80,13 @@ readArrays <- function(files = NULL, wavelength = NULL, header.nlines = 50) {
   cat("Reading", length(filePath), "array files completed")
   
   obj <- new("MultiSet")
-  assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x[,7]),
-                                 fMean = sapply(gpr, function(x) x[,8]),
-                                 fCV = sapply(gpr, function(x) x[,9]),
-                                 bMedian = sapply(gpr, function(x) x[,10]),
-                                 bMean = sapply(gpr, function(x) x[,11]),
-                                 bSD = sapply(gpr, function(x) x[,12]),
-                                 fSat = sapply(gpr, function(x) x[,12]),
+  assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x[,9]),
+                                 fMean = sapply(gpr, function(x) x[,10]),
+                                 fCV = sapply(gpr, function(x) x[,11]),
+                                 bMedian = sapply(gpr, function(x) x[,12]),
+                                 bMean = sapply(gpr, function(x) x[,13]),
+                                 bSD = sapply(gpr, function(x) x[,14]),
+                                 fSat = sapply(gpr, function(x) x[,14]),
                                  fPixels = sapply(gpr, function(x) x$F.Pixels),
                                  dia = sapply(gpr, function(x) x$Dia.),
                                  flags = sapply(gpr, function(x) x$Flags)
@@ -98,6 +98,8 @@ readArrays <- function(files = NULL, wavelength = NULL, header.nlines = 50) {
                            Block = gpr[[1]]$Block,
                            Column = gpr[[1]]$Column,
                            Row = gpr[[1]]$Row,
+                           X = gpr[[1]]$X,
+                           Y = gpr[[1]]$Y,
                            Name = gpr[[1]]$Name,
                            stringsAsFactors = FALSE
                            )
