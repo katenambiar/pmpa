@@ -3,7 +3,7 @@
 \alias{readArrays}
 \title{Read peptide microarray data from GPR files}
 \usage{
-readArrays(files, wavelength)
+readArrays(files = NULL, wavelength = NULL)
 }
 \arguments{
 \item{files}{a data frame with 3 columns: sampleName - unique identifier for the sample, fileName - GPR file name and extension,
