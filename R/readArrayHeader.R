@@ -28,17 +28,27 @@ readArrayHeader <- function(x, wavelength){
     stop("Data for ", wavelength, "nm wavelength not found.")
   }
  
-  header.df <- data.frame(DateTime = header[[grep("\"DateTime\"", header)]][2],
-                          GalFile = header[[grep("\"GalFile\"", header)]][2],
-                          ImageFile = header[[grep("\"ImageFiles\"", header)]][wl.index],
-                          Wavelength = header[[grep("\"Wavelengths\"", header)]][wl.index],
-                          PixelSize = header[[grep("\"PixelSize\"", header)]][2],
-                          PMTGain = header[[grep("\"PMTGain\"", header)]][wl.index],
-                          ScanPower = header[[grep("\"ScanPower\"", header)]][wl.index],
-                          LaserPower = header[[grep("\"LaserPower\"", header)]][wl.index],
-                          HeaderLines = i - 1,
-                          stringsAsFactors = FALSE
+  tryCatch(
+    {
+      header.df <- data.frame(DateTime = header[[grep("\"DateTime\"", header)]][2],
+                              Settings = header[[grep("\"Settings\"", header)]][2],
+                              GalFile = header[[grep("\"GalFile\"", header)]][2],
+                              ImageFile = header[[grep("\"ImageFiles\"", header)]][wl.index],
+                              Wavelength = header[[grep("\"Wavelengths\"", header)]][wl.index],
+                              PixelSize = header[[grep("\"PixelSize\"", header)]][2],
+                              PMTGain = header[[grep("\"PMTGain\"", header)]][wl.index],
+                              ScanPower = header[[grep("\"ScanPower\"", header)]][wl.index],
+                              LaserPower = header[[grep("\"LaserPower\"", header)]][wl.index],
+                              HeaderLines = i - 1,
+                              stringsAsFactors = FALSE
+      )
+    },
+    error = function(err){
+      message("Header parameter not found.")
+      message(err)
+      return(NA)
+    }
   )
-
+  
   return(header.df)
 }
