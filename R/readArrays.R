@@ -22,7 +22,7 @@ readArrays <- function(files = NULL, wavelength = NULL) {
   if(setequal(names(files), c("sampleName","fileName","path"))){
     filePath <- file.path(files$path, files$fileName)
     
-    } else {
+  } else {
     stop("Files data frame must contain 'sampleName', 'fileName' and 'path' columns.")
   }
   
@@ -42,7 +42,7 @@ readArrays <- function(files = NULL, wavelength = NULL) {
                   paste("B", wavelength, " SD", sep = ""),
                   paste("F", wavelength, " % Sat.", sep = "")
   )
-     
+  
   colHeaders <- list()
   for (i in 1:length(filePath)){
     colHeaders[[i]] <- read.table(filePath[i], skip = gprHeader$HeaderLines[i], nrows = 1, stringsAsFactors = FALSE, sep = "\t")
@@ -93,9 +93,9 @@ readArrays <- function(files = NULL, wavelength = NULL) {
                            Row = gpr[[1]]$Row,
                            Name = gpr[[1]]$Name,
                            stringsAsFactors = FALSE
-                           )
+  )
   protocolData(obj) <- AnnotatedDataFrame(data = gprHeader)
   
   return(obj)
-   
+  
 }
