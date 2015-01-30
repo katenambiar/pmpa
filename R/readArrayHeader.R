@@ -29,7 +29,6 @@ readArrayHeader <- function(x, wavelength){
   }
  
   header.df <- data.frame(DateTime = header[[grep("\"DateTime\"", header)]][2],
-                          Settings = header[[grep("\"Settings\"", header)]][2],
                           GalFile = header[[grep("\"GalFile\"", header)]][2],
                           ImageFile = header[[grep("\"ImageFiles\"", header)]][wl.index],
                           Wavelength = header[[grep("\"Wavelengths\"", header)]][wl.index],
