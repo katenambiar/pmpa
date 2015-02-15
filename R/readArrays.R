@@ -19,6 +19,10 @@ readArrays <- function(files = NULL, wavelength = NULL) {
     stop("GPR input files must be specified.")
   }
   
+  if(is.null(wavelength)){
+    stop("Wavelength must be specified.")
+  }
+  
   if(setequal(names(files), c("sampleName","fileName","path"))){
     filePath <- file.path(files$path, files$fileName)
     
@@ -28,7 +32,7 @@ readArrays <- function(files = NULL, wavelength = NULL) {
   
   gprHeader <- list()
   for (i in 1:length(filePath)){
-    gprHeader[[i]] <- readArrayHeader(filePath[i], wavelength = wavelength)
+    gprHeader[[i]] <- readArrayHeader(filePath[i])
   }
   names(gprHeader) <- files$sampleName  
   gprHeader <- do.call(rbind.data.frame, gprHeader)
