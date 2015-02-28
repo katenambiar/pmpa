@@ -8,7 +8,7 @@
 readArrayHeader <- function(x, wavelength, wavelength.field = "Wavelengths"){
   con <- file(x, open = "r")
   on.exit(close(con))
-
+  
   # Read header lines from GPR file
   i <- 0
   header <- list()
@@ -35,8 +35,9 @@ readArrayHeader <- function(x, wavelength, wavelength.field = "Wavelengths"){
   if (!length(wl.row)){
     warning("Wavelength field not found - default header values used.")
     header.data <- sapply(header, function(y) y[2])
-    header.df <- data.frame(header.data, row.names = sapply(header, function(y) y[1]))
-    return (header.df)
+    names(header.data) = sapply(header, function(y) y[1])
+    header.data <- data.frame(lapply(header.data, type.convert), stringsAsFactors=FALSE)
+    return (header.data)
     
   } else {
     
@@ -46,7 +47,8 @@ readArrayHeader <- function(x, wavelength, wavelength.field = "Wavelengths"){
     
     header.data <- sapply(header, function(y) y[2])
     header.data[!is.na(sapply(header, function(y) y[wl.col]))] <- wl.data
-    header.df <- data.frame(header.data, row.names = sapply(header, function(y) y[1]))
-    return(header.df)    
+    names(header.data) = sapply(header, function(y) y[1])
+    header.data <- data.frame(lapply(header.data, type.convert), stringsAsFactors=FALSE)
+    return(header.data)    
   }
 }
