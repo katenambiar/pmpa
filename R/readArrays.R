@@ -14,28 +14,34 @@
 #' @param wavelength integer value for the scan wavelength (typically 635 for Cy5 and 532 for Cy3)
 #' @return an object of class MultiSet
 #' @export
-readArrays <- function(files = NULL, wavelength = NULL) {
-  if(is.null(files)){
-    stop("GPR input files must be specified.")
+readArrays <- function(samplename = NULL, filename = NULL, path = NULL, wavelength = NULL) {
+  if(is.null(samplename)){
+    stop("At least one sample name must be specified.")
+  }
+  
+  if(is.null(filename)){
+    stop("At least one GPR input file must be specified.")
+  }
+  
+  if(is.null(path)){
+   path <- getwd() 
   }
   
   if(is.null(wavelength)){
     stop("Wavelength must be specified.")
   }
   
-  if(setequal(names(files), c("sampleName","fileName","path"))){
-    filePath <- file.path(files$path, files$fileName)
-    
-  } else {
-    stop("Files data frame must contain 'sampleName', 'fileName' and 'path' columns.")
-  }
-  
+  filePath <- file.path(path, filename)
+
   gprHeader <- list()
   for (i in 1:length(filePath)){
-    gprHeader[[i]] <- readArrayHeader(filePath[i])
+    gprHeader[[i]] <- readArrayHeader(filePath[i], wavelength)
   }
-  names(gprHeader) <- files$sampleName  
-  gprHeader <- do.call(rbind.data.frame, gprHeader)
+  # names(gprHeader) <- files$sampleName  
+  
+  # Reduce(union, lapply(gprHeader, names))
+  
+  gprHeader <- rbind.fill(gprHeader)
   
   dataHeader <- c(paste("F", wavelength, " Median", sep = ""), 
                   paste("F", wavelength, " Mean", sep = ""),
