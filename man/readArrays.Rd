@@ -4,13 +4,14 @@
 \alias{readArrays}
 \title{Read peptide microarray data from GPR files}
 \usage{
-readArrays(files = NULL, wavelength = NULL)
+readArrays(samplename = NULL, filename = NULL, path = NULL,
+  wavelength = NULL)
 }
 \arguments{
+\item{wavelength}{integer value for the scan wavelength (typically 635 for Cy5 and 532 for Cy3)}
+
 \item{files}{a data frame with 3 columns: sampleName - unique identifier for the sample, fileName - GPR file name and extension,
 path - full path or URL to the directory holding the GPR file}
-
-\item{wavelength}{integer value for the scan wavelength (typically 635 for Cy5 and 532 for Cy3)}
 }
 \value{
 an object of class MultiSet

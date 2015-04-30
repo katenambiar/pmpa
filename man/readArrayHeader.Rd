@@ -4,12 +4,10 @@
 \alias{readArrayHeader}
 \title{Read peptide microarray data from GPR files}
 \usage{
-readArrayHeader(x, wavelength)
+readArrayHeader(x, wavelength, wavelength.field = "Wavelengths")
 }
 \arguments{
 \item{x}{filename including full path for the array header to be read}
-
-\item{wavelength}{integer value for the scan wavelength (typically 635 for Cy5 and 532 for Cy3)}
 }
 \value{
 data frame
