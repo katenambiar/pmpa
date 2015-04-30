@@ -13,6 +13,7 @@
 #' path - full path or URL to the directory holding the GPR file
 #' @param wavelength integer value for the scan wavelength (typically 635 for Cy5 and 532 for Cy3)
 #' @return an object of class MultiSet
+#' @import plyr
 #' @export
 readArrays <- function(samplename = NULL, filename = NULL, path = NULL, wavelength = NULL) {
   if(is.null(samplename)){
@@ -37,9 +38,6 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
   for (i in 1:length(filePath)){
     gprHeader[[i]] <- readArrayHeader(filePath[i], wavelength)
   }
-  # names(gprHeader) <- files$sampleName  
-  
-  # Reduce(union, lapply(gprHeader, names))
   
   gprHeader <- rbind.fill(gprHeader)
   
