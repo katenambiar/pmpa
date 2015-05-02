@@ -18,7 +18,7 @@ setGeneric(
 setMethod(
   f = "arraySummary",
   signature = "MultiSet",
-  definition = function(x, method, ...){
+  definition = function(x, method, cv.threshold = 0.5, ...){
     
     if (!is.null(fData(x)$ID)){
       ID <- fData(x)$ID
@@ -34,12 +34,13 @@ setMethod(
     y[flags < -99] <- NA
     
     if (method == "mean"){
-      arraySumm <- subColSummarizeAvg(y, ID)
+      arraySumm <- .meanID(y, ID)
       
     } else if (method == "median"){
       arraySumm <- subColSummarizeMedian(y, ID)
       
-    } 
+    }
+    
     
     obj <- new("ExpressionSet")
     assayData(obj) <- assayDataNew(exprs = arraySumm)
@@ -51,5 +52,38 @@ setMethod(
     protocolData(obj) <- protocolData(x)
                              
     return(obj)
-    }
-  )
+  }
+)
+
+
+
+#' Calculate the mean of intra-array replicates
+#' @param x matrix of signal intensities with samples in columns and probes in rows
+#' @param ID vector (factor) of identifiers for each probe corresponding to the rows in the x matrix
+#' @return matrix of mean values with samples in columns and unique probes in rows
+#' @keywords internal
+.meanID <- function(x, ID){
+  csum <- rowsum(x, group = ID, reorder = TRUE, na.rm = TRUE)
+  n <- tabulate(ID)
+  cmean <- csum/n
+  return (cmean)
+}
+
+#' Calculate the CV of intra-array replicates
+#' @param x matrix of signal intensities with samples in columns and probes in rows
+#' @param ID vector (factor) of identifiers for each probe corresponding to the rows in the x matrix
+#' @return matrix of CV values with samples in columns and unique probes in rows
+#' @keywords internal
+.cvID <- function(x, ID){
+  csum <- rowsum(x, group = ID, reorder = TRUE, na.rm = TRUE)
+  csumsq <- rowsum(x^2, group = ID, reorder = TRUE, na.rm = TRUE)
+  n <- tabulate(ID)
+  cmean <- csum/n
+  cvar <- ((n * csumsq) - csum^2)/n^2
+  cv <- sqrt(cvar) / cmean
+  return(cv)
+}
+
+
+
+
