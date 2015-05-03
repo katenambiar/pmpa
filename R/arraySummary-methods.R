@@ -18,7 +18,7 @@ setGeneric(
 setMethod(
   f = "arraySummary",
   signature = "MultiSet",
-  definition = function(x, method, cv.threshold = 0.30){
+  definition = function(x, method, cv.threshold){
     
     if (!is.null(fData(x)$ID)){
       ID <- fData(x)$ID
@@ -37,6 +37,10 @@ setMethod(
       arraySumm <- .meanID(y, ID)
       
     } else if (method == "mean.closest"){
+      
+      if(is.null(cv.threshold)){
+        stop("Threshold value for coefficient of varaiation must be specified to use this method.")
+      }
       
       if(abs(max(table(fData(x)$Subarray)) - min(table(fData(x)$Subarray))) != 0){
         stop("Subarray lengths must be equal to use this method.")
