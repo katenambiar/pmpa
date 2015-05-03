@@ -8,8 +8,8 @@
 \usage{
 plotImage(x, ...)
 
-\S4method{plotImage}{MultiSet}(x, arr = 1, slot = "bg", lowcol, highcol,
-  ncols = 123, ...)
+\S4method{plotImage}{MultiSet}(x, arr, subarray = c(1, 2),
+  transform = "log2", ...)
 }
 \arguments{
 \item{x}{MultiSet object with fMedian and/or bMedian matrices in the assayData slot
