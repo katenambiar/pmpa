@@ -9,7 +9,7 @@
 #' @param transform Expression to transform raw data. Defaults to log2
 #' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
 #'  
-#' @import limma
+#' @importFrom preprocessCore normalize.quantiles
 #' @exportMethod arrayNorm
 #' @docType methods
 #' @rdname arrayNorm-methods
