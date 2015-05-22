@@ -106,11 +106,11 @@ setMethod(
   x.cv <- x.sd/x.mean
   
   if(x.cv >= cv.threshold){
-    y.means <- c(mean(c(x[1], x[2]), na.rm = TRUE),
+    x.means <- c(mean(c(x[1], x[2]), na.rm = TRUE),
                  mean(c(x[1], x[3]), na.rm = TRUE),
                  mean(c(x[2], x[3]), na.rm = TRUE)
     )
-    y.mean <- y.means[which.min(c(abs(x[1]-x[2]), abs(x[1]-x[3]), abs(x[2]-x[3])))]
+    y.mean <- x.means[which.min(c(abs(x[1]-x[2]), abs(x[1]-x[3]), abs(x[2]-x[3])))]
     return(y.mean)
     
   } else{
