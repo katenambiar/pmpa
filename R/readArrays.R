@@ -92,8 +92,8 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
                                  dia = sapply(gpr, function(x) x$Dia.),
                                  flags = sapply(gpr, function(x) x$Flags)
   )
-  pData(obj) <- data.frame (fileName = files$fileName,
-                            row.names = files$sampleName
+  pData(obj) <- data.frame (fileName = filename,
+                            row.names = samplename
   )
   fData(obj) <- data.frame(ID = gpr[[1]]$ID,
                            Block = gpr[[1]]$Block,
