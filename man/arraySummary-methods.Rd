@@ -8,7 +8,7 @@
 \usage{
 arraySummary(x, ...)
 
-\S4method{arraySummary}{MultiSet}(x, method, cv.threshold)
+\S4method{arraySummary}{MultiSet}(x, method, cv.threshold, verbose = FALSE)
 }
 \arguments{
 \item{x}{MultiSet object}

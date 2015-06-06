@@ -17,7 +17,7 @@ setGeneric(
 setMethod(
   f = "arraySummary",
   signature = "MultiSet",
-  definition = function(x, method, cv.threshold){
+  definition = function(x, method, cv.threshold, verbose = FALSE){
     
     if (!is.null(fData(x)$ID)){
       ID <- fData(x)$ID
@@ -88,7 +88,7 @@ setMethod(
 #' Mean of closest pair of subarray replicates if CV over threshold value (INTERNAL FUNCTION)
 #' Only works for triple subarray microarrays
 #' @keywords internal
-.meanClosestPair <- function(x, cv.threshold){
+.meanClosestPair <- function(x, cv.threshold, verbose){
   x.mean <- mean(x, na.rm = TRUE)
   x.sd <- sd(x, na.rm = TRUE)
   x.cv <- x.sd/x.mean
@@ -99,6 +99,11 @@ setMethod(
                  mean(c(x[2], x[3]), na.rm = TRUE)
     )
     y.mean <- y.means[which.min(c(abs(x[1]-x[2]), abs(x[1]-x[3]), abs(x[2]-x[3])))]
+    
+    if(verbose){
+      cat("Number of peptides with CV > threshold (by array) = ", apply(x.cv >= cv.threshold, 2, sum))
+    }
+    
     return(y.mean)
     
   } else{
