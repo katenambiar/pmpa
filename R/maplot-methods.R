@@ -28,5 +28,7 @@ setMethod(
     M <- y[ ,arrayID[1]] - y[ ,arrayID[2]]
     A <- (y[ ,arrayID[1]] + y[ ,arrayID[2]])/2
     plot(A, M, ...)
+    lines(lowess(A,M), col = "blue")
+    abline(h = 0, col = "red")
   }
 )
