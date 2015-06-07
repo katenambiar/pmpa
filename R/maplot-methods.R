@@ -21,13 +21,12 @@ setMethod(
   f = "maplot",
   signature = "ExpressionSet",
   definition = function(x, arrayID, ...){
-    if (is.element("M", assayDataElementNames(x)) & is.element("A", assayDataElementNames(x))){
-      M <- assayDataElement(x, "M")[ ,arrayID]
-      A <- assayDataElement(x, "A")[ ,arrayID]
-      plot(A, M, ...)
+    if(length(arrayID) != 2){
+      stop("arrayID must be an integer vector of length 2 corresponding to the arrays to be plotted.")
     }
-    else {
-      stop("M and A elements not found in ExpressionSet.")
-    }
+    y <- exprs(x)
+    M <- y[ ,arrayID[1]] - y[ ,arrayID[2]]
+    A <- (y[ ,arrayID[1]] + y[ ,arrayID[2]])/2
+    plot(A, M, ...)
   }
 )
