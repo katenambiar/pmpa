@@ -19,7 +19,6 @@ setGeneric(
 )
 
 
-
 #' @rdname arrayNorm-methods
 #' @aliases arrayNorm
 setMethod(
@@ -39,6 +38,11 @@ setMethod(
     } else if(method == "scaleGMM"){
       
       assayDataElement(x, "fMedian") <- scaleNormGMM(fg(x))
+      return(x)
+      
+    } else if(method == "scale.control"){
+      
+      assayDataElement(x, "fMedian") <- scaleNormControl(fg(x), ...)
       return(x)
       
     } else if(method == "quantile"){
