@@ -32,7 +32,7 @@ setMethod(
     
     } else if(method == "scale"){
 
-      assayDataElement(x, "fMedian") <- scaleNorm(x, ...)
+      x <- scaleNorm(x, ...)
       return(x)
       
     } else if(method == "scaleGMM"){
