@@ -41,21 +41,23 @@ setMethod(
     plotdata <- data.frame(SA1 = arraydata[fData(x)$Subarray == subarray[1]],
                            SA2 = arraydata[fData(x)$Subarray == subarray[2]])
     
-    
-    plot(plotdata,
+    plot(SA1 ~ SA2, data = plotdata,
          las = 1,
          pch = 20,
          xlim = c(minval, maxval),
          ylim = c(minval, maxval),
+         xlab = paste("SA", subarray[1]),
+         ylab = paste("SA", subarray[2]),
          ...
     )
-    lmfit <- lm(plotdata)
+    lmfit <- lm(SA1 ~ SA2, data = plotdata,)
     abline(lmfit, col = "blue")
     abline(0,1, col = "red")
     
-    lgnd <- bquote(R^2== .(round(summary(lmfit)$adj.r.squared, 3)))
+    lgnd1 <- bquote(R^2== .(round(summary(lmfit)$adj.r.squared, 3)))
+    lgnd2 <- bquote(beta== .(round(coef(summary(lmfit))[2,1], 3)))
     legend("topleft", 
-           as.expression(lgnd),
+           c(as.expression(lgnd1),as.expression(lgnd2)),
            bty = "n",
            cex = 0.9
     )
