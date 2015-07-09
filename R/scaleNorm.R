@@ -40,7 +40,31 @@ setMethod(
 )
 
 
-
+#' @rdname scaleNorm-methods
+#' @aliases scaleNorm
+setMethod(
+  f = "scaleNorm",
+  signature = "ExpressionSet",
+  definition = function(x, controlID = NULL){
+    
+    if (is.null(controlID)){
+      y <- apply(exprs(x), 2, median, na.rm = TRUE)
+      y <- y - exp(mean(log(abs(y))))
+      z <- sweep(exprs(x), 2, y)
+      exprs(x) <- z
+      
+    } else {
+      y <- exprs(x)[featureNames(x) %in% controlID, ]
+      y <- apply(y, 2, median, na.rm = TRUE)
+      y <- y - exp(mean(log(abs(y))))
+      z <- sweep(exprs(x), 2, y)
+      exprs(x) <- z
+      
+      return(x)
+    }
+    
+  }
+)
 
 
 #' Scale Normalisation using GMM
