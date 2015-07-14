@@ -10,7 +10,7 @@
 #' @rdname plotSubarrayBlocks-methods
 setGeneric(
   name = "plotSubarrayBlocks", 
-  def = function(x, ...) standardGeneric("plotSubarrayDensity")
+  def = function(x, ...) standardGeneric("plotSubarrayBlocks")
 )
 
 #' @rdname plotSubarrayBlocks-methods
