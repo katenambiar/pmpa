@@ -63,7 +63,6 @@ setMethod(
            fill = c(2:4), 
            cex = 0.5
            )
-    
-        
+
   }
 )
