@@ -34,21 +34,27 @@ setMethod(
     }
     
     arraydata <- transformFunc(fg(x[ ,arr]))
-    minval <- min(arraydata)
-    maxval <- max(arraydata)
     
     plotdata <- data.frame(SA1 = arraydata[fData(x)$Subarray == 1],
                            SA2 = arraydata[fData(x)$Subarray == 2],
                            SA3 = arraydata[fData(x)$Subarray == 3]
                            )
+    plotdata <- apply(plotdata, 2, density)
+    range.x <- lapply(plotdata, function(y) range(y$x))
+    range.y <- lapply(plotdata, function(y) range(y$y))
     
-    plot(density(plotdata$SA1),
+    plot(0,
+         type = "n",
          las = 1,
-         xlim = c(minval, maxval),
+         xlim = range(range.x),
+         ylim = c(0, range(range.y)[2]),
+         xlab = "Signal Intensity",
+         ylab = "Density",
          ...
     )
-    lines(density(plotdata$SA2))
-    lines(density(plotdata$SA3))
-    
+    lines(plotdata$SA1, col = "black")
+    lines(plotdata$SA2, col = "blue")
+    lines(plotdata$SA3, col = "red")
+        
   }
 )
