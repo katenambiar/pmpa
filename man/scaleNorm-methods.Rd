@@ -3,12 +3,15 @@
 \docType{methods}
 \name{scaleNorm}
 \alias{scaleNorm}
+\alias{scaleNorm,ExpressionSet-method}
 \alias{scaleNorm,MultiSet-method}
 \title{Scale Normalisation}
 \usage{
 scaleNorm(x, ...)
 
 \S4method{scaleNorm}{MultiSet}(x, controlID = NULL)
+
+\S4method{scaleNorm}{ExpressionSet}(x, controlID = NULL)
 }
 \arguments{
 \item{x}{MultiSet object with fMedian matrices in the assayData slot}
