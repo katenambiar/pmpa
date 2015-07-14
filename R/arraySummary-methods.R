@@ -106,5 +106,3 @@ setMethod(
     return (x.mean)
   }
 }
-
-
