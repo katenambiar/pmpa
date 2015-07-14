@@ -52,9 +52,18 @@ setMethod(
          ylab = "Density",
          ...
     )
-    lines(plotdata$SA1, col = "black")
-    lines(plotdata$SA2, col = "blue")
-    lines(plotdata$SA3, col = "red")
+    lines(plotdata$SA1, col = "red")
+    lines(plotdata$SA2, col = "green")
+    lines(plotdata$SA3, col = "blue")
+    
+    legend("topright", 
+           inset = 0,
+           c("SA1", "SA2", "SA3"), 
+           bty = "n", 
+           fill = c(2:4), 
+           cex = 0.5
+           )
+    
         
   }
 )
