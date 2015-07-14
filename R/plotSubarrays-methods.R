@@ -20,7 +20,7 @@ setGeneric(
 setMethod(
   f = "plotSubarrays",
   signature = "MultiSet",
-  definition = function(x, arr, subarray = c(1,2), transform = "log2", ...){
+  definition = function(x, arr, subarray = c(1,2), flagval = -100, transform = "log2", ...){
     if (is.function(transform)){
       transformFunc <- transform
       
@@ -38,10 +38,16 @@ setMethod(
     minval <- min(arraydata)
     maxval <- max(arraydata)
     
-    plotdata <- data.frame(SA1 = arraydata[fData(x)$Subarray == subarray[1]],
-                           SA2 = arraydata[fData(x)$Subarray == subarray[2]])
+    flagdata <- flags(x[ ,arr])
+    flagdata <- data.frame(SA.x = flagdata[fData(x)$Subarray == subarray[1]],
+                           SA.y = flagdata[fData(x)$Subarray == subarray[2]]
+                           )
     
-    plot(SA1 ~ SA2, data = plotdata,
+    plotdata <- data.frame(SA.x = arraydata[fData(x)$Subarray == subarray[1]],
+                           SA.y = arraydata[fData(x)$Subarray == subarray[2]]
+                           )
+    
+    plot(SA.y ~ SA.x, data = plotdata,
          las = 1,
          pch = 20,
          xlim = c(minval, maxval),
@@ -50,7 +56,12 @@ setMethod(
          ylab = paste("SA", subarray[2]),
          ...
     )
-    lmfit <- lm(SA1 ~ SA2, data = plotdata,)
+    points(SA.y ~ SA.x, data = plotdata[apply(flagdata, 1, function(x) any(x == flagval)), ],
+           pch = 20,
+           col = "red"
+    )
+    
+    lmfit <- lm(SA.y ~ SA.x, data = plotdata,)
     abline(lmfit, col = "blue")
     abline(0,1, col = "red")
     
@@ -63,8 +74,3 @@ setMethod(
     )
   }
 )
-
-
-
-
-
