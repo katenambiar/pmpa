@@ -9,16 +9,16 @@
 #'  
 #' @export
 #' @docType methods
-#' @rdname plotSubarrays-methods
+#' @rdname plotSubarrayScatter-methods
 setGeneric(
-  name = "plotSubarrays", 
-  def = function(x, ...) standardGeneric("plotSubarrays")
+  name = "plotSubarrayScatter", 
+  def = function(x, ...) standardGeneric("plotSubarrayScatter")
 )
 
-#' @rdname plotSubarrays-methods
-#' @aliases plotSubarrays
+#' @rdname plotSubarrayScatter-methods
+#' @aliases plotSubarrayScatter
 setMethod(
-  f = "plotSubarrays",
+  f = "plotSubarrayScatter",
   signature = "MultiSet",
   definition = function(x, arr, subarray = c(1,2), flagval = -100, transform = "log2", ...){
     if (is.function(transform)){
@@ -58,7 +58,8 @@ setMethod(
     )
     points(SA.y ~ SA.x, data = plotdata[apply(flagdata, 1, function(x) any(x == flagval)), ],
            pch = 20,
-           col = "red"
+           col = "red",
+           ...
     )
     
     lmfit <- lm(SA.y ~ SA.x, data = plotdata,)
