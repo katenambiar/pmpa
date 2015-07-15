@@ -23,13 +23,26 @@ setGeneric(
 setMethod(
   f = "plotImage",
   signature = "MultiSet",
-  definition = function(x, arr = 1, slot = "bg", lowcol, highcol, ncols = 123, titletext, ...){
+  definition = function(x, arr = 1, slot = "bg", lowcol, highcol, ncols = 123, titletext, transform = "none", ...){
     layout <- getArrayLayout(x)
     
+    if (is.function(transform)){
+      transformFunc <- transform
+      
+    } else if (transform == "none"){
+      transformFunc <- function(y) identity(y)
+      
+    } else {
+      transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
+      transformFunc <- function (y){
+        eval(transformExpression)
+      }
+    }
+    
     if (slot == "fg"){
-      y <- fg(x)[ ,arr]
+      y <- transformFunc(fg(x)[ ,arr])
     } else if (slot =="bg"){
-       y <- bg(x)[ ,arr]
+       y <- transformFunc(bg(x)[ ,arr])
     } else {
       stop("Only 'fg' or 'bg'  slots can be plotted as a microarray image.")
     }
