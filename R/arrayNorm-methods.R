@@ -9,7 +9,7 @@
 #' @param transform Expression to transform raw data. Defaults to log2
 #' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
 #'  
-#' @import limma
+#' @importFrom preprocessCore normalize.quantiles
 #' @exportMethod arrayNorm
 #' @docType methods
 #' @rdname arrayNorm-methods
@@ -17,7 +17,6 @@ setGeneric(
   name = "arrayNorm", 
   def = function(x, ...) standardGeneric("arrayNorm")
 )
-
 
 
 #' @rdname arrayNorm-methods
@@ -33,13 +32,14 @@ setMethod(
     
     } else if(method == "scale"){
 
-      assayDataElement(x, "fMedian") <- scaleNorm(fg(x))
+      x <- scaleNorm(x, ...)
       return(x)
       
     } else if(method == "scaleGMM"){
       
       assayDataElement(x, "fMedian") <- scaleNormGMM(fg(x))
       return(x)
+      
       
     } else if(method == "quantile"){
       

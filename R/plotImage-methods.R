@@ -23,7 +23,7 @@ setGeneric(
 setMethod(
   f = "plotImage",
   signature = "MultiSet",
-  definition = function(x, arr = 1, slot = "bg", lowcol, highcol, ncols = 123, ...){
+  definition = function(x, arr = 1, slot = "bg", lowcol, highcol, ncols = 123, titletext, ...){
     layout <- getArrayLayout(x)
     
     if (slot == "fg"){
@@ -60,6 +60,6 @@ setMethod(
     box(lwd = 1)
     abline(v = ((1:blockcols - 1) * spotcols + 0.5), lwd = 1)
     abline(h = ((1:blockrows - 1) * spotrows + 0.5), lwd = 1)
-    title(sampleNames(x)[arr])
+    title(titletext)
   }
 )

@@ -3,7 +3,6 @@
 #' @param x MultiSet object
 #' @param method c("Median", "Mean")
 #' @return ExpressionSet with summarised intensity values in exprs slot
-#' @import preprocessCore
 #' @exportMethod arraySummary
 #' @docType methods arraySummary
 #' @rdname arraySummary-methods
@@ -38,10 +37,6 @@ setMethod(
       
     } else if (method == "mean.closest"){
       
-      if(is.null(cv.threshold)){
-        stop("Threshold value for coefficient of varaiation must be specified to use this method.")
-      }
-      
       if(abs(max(table(fData(x)$Subarray)) - min(table(fData(x)$Subarray))) != 0){
         stop("Subarray lengths must be equal to use this method.")
       }
@@ -70,9 +65,6 @@ setMethod(
 
 
 #' Calculate the mean of intra-array replicates (INTERNAL FUNCTION)
-#' @param x matrix of signal intensities with samples in columns and probes in rows
-#' @param ID vector (factor) of identifiers for each probe corresponding to the rows in the x matrix
-#' @return matrix of mean values with samples in columns and unique probes in rows
 #' @keywords internal
 .meanID <- function(x, ID){
   csum <- rowsum(x, group = ID, reorder = TRUE, na.rm = TRUE)
@@ -82,9 +74,6 @@ setMethod(
 }
 
 #' Calculate the CV of intra-array replicates (INTERNAL FUNCTION)
-#' @param x matrix of signal intensities with samples in columns and probes in rows
-#' @param ID vector (factor) of identifiers for each probe corresponding to the rows in the x matrix
-#' @return matrix of CV values with samples in columns and unique probes in rows
 #' @keywords internal
 .cvID <- function(x, ID){
   csum <- rowsum(x, group = ID, reorder = TRUE, na.rm = TRUE)
@@ -96,14 +85,14 @@ setMethod(
   return(cv)
 }
 
-
 #' Mean of closest pair of subarray replicates if CV over threshold value (INTERNAL FUNCTION)
-#' Only to be used for triple subarray microarrays
+#' Only works for triple subarray microarrays
 #' @keywords internal
-.meanClosestPair <- function(x, cv.threshold){
+.meanClosestPair <- function(x, cv.threshold ){
   x.mean <- mean(x, na.rm = TRUE)
   x.sd <- sd(x, na.rm = TRUE)
   x.cv <- x.sd/x.mean
+  x.cv[is.na(x.cv)] <- 0
   
   if(x.cv >= cv.threshold){
     x.means <- c(mean(c(x[1], x[2]), na.rm = TRUE),
@@ -117,5 +106,3 @@ setMethod(
     return (x.mean)
   }
 }
-
-
