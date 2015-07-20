@@ -81,7 +81,7 @@ setMethod(
       
     } else if(method == "quantile"){
       
-      exprs(x) <- normalize.quantiles(exprs(x))
+      assayDataElement(x, "exprs") <- normalize.quantiles(exprs(x))
       return(x)
       
     } 
