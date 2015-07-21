@@ -65,6 +65,8 @@ setMethod(
   signature = "ExpressionSet",
   definition = function(x, method = "none", ...){
     
+    fnames <- featureNames(x)  
+    
     if (method == "none"){
       
       return(x)
@@ -81,7 +83,8 @@ setMethod(
       
     } else if(method == "quantile"){
       
-      assayDataElement(x, "exprs") <- normalize.quantiles(exprs(x))
+      exprs(x) <- normalize.quantiles(exprs(x))
+      featureNames(x) <- fnames
       return(x)
       
     } 
