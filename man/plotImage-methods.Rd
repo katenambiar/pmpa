@@ -9,7 +9,7 @@
 plotImage(x, ...)
 
 \S4method{plotImage}{MultiSet}(x, arr = 1, slot = "bg", lowcol, highcol,
-  ncols = 123, titletext, ...)
+  ncols = 123, titletext, transform = "none", ...)
 }
 \arguments{
 \item{x}{MultiSet object with fMedian and/or bMedian matrices in the assayData slot
