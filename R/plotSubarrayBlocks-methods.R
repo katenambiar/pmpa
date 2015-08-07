@@ -38,7 +38,7 @@ setMethod(
     
     
     boxplot(arraydata ~ block, data = plotdata,
-            col = rep(2:4, each = max(fData(rawdata$R)$Block)/max(fData(rawdata$R)$Subarray)),
+            col = rep(2:4, each = max(fData(x)$Block)/max(fData(x)$Subarray)),
             las = 1,
             pch = 20,
             xlab = "Block",
