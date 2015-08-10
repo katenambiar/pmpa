@@ -26,6 +26,8 @@ setMethod(
       z <- sweep(fg(x), 2, y)
       assayDataElement(x, "fMedian") <- z
       
+      return(x)
+      
     } else {
       y <- fg(x)[fData(x)$ID %in% controlID, ]
       y <- apply(y, 2, median, na.rm = TRUE)
@@ -51,6 +53,8 @@ setMethod(
       y <- y - exp(mean(log(abs(y))))
       z <- sweep(exprs(x), 2, y)
       exprs(x) <- z
+      
+      return(x)
       
     } else {
       y <- exprs(x)[featureNames(x) %in% controlID, ]
