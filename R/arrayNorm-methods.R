@@ -24,7 +24,7 @@ setGeneric(
 setMethod(
   f = "arrayNorm",
   signature = "MultiSet",
-  definition = function(x, method = "none", ...){
+  definition = function(x, method = "none", skip.array = NULL, ...){
     
     if (method == "none"){
       
@@ -63,7 +63,7 @@ setMethod(
 setMethod(
   f = "arrayNorm",
   signature = "ExpressionSet",
-  definition = function(x, method = "none", ...){
+  definition = function(x, method = "none", skip.array = NULL, ...){
     
     fnames <- featureNames(x)  
     
@@ -83,9 +83,17 @@ setMethod(
       
     } else if(method == "quantile"){
       
-      exprs(x) <- normalize.quantiles(exprs(x))
-      featureNames(x) <- fnames
-      return(x)
+      if(is.null(skip.array)){
+        exprs(x) <- normalize.quantiles(exprs(x))
+        featureNames(x) <- fnames
+        return(x)
+        
+      } else {
+        exprs(x)[ ,-skip.array] <- normalize.quantiles(exprs(x)[ ,-skip.array])
+        featureNames(x) <- fnames
+        return(x)
+      }
+      
       
     } 
     
