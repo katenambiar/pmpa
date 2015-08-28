@@ -40,6 +40,7 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
   }
   
   gprHeader <- rbind.fill(gprHeader)
+  rownames(gprHeader) <- samplename
   
   dataHeader <- c(paste("F", wavelength, " Median", sep = ""), 
                   paste("F", wavelength, " Mean", sep = ""),
