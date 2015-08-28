@@ -1,8 +1,24 @@
+#' Batch Correction for peptide array data (using ComBat algorithm)
+#' 
+#' Wrapper for the ComBat function within the sva package
+#' 
+#' @param x MultiSet, ExpressionSet or matrix object
+#' @param batch vector indicating batch
+#' @param mod model matrix for outcome of interest other than the batch
+#' @return MultiSet, ExpressionSet or matrix object with batch corrected intensities
+#'  
+#' @import sva
+#' @exportMethod arrayBatchCorrect
+#' @docType methods
+#' @rdname arrayBatchCorrect-methods
 setGeneric(
   name = "arrayBatchCorrect", 
   def = function(x, ...) standardGeneric("arrayBatchCorrect")
 )
 
+
+#' @rdname arrayBatchCorrect-methods
+#' @aliases arrayBatchCorrect
 setMethod(
   f = "arrayBatchCorrect",
   signature = "MultiSet",
@@ -12,6 +28,8 @@ setMethod(
   }
 )
 
+#' @rdname arrayBatchCorrect-methods
+#' @aliases arrayBatchCorrect
 setMethod(
   f = "arrayBatchCorrect",
   signature = "ExpressionSet",
@@ -21,6 +39,8 @@ setMethod(
   }
 )
 
+#' @rdname arrayBatchCorrect-methods
+#' @aliases arrayBatchCorrect
 setMethod(
   f = "arrayBatchCorrect",
   signature = "matrix",
