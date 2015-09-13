@@ -1,4 +1,4 @@
-#' Read peptide microarray data from GPR files
+#' Reads header information from GAL or GPR files
 #' 
 #' \code{readArrayHeader} is usually called by \code{readArrays} rather than being called directly by the user.
 #' 

@@ -1,7 +1,7 @@
 #' Scatter plots of subarrays from peptide microarray data
 #' 
 #' 
-#' @param x MultiSet object with fMedian and/or bMedian matrices in the assayData slot
+#' @param x MultiSet object with fMedian matrix in the assayData slot
 #' @param arr Index indicating which array should be plotted
 #' @param subarray Vector of length = 2 indicating which subarrays should be plotted
 #' @param transform function to apply to transform the raw data
