@@ -2,7 +2,7 @@
 % Please edit documentation in R/readArrayHeader.R
 \name{readArrayHeader}
 \alias{readArrayHeader}
-\title{Read peptide microarray data from GPR files}
+\title{Reads header information from GAL or GPR files}
 \usage{
 readArrayHeader(x, wavelength, wavelength.field = "Wavelengths")
 }
