@@ -43,7 +43,7 @@ setMethod(
     }
     
     if (!is.null(feature)){
-      if (identical (fData(x)$ID, feature$ID)){
+      if (identical (fData(x)$UID, feature$UID)){
         
         fData(x) <- BiocGenerics::combine(fData(x), feature)
         
