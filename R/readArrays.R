@@ -42,14 +42,14 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
   gprHeader <- rbind.fill(gprHeader)
   rownames(gprHeader) <- samplename
   
-  dataHeader <- c(paste("F", wavelength, " Median", sep = ""), 
-                  paste("F", wavelength, " Mean", sep = ""),
-                  paste("F", wavelength, " CV", sep = ""),
-                  paste("B", wavelength, sep = ""),
-                  paste("B", wavelength, " Median", sep = ""), 
-                  paste("B", wavelength, " Mean", sep = ""), 
-                  paste("B", wavelength, " SD", sep = ""),
-                  paste("F", wavelength, " % Sat.", sep = "")
+  dataHeader <- c(sprintf("F%i Median", wavelength), 
+                  sprintf("F%i Mean", wavelength),
+                  sprintf("F%i CV", wavelength),
+                  sprintf("B%i", wavelength),
+                  sprintf("B%i Median", wavelength), 
+                  sprintf("B%i Mean", wavelength), 
+                  sprintf("B%i SD", wavelength),
+                  sprintf("F%i %% Sat.", wavelength)
   )
   
   colHeaders <- list()
@@ -80,6 +80,16 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
   
   cat("Reading", length(filePath), "array files completed")
   
+  feature.id <- lapply(gpr, function(x) sprintf("%s_%i_%i_%i", x$ID, x$Block, x$Column, x$Row))
+  
+  if(length(unique(feature.id)) == 1){
+    feature.id <- feature.id[[1]]
+    
+  } else {
+    stop("Feature data for imported GPR files is not identical.")
+  }
+  
+  
   obj <- new("MultiSet")
   assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x[,7]),
                                  fMean = sapply(gpr, function(x) x[,8]),
@@ -93,10 +103,15 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
                                  dia = sapply(gpr, function(x) x$Dia.),
                                  flags = sapply(gpr, function(x) x$Flags)
   )
-  pData(obj) <- data.frame (fileName = filename,
-                            row.names = samplename
+  sampleNames(assayData(obj)) <- samplename
+  featureNames(assayData(obj)) <- feature.id
+  
+  pData(obj) <- data.frame (row.names = samplename,
+                            fileName = filename                        
   )
-  fData(obj) <- data.frame(ID = gpr[[1]]$ID,
+  
+  fData(obj) <- data.frame(row.names = feature.id,
+                           ID = gpr[[1]]$ID,
                            Block = gpr[[1]]$Block,
                            Column = gpr[[1]]$Column,
                            Row = gpr[[1]]$Row,
@@ -104,6 +119,7 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
                            stringsAsFactors = FALSE
   )
   protocolData(obj) <- AnnotatedDataFrame(data = gprHeader)
+  experimentData(obj) <- new("MIAME")
   
   return(obj)
   
