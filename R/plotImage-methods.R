@@ -33,18 +33,22 @@ setMethod(
       transformFunc <- function(y) identity(y)
       
     } else {
-      transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
-      transformFunc <- function (y){
-        eval(transformExpression)
-      }
+      transformExpression <- parse(text = paste0(transform, "(y)"))
+      transformFunc <- function (y) eval(transformExpression)
     }
-    
+      
     if (slot == "fg"){
-      y <- transformFunc(fg(x)[ ,arr])
-    } else if (slot =="bg"){
-       y <- transformFunc(bg(x)[ ,arr])
+      y = transformFunc(fg(x)[ ,arr])
+    
+    } else if (slot == "bg"){
+        y = transformFunc(bg(x)[ ,arr])
+    
+    } else if (slot %in% assayDataElementNames(x)){
+      transformExpressionSlot <- parse(text = paste0("transformFunc(assayDataElement(x,", slot, ")[ ,arr])"))
+      y <- eval(transformExpressionSlot)
+    
     } else {
-      stop("Only 'fg' or 'bg'  slots can be plotted as a microarray image.")
+      stop("Only valid assayData slots can be plotted as a microarray image.")
     }
     
     blockrows <- max(layout[,'block.row'])
