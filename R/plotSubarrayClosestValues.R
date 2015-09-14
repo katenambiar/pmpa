@@ -68,22 +68,19 @@ setMethod(
     abline(lmfit, col = "blue")
     abline(0,1, col = "red")
     
+    betaval <- round(coef(summary(lmfit))[2,1], 3)
+    lci <- round(confint(lmfit)[2,1], 3)
+    uci <- round(confint(lmfit)[2,2], 3)
+    
     lgnd1 <- bquote(R^2== .(round(summary(lmfit)$adj.r.squared, 3)))
-    lgnd2 <- bquote(beta== .(round(coef(summary(lmfit))[2,1], 3)))
-    lgnd3 <- bquote(p== .(p1))
-    
-    
+    lgnd2 <- bquote(beta== .(betaval) * (.(lci)-.(uci)))
+
     legend("topleft", 
-           c(as.expression(lgnd1),as.expression(lgnd2),as.expression(lgnd3)),
+           c(as.expression(lgnd1), 
+             as.expression(lgnd2)),
            bty = "n",
            cex = 0.9
     )
 }
 )
-
-    
-    
-
-
-
 
