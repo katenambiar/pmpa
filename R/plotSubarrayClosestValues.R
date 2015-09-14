@@ -70,7 +70,7 @@ setMethod(
     
     lgnd1 <- bquote(R^2== .(round(summary(lmfit)$adj.r.squared, 3)))
     lgnd2 <- bquote(beta== .(round(coef(summary(lmfit))[2,1], 3)))
-    lgnd3 <- bquote(p== .(round(p1, 4)))
+    lgnd3 <- bquote(p== .(p1))
     
     
     legend("topleft", 
