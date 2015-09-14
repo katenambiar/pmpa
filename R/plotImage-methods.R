@@ -44,7 +44,7 @@ setMethod(
         y = transformFunc(bg(x)[ ,arr])
     
     } else if (slot %in% assayDataElementNames(x)){
-      transformExpressionSlot <- parse(text = paste0("transformFunc(assayDataElement(x,", slot, ")[ ,arr])"))
+      transformExpressionSlot <- parse(text = paste0("transformFunc(assayDataElement(x,'", slot, "')[ ,arr])"))
       y <- eval(transformExpressionSlot)
     
     } else {
