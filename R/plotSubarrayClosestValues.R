@@ -81,6 +81,13 @@ setMethod(
            bty = "n",
            cex = 0.9
     )
+    
+    summary.stats <- data.frame(R2 = round(summary(lmfit)$adj.r.squared, 3),
+                                Beta = betaval,
+                                LCI = lci,
+                                UCI = uci
+                                )
+    return(summary.stats)
 }
 )
 
