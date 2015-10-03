@@ -43,8 +43,9 @@ setMethod(
     }
     
     if (!is.null(feature)){
-      if (identical (fData(x)$UID, feature$UID)){
+      if (identical (featureNames(x), sprintf("%s_%i_%i_%i", feature$ID, feature$Block, feature$Column, feature$Row))){
         
+        rownames(feature) <- sprintf("%s_%i_%i_%i", feature$ID, feature$Block, feature$Column, feature$Row)
         fData(x) <- BiocGenerics::combine(fData(x), feature)
         
       } else {
