@@ -1,6 +1,7 @@
-#' Reads header information from GAL or GPR files
+#' Reads header information from GPR files
 #' 
-#' \code{readArrayHeader} is usually called by \code{readArrays} rather than being called directly by the user.
+#' \code{readArrayHeader} is usually called by \code{readArrays} 
+#' rather than being called directly by the user.
 #' 
 #' @param x filename including full path for the array header to be read
 #' @return data frame
@@ -22,9 +23,12 @@ readArrayHeader <- function(x, wavelength, wavelength.field = "Wavelengths"){
   }
   header[[i]] <- NULL
   
-  # Check ATF header length - warning issued if mismatch (potential corrupted or edited header)
+  # Check ATF header length - warning issued if mismatch
+  # (potential corrupted or edited header)
   if (as.integer(header[[2]][1]) + 2 != length(header)){
-    warning("ATF header length field in", basename(x), "incorrect. Header length of", length(header), "lines used.")
+    warning("ATF header length field in", basename(x), 
+            "incorrect. Header length of", length(header), 
+            "lines used.")
   }
   
   header[[2]] <- c("HeaderLines", length(header))

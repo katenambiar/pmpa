@@ -1,6 +1,7 @@
 #' Foreground Intensity Accessor
 #' 
-#' Extracts the matrix of foreground intensities (fMedian) from a MultiSet object created by \link{readArrays}
+#' Extracts the matrix of foreground intensities (fMedian) 
+#' from a MultiSet object created by \link{readArrays}
 #' 
 #' @param x MultiSet object
 #' @return matrix of foreground intensities
@@ -22,10 +23,11 @@ setMethod(
   }
   )
 
-#---------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 #' Background Intensity Accessor
 #' 
-#' Extracts the matrix of background intensities (bg) from a MultiSet object created by \link{readArrays}
+#' Extracts the matrix of background intensities (bg) 
+#' from a MultiSet object created by \link{readArrays}
 #' 
 #' @param x MultiSet object
 #' @return matrix of background intensities
@@ -47,10 +49,11 @@ setMethod(
   }
   )
 
-#---------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 #' Median Background Intensity Accessor
 #' 
-#' Extracts the matrix of median background intensities (bMedian) from a MultiSet object created by \link{readArrays}
+#' Extracts the matrix of median background intensities (bMedian) 
+#' from a MultiSet object created by \link{readArrays}
 #' 
 #' @param x MultiSet object
 #' @return matrix of median background intensities
@@ -72,10 +75,11 @@ setMethod(
   }
 )
 
-#---------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 #' Mean Background Intensity Accessor
 #' 
-#' Extracts the matrix of mean background intensities (bMean) from a MultiSet object created by \link{readArrays}
+#' Extracts the matrix of mean background intensities (bMean)
+#' from a MultiSet object created by \link{readArrays}
 #' 
 #' @param x MultiSet object
 #' @return matrix of mean background intensities
@@ -97,11 +101,11 @@ setMethod(
   }
 )
 
-
-#---------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 #' Flags Accessor
 #' 
-#' Extracts the matrix of flagged values from a MultiSet object created by \link{readArrays}
+#' Extracts the matrix of flagged values
+#' from a MultiSet object created by \link{readArrays}
 #' 
 #' @param x MultiSet object
 #' @return matrix of flagged values
@@ -123,11 +127,11 @@ setMethod(
   }
 )
 
-
-#---------------------------------------------------------------------------------------------------------------
+#--------------------------------------------------------------------------
 #' Diameter Accessor
 #' 
-#' Extracts the matrix of feature diameter values from a MultiSet object created by \link{readArrays}
+#' Extracts the matrix of feature diameter values
+#' from a MultiSet object created by \link{readArrays}
 #' 
 #' @param x MultiSet object
 #' @return matrix of feature diameters
