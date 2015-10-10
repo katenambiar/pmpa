@@ -50,12 +50,9 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
   
   dataHeader <- c(sprintf("F%i Median", wavelength), 
                   sprintf("F%i Mean", wavelength),
-                  sprintf("F%i CV", wavelength),
                   sprintf("B%i", wavelength),
                   sprintf("B%i Median", wavelength), 
-                  sprintf("B%i Mean", wavelength), 
-                  sprintf("B%i SD", wavelength),
-                  sprintf("F%i %% Sat.", wavelength)
+                  sprintf("B%i Mean", wavelength)
   )
   
   colHeaders <- list()
@@ -108,12 +105,9 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
   obj <- new("MultiSet")
   assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x[,7]),
                                  fMean = sapply(gpr, function(x) x[,8]),
-                                 fCV = sapply(gpr, function(x) x[,9]),
-                                 bg = sapply(gpr, function(x) x[,10]),
-                                 bMedian = sapply(gpr, function(x) x[,11]),
-                                 bMean = sapply(gpr, function(x) x[,12]),
-                                 bSD = sapply(gpr, function(x) x[,13]),
-                                 fSat = sapply(gpr, function(x) x[,14]),
+                                 bg = sapply(gpr, function(x) x[,9]),
+                                 bMedian = sapply(gpr, function(x) x[,10]),
+                                 bMean = sapply(gpr, function(x) x[,11]),
                                  fPixels = sapply(gpr, function(x) x$F.Pixels),
                                  dia = sapply(gpr, function(x) x$Dia.),
                                  flags = sapply(gpr, function(x) x$Flags)
