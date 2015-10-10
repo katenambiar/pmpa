@@ -40,7 +40,9 @@ readArrayHeader <- function(x, wavelength, wavelength.field = "Wavelengths"){
     warning("Wavelength field not found - default header values used.")
     header.data <- sapply(header, function(y) y[2])
     names(header.data) = sapply(header, function(y) y[1])
-    header.data <- data.frame(lapply(header.data, type.convert), stringsAsFactors=FALSE)
+    header.data <- data.frame(lapply(header.data, type.convert), 
+                              stringsAsFactors=FALSE
+                              )
     return (header.data)
     
   } else {
@@ -52,7 +54,9 @@ readArrayHeader <- function(x, wavelength, wavelength.field = "Wavelengths"){
     header.data <- sapply(header, function(y) y[2])
     header.data[!is.na(sapply(header, function(y) y[wl.col]))] <- wl.data
     names(header.data) = sapply(header, function(y) y[1])
-    header.data <- data.frame(lapply(header.data, type.convert), stringsAsFactors=FALSE)
+    header.data <- data.frame(lapply(header.data, type.convert), 
+                              stringsAsFactors=FALSE
+                              )
     return(header.data)    
   }
 }

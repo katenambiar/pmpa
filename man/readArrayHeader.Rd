@@ -2,7 +2,7 @@
 % Please edit documentation in R/readArrayHeader.R
 \name{readArrayHeader}
 \alias{readArrayHeader}
-\title{Reads header information from GAL or GPR files}
+\title{Reads header information from GPR files}
 \usage{
 readArrayHeader(x, wavelength, wavelength.field = "Wavelengths")
 }
@@ -13,6 +13,7 @@ readArrayHeader(x, wavelength, wavelength.field = "Wavelengths")
 data frame
 }
 \description{
-\code{readArrayHeader} is usually called by \code{readArrays} rather than being called directly by the user.
+\code{readArrayHeader} is usually called by \code{readArrays}
+rather than being called directly by the user.
 }
 

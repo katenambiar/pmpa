@@ -17,6 +17,7 @@ dia(x)
 matrix of feature diameters
 }
 \description{
-Extracts the matrix of feature diameter values from a MultiSet object created by \link{readArrays}
+Extracts the matrix of feature diameter values
+from a MultiSet object created by \link{readArrays}
 }
 

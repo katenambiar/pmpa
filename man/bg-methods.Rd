@@ -17,6 +17,7 @@ bg(x)
 matrix of background intensities
 }
 \description{
-Extracts the matrix of background intensities (bg) from a MultiSet object created by \link{readArrays}
+Extracts the matrix of background intensities (bg)
+from a MultiSet object created by \link{readArrays}
 }
 

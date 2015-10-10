@@ -17,6 +17,7 @@ fg(x)
 matrix of foreground intensities
 }
 \description{
-Extracts the matrix of foreground intensities (fMedian) from a MultiSet object created by \link{readArrays}
+Extracts the matrix of foreground intensities (fMedian)
+from a MultiSet object created by \link{readArrays}
 }
 
