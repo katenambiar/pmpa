@@ -1,6 +1,7 @@
 #' Boxplots of array blocks (print tip groups) from peptide microarray data
 #' 
-#' @param x MultiSet object with fMedian and/or bMedian matrices in the assayData slot
+#' @param x MultiSet object with fMedian and/or bMedian matrices 
+#' in the assayData slot
 #' @param arr Index indicating which array should be plotted
 #' @param transform function to apply to transform the raw data
 #' @return plot on current graphics device
@@ -34,7 +35,10 @@ setMethod(
     
     arraydata <- transformFunc(fg(x[ ,arr]))
     
-    plotdata <- data.frame(block = fData(x)$Block, subarray = fData(x)$Subarray, arraydata)
+    plotdata <- data.frame(block = fData(x)$Block, 
+                           subarray = fData(x)$Subarray, 
+                           arraydata
+                           )
     
     
     boxplot(arraydata ~ block, data = plotdata,

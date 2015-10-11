@@ -55,7 +55,8 @@ setMethod(
     phenoData(obj) <- phenoData(x)
     fData(obj) <- fData(x)[!duplicated(fData(x)$ID), ]
     featureNames(obj) <- fData(obj)$ID
-    fData(obj) <- fData(obj)[ ,!(names(fData(obj)) %in% c("ID", "Block", "Column", "Row")), drop = FALSE]                     
+    fData(obj) <- fData(obj)[ ,!(names(fData(obj)) %in% 
+       c("ID", "Block", "Column", "Row")), drop = FALSE]                     
     experimentData(obj) <- experimentData(x)
     protocolData(obj) <- protocolData(x)
                              
@@ -64,7 +65,8 @@ setMethod(
 )
 
 
-#' Calculate the mean of intra-array replicates (INTERNAL FUNCTION)
+#' Calculate the mean of intra-array replicates 
+#' (INTERNAL FUNCTION)
 #' @keywords internal
 .meanID <- function(x, ID){
   csum <- rowsum(x, group = ID, reorder = TRUE, na.rm = TRUE)
@@ -73,7 +75,8 @@ setMethod(
   return (cmean)
 }
 
-#' Calculate the CV of intra-array replicates (INTERNAL FUNCTION)
+#' Calculate the CV of intra-array replicates 
+#' (INTERNAL FUNCTION)
 #' @keywords internal
 .cvID <- function(x, ID){
   csum <- rowsum(x, group = ID, reorder = TRUE, na.rm = TRUE)
@@ -85,8 +88,9 @@ setMethod(
   return(cv)
 }
 
-#' Mean of closest pair of subarray replicates if CV over threshold value (INTERNAL FUNCTION)
-#' Only works for triple subarray microarrays
+#' Mean of closest pair of subarray replicates if CV over threshold value 
+#' (INTERNAL FUNCTION)
+#' For triple subarray microarrays only
 #' @keywords internal
 .meanClosestPair <- function(x, cv.threshold ){
   x.mean <- mean(x, na.rm = TRUE)
