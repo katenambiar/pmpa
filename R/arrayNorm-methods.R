@@ -1,13 +1,11 @@
-#' Normalisation
+#' Normalisation for peptide microarray data
 #' 
-#' Implements local background correction for peptide microarray data
-#' 
-#' @param x MultiSet object with fMedian and bMedian matrices in the assayData slot
-#' @param method Character string specifying background correction method. 
-#' Valid methods are 'none', 'subtract', 'edwards', ratio' or 'normexp'. Defaults to 'none' if no method is specified.
-#' @param offset numeric value added to raw signal intensity before background correction is implemented
-#' @param transform Expression to transform raw data. Defaults to log2
-#' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
+#' @param x MultiSet object with fMedian matrix in the assayData slot
+#' @param method Character string specifying normalisation method. 
+#' Valid methods are 'none', 'scale', 'quantile' or 'LM'. 
+#' Defaults to 'none' if no method is specified.
+#' @param ... additional arguments passed to scaleNorm or lmNorm
+#' @return MultiSet object with normalised signal in the fMedian matrix
 #'  
 #' @importFrom preprocessCore normalize.quantiles
 #' @exportMethod arrayNorm
@@ -24,7 +22,7 @@ setGeneric(
 setMethod(
   f = "arrayNorm",
   signature = "MultiSet",
-  definition = function(x, method = "none", skip.array = NULL, ...){
+  definition = function(x, method = "none", ...){
     
     if (method == "none"){
       
@@ -34,13 +32,7 @@ setMethod(
 
       x <- scaleNorm(x, ...)
       return(x)
-      
-    } else if(method == "scaleGMM"){
-      
-      assayDataElement(x, "fMedian") <- scaleNormGMM(fg(x))
-      return(x)
-      
-      
+
     } else if(method == "quantile"){
       
       assayDataElement(x, "fMedian") <- normalize.quantiles(fg(x))
@@ -87,14 +79,7 @@ setMethod(
         exprs(x) <- normalize.quantiles(exprs(x))
         featureNames(x) <- fnames
         return(x)
-        
-      } else {
-        exprs(x)[ ,-skip.array] <- normalize.quantiles(exprs(x)[ ,-skip.array])
-        featureNames(x) <- fnames
-        return(x)
-      }
-      
-      
+        }
     } 
     
     stop("Method must be either 'scale', 'quantile', or 'none'")

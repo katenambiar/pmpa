@@ -1,9 +1,12 @@
 #' Scale Normalisation
 #' 
 #' 
-#' @param x MultiSet object with fMedian matrices in the assayData slot
-#' @param offset numeric value added to raw signal intensity before background correction is implemented
-#' @return MultiSet object with normalised foreground signal in the fMedian matrix
+#' @param x MultiSet object with fMedian matrices 
+#' in the assayData slot
+#' @param offset numeric value added to raw signal intensity 
+#' before background correction is implemented
+#' @return MultiSet object with normalised 
+#' foreground signal in the fMedian matrix
 #'  
 #' @exportMethod scaleNorm
 #' @docType methods
@@ -68,14 +71,3 @@ setMethod(
     
   }
 )
-
-#' Scale columns of a matrix to a common median (INTERNAL FUNCTION)
-#' @keywords internal
-.medianScaleMatrix <- function(x){
-  y <- apply(x, 2, median, na.rm = TRUE)
-  y <- y - exp(mean(log(abs(y))))
-  z <- sweep(x, 2, y)
-  return(z)
-}
-
-
