@@ -1,8 +1,9 @@
-#' Within array scaling normalisation of print tip blocks
+#' Within array scaling normalisation of blocks (print-tip groups)
 #' 
 #' @param x MultiSet object with fMedian matrices in the assayData slot
 #' @param arr integer value corresponding to array to be normalised
-#' @return MultiSet object with normalised foreground signal in the fMedian matrix
+#' @return MultiSet object with normalised foreground signal 
+#' in the fMedian matrix
 #'  
 #' @exportMethod blockScaleNorm
 #' @docType methods
@@ -29,3 +30,13 @@ setMethod(
     return(x)
   }
 )
+
+#--------------------------------------------------------------------------
+#' Scale columns of a matrix to a common median (INTERNAL FUNCTION)
+#' @keywords internal
+.medianScaleMatrix <- function(x){
+  y <- apply(x, 2, median, na.rm = TRUE)
+  y <- y - exp(mean(log(abs(y))))
+  z <- sweep(x, 2, y)
+  return(z)
+}
