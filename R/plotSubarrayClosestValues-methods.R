@@ -1,6 +1,5 @@
 #' Scatter plot of closest two values from subarrays of peptide microarray data
 #' 
-#' 
 #' @param x MultiSet object with fMedian matrix in the assayData slot
 #' @param arr Index indicating which array should be plotted
 #' @param transform function to apply to transform the raw data
@@ -71,8 +70,10 @@ setMethod(
     
     lmfit <- lm(SA.y ~ SA.x, data = plotdata.final,)
     lmfit.1 <- lm(SA.y-SA.x ~ SA.x, data = plotdata.final,)
-    p <- (1 - pt(coef(summary(lmfit))[2,1]/coef(summary(lmfit))[2,2], lmfit$df.residual))*2
-    p1 <- (1 - pt(abs(coef(summary(lmfit))[2,1] - 1)/coef(summary(lmfit))[2,2], lmfit$df.residual))*2
+    p <- (1 - pt(coef(summary(lmfit))[2,1]/coef(summary(lmfit))[2,2], 
+                 lmfit$df.residual))*2
+    p1 <- (1 - pt(abs(coef(summary(lmfit))[2,1] - 1)/coef(summary(lmfit))[2,2], 
+                  lmfit$df.residual))*2
     
     abline(lmfit, col = "blue")
     abline(0,1, col = "red")

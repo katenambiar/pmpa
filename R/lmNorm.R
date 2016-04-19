@@ -15,7 +15,8 @@
 #' as a factor in the linear model (default = TRUE)
 #' @return matrix of normalised intensities
 #' @export
-lmNorm <- function(x, sampleID = sampleNames(x), featureID = fData(x)$ID, controlID = NULL, include.subarrays = TRUE){
+lmNorm <- function(x, sampleID = sampleNames(x), featureID = fData(x)$ID, 
+                   controlID = NULL, include.subarrays = TRUE){
   
   if(include.subarrays == TRUE){
     

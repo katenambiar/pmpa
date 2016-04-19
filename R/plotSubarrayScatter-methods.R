@@ -20,7 +20,8 @@ setGeneric(
 setMethod(
   f = "plotSubarrayScatter",
   signature = "MultiSet",
-  definition = function(x, arr, subarray = c(1,2), flagval = -100, transform = "log2", ...){
+  definition = function(x, arr, subarray = c(1,2), flagval = -100, 
+                        transform = "log2", ...){
     if (is.function(transform)){
       transformFunc <- transform
       
