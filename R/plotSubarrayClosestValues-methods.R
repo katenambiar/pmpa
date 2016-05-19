@@ -57,7 +57,6 @@ setMethod(
     }
     
     plotdata.final <- do.call("rbind", a)
-    
     plot(SA.y ~ SA.x, data = plotdata.final,
          las = 1,
          pch = 20,
@@ -81,7 +80,6 @@ setMethod(
     betaval <- round(coef(summary(lmfit))[2,1], 3)
     lci <- round(confint(lmfit)[2,1], 3)
     uci <- round(confint(lmfit)[2,2], 3)
-    
     lgnd1 <- bquote(R^2== .(round(summary(lmfit)$adj.r.squared, 3)))
     lgnd2 <- bquote(beta== .(betaval) * (.(lci)-.(uci)))
 
