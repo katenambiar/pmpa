@@ -41,5 +41,12 @@ setMethod(
          pos = 4, 
          col = "red"
     )
+    
+    text(M ~ A, data = MAdata[(nrow(MAdata) - nlabels):nrow(MAdata), ],
+         labels = rownames(MAdata)[(nrow(MAdata) - nlabels):nrow(MAdata)], 
+         cex = 0.5, 
+         pos = 4, 
+         col = "red"
+    )
   }
 )
