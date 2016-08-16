@@ -20,14 +20,14 @@ setGeneric(
 setMethod(
   f = "maplot",
   signature = "ExpressionSet",
-  definition = function(x, arrayID, labels = FALSE, nlabels = 1, ...){
+  definition = function(x, arrayID, labels = FALSE, nlabels = 1, label.names = featureNames(x), ...){
     if(length(arrayID) != 2){
       stop("arrayID must be an integer vector of length 2 corresponding to the arrays to be plotted.")
     }
     y <- exprs(x)
     M <- y[ ,arrayID[1]] - y[ ,arrayID[2]]
     A <- (y[ ,arrayID[1]] + y[ ,arrayID[2]])/2
-    MAdata <- data.frame(M, A, row.names = featureNames(x))
+    MAdata <- data.frame(M, A, row.names = label.names)
     MAdata <- MAdata[order(MAdata$M, decreasing = TRUE), ]
     
     plot(M ~ A, data = MAdata, ...)
