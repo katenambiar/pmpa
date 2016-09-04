@@ -44,9 +44,19 @@ setMethod(
     
     if (!is.null(feature)){
       if (identical (featureNames(x), 
-                     sprintf("%s_%i_%i_%i", feature$ID, feature$Block, feature$Column, feature$Row))){
+                     sprintf("%s_%i_%i_%i", 
+                             feature$ID, 
+                             feature$Block, 
+                             feature$Column, 
+                             feature$Row))){
         
-        rownames(feature) <- sprintf("%s_%i_%i_%i", feature$ID, feature$Block, feature$Column, feature$Row)
+        rownames(feature) <- 
+          sprintf("%s_%i_%i_%i", 
+                  feature$ID, 
+                  feature$Block, 
+                  feature$Column, 
+                  feature$Row
+                  )
         fData(x) <- BiocGenerics::combine(fData(x), feature)
         
       } else {
@@ -66,7 +76,10 @@ setMethod(
   signature = "ExpressionSet",
   definition = function(x, pheno = NULL, protocol = NULL, feature = NULL){
     if (!is.null(pheno)){
-      phAnnot <- read.AnnotatedDataFrame(pheno, stringsAsFactors = FALSE, row.names = "sampleName")
+      phAnnot <- read.AnnotatedDataFrame(pheno, 
+                                         stringsAsFactors = FALSE, 
+                                         row.names = "sampleName"
+                                         )
       if (identical (sampleNames(x), rownames(phAnnot))){
         
         dimLabels(phAnnot) <- c("sampleNames", "sampleColumns")
@@ -78,7 +91,10 @@ setMethod(
     }
     
     if (!is.null(protocol)){
-      prAnnot <- read.AnnotatedDataFrame(protocol, stringsAsFactors = FALSE, row.names = "sampleName")
+      prAnnot <- read.AnnotatedDataFrame(protocol, 
+                                         stringsAsFactors = FALSE, 
+                                         row.names = "sampleName"
+                                         )
       if (identical (sampleNames(x), sampleNames(prAnnot))){
         
         protocolData(x) <- BiocGenerics::combine(protocolData(x), prAnnot)

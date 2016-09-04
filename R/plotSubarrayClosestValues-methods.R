@@ -35,21 +35,23 @@ setMethod(
     minval <- min(arraydata)
     maxval <- max(arraydata)
     
-    plotdata <- list(P1_2 = data.frame(SA.x = arraydata[fData(x)$Subarray == 1, ], 
-                                       SA.y  = arraydata[fData(x)$Subarray == 2, ]
-                                       ),
-                     P1_3 = data.frame(SA.x = arraydata[fData(x)$Subarray == 1, ], 
-                                       SA.y  = arraydata[fData(x)$Subarray == 3, ]
-                                       ),
-                     P2_3 = data.frame(SA.x = arraydata[fData(x)$Subarray == 2, ], 
-                                       SA.y  = arraydata[fData(x)$Subarray == 3, ]
-                                       )
+    plotdata <- 
+      list(P1_2 = data.frame(SA.x = arraydata[fData(x)$Subarray == 1, ], 
+                             SA.y  = arraydata[fData(x)$Subarray == 2, ]
+      ),
+      P1_3 = data.frame(SA.x = arraydata[fData(x)$Subarray == 1, ], 
+                        SA.y  = arraydata[fData(x)$Subarray == 3, ]
+      ),
+      P2_3 = data.frame(SA.x = arraydata[fData(x)$Subarray == 2, ], 
+                        SA.y  = arraydata[fData(x)$Subarray == 3, ]
+      )
     )
     
-    plotdata.abs.diff <- cbind(abs(plotdata$P1_2[,1]-plotdata$P1_2[,2]), 
-                               abs(plotdata$P1_3[,1]-plotdata$P1_2[,2]), 
-                               abs(plotdata$P2_3[,1]-plotdata$P2_3[,2])
-                               )
+    plotdata.abs.diff <- 
+      cbind(abs(plotdata$P1_2[,1]-plotdata$P1_2[,2]), 
+            abs(plotdata$P1_3[,1]-plotdata$P1_2[,2]), 
+            abs(plotdata$P2_3[,1]-plotdata$P2_3[,2])
+      )
     plotdata.closest <- apply(plotdata.abs.diff, 1, which.min)
     
     a <- list()
@@ -91,11 +93,12 @@ setMethod(
            cex = 0.9
     )
     
-    summary.stats <- data.frame(R2 = round(summary(lmfit)$adj.r.squared, 3),
-                                Beta = betaval,
-                                LCI = lci,
-                                UCI = uci
-                                )
+    summary.stats <- 
+      data.frame(R2 = round(summary(lmfit)$adj.r.squared, 3),
+                 Beta = betaval,
+                 LCI = lci,
+                 UCI = uci
+      )
     return(summary.stats)
 }
 )
