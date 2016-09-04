@@ -1,4 +1,5 @@
-#' Scatter plot of closest two values from subarrays of peptide microarray data
+#' Scatter plot of closest two values from subarrays 
+#' of peptide microarray data
 #' 
 #' @param x MultiSet object with fMedian matrix in the assayData slot
 #' @param arr Index indicating which array should be plotted
@@ -26,7 +27,7 @@ setMethod(
       transformFunc <- function(y) identity(y)
       
     } else {
-      transformExpression <- parse(text = paste(transform, "(y)", sep = ""))
+      transformExpression <- parse(text = paste0(transform, "(y)"))
       transformFunc <- function (y) eval(transformExpression)
     }
     
