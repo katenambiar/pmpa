@@ -16,7 +16,8 @@ readArrayHeader <- function(x, wavelength, wavelength.field = "Wavelengths"){
   repeat{
     i <- i + 1
     header.lines <- readLines(con, n = 1)
-    header[[i]] <- strsplit(sub("^\"", "", sub("\"$", "", header.lines)), split = "=|\t")[[1]]
+    header[[i]] <- strsplit(sub("^\"", "", sub("\"$", "", header.lines)), 
+                            split = "=|\t")[[1]]
     if(grepl("Name", header.lines) & grepl("ID", header.lines)){
       break
     }

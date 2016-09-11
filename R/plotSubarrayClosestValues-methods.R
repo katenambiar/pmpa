@@ -1,6 +1,5 @@
 #' Scatter plot of closest two values from subarrays of peptide microarray data
 #' 
-#' 
 #' @param x MultiSet object with fMedian matrix in the assayData slot
 #' @param arr Index indicating which array should be plotted
 #' @param transform function to apply to transform the raw data
@@ -58,7 +57,6 @@ setMethod(
     }
     
     plotdata.final <- do.call("rbind", a)
-    
     plot(SA.y ~ SA.x, data = plotdata.final,
          las = 1,
          pch = 20,
@@ -71,8 +69,10 @@ setMethod(
     
     lmfit <- lm(SA.y ~ SA.x, data = plotdata.final,)
     lmfit.1 <- lm(SA.y-SA.x ~ SA.x, data = plotdata.final,)
-    p <- (1 - pt(coef(summary(lmfit))[2,1]/coef(summary(lmfit))[2,2], lmfit$df.residual))*2
-    p1 <- (1 - pt(abs(coef(summary(lmfit))[2,1] - 1)/coef(summary(lmfit))[2,2], lmfit$df.residual))*2
+    p <- (1 - pt(coef(summary(lmfit))[2,1]/coef(summary(lmfit))[2,2], 
+                 lmfit$df.residual))*2
+    p1 <- (1 - pt(abs(coef(summary(lmfit))[2,1] - 1)/coef(summary(lmfit))[2,2], 
+                  lmfit$df.residual))*2
     
     abline(lmfit, col = "blue")
     abline(0,1, col = "red")
@@ -80,7 +80,6 @@ setMethod(
     betaval <- round(coef(summary(lmfit))[2,1], 3)
     lci <- round(confint(lmfit)[2,1], 3)
     uci <- round(confint(lmfit)[2,2], 3)
-    
     lgnd1 <- bquote(R^2== .(round(summary(lmfit)$adj.r.squared, 3)))
     lgnd2 <- bquote(beta== .(betaval) * (.(lci)-.(uci)))
 

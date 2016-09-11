@@ -2,7 +2,8 @@
 #' 
 #' Implements local background correction for peptide microarray data
 #' 
-#' @param x MultiSet object with fMedian and bMedian matrices in the assayData slot
+#' @param x MultiSet object with fMedian and 
+#' bMedian matrices in the assayData slot
 #' @param method Character string specifying background correction method. 
 #' Valid methods are 'none', 'subtract', 'edwards', ratio' or 'normexp'. 
 #' Defaults to 'none' if no method is specified.
@@ -48,13 +49,14 @@ setMethod(
     }
     
     if (method == "none"){
-      assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
+      assayDataElement(x, "fMedian") <- 
+        transformFunc(assayDataElement(x, "fMedian"))
       return (x)
       
       
     } else if (method == "subtract"){
-      assayDataElement(x, "fMedian") <- (assayDataElement(x, "fMedian") + offset) 
-      - assayDataElement(x, "bMedian")
+      assayDataElement(x, "fMedian") <- 
+        (assayDataElement(x, "fMedian") + offset) - assayDataElement(x, "bMedian")
       assayDataElement(x, "fMedian")[assayDataElement(x, "fMedian") <= 0] <- offset
       assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
       return(x)
@@ -74,9 +76,12 @@ setMethod(
       
       
     } else if (method == "normexp"){
-      assayDataElement(x, "fMedian") <- backgroundCorrect.matrix(E = assayDataElement(x, 
-         "fMedian"), Eb = assayDataElement(x, "bMedian"), method = "normexp", offset = offset, ...)
-      assayDataElement(x, "fMedian") <- transformFunc(assayDataElement(x, "fMedian"))
+      assayDataElement(x, "fMedian") <- 
+        backgroundCorrect.matrix(E = assayDataElement(x, "fMedian"), 
+                                 Eb = assayDataElement(x, "bMedian"), 
+                                 method = "normexp", offset = offset, ...)
+      assayDataElement(x, "fMedian") <- 
+        transformFunc(assayDataElement(x, "fMedian"))
       return(x)
       
       

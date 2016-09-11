@@ -1,14 +1,17 @@
 #' Image plot of microarray data
 #' 
-#' Creates image plot representing the microarray foreground or background signal intensity
+#' Creates image plot representing the microarray
+#' foreground or background signal intensity
 #' organised by the spatial location of the spots on the array.
 #' 
-#' @param x MultiSet object with fMedian and/or bMedian matrices in the assayData slot
+#' @param x MultiSet object with fMedian and/or 
+#' bMedian matrices in the assayData slot
 #' and layout data (block, column and row) in the fData slot.
 #' @param lowcol Colour associated with low signal intensities
 #' @param highcol Colour associated with high signal intensities
 #' @param ncols number of colour shades used
-#' @return MultiSet object with transformed and background corrected foreground signal in the fMedian matrix
+#' @return MultiSet object with transformed and 
+#' background corrected foreground signal in the fMedian matrix
 #'  
 #' @export
 #' @docType methods
@@ -23,7 +26,8 @@ setGeneric(
 setMethod(
   f = "plotImage",
   signature = "MultiSet",
-  definition = function(x, arr = 1, slot = "bg", lowcol, highcol, ncols = 123, titletext, transform = "none", ...){
+  definition = function(x, arr = 1, slot = "bg", lowcol, highcol, 
+                        ncols = 123, titletext, transform = "none", ...){
     layout <- getArrayLayout(x)
     
     if (is.function(transform)){
@@ -44,7 +48,8 @@ setMethod(
         y = transformFunc(bg(x)[ ,arr])
     
     } else if (slot %in% assayDataElementNames(x)){
-      transformExpressionSlot <- parse(text = paste0("transformFunc(assayDataElement(x,'", slot, "')[ ,arr])"))
+      transformExpressionSlot <- 
+        parse(text = paste0("transformFunc(assayDataElement(x,'", slot, "')[ ,arr])"))
       y <- eval(transformExpressionSlot)
     
     } else {

@@ -1,16 +1,21 @@
 #' Read peptide microarray data from GPR files
 #' 
-#' \code{readArrays} is a function used to read in peptide microarray data 
-#' from Genepix GPR files (in Axon ATF format). It produces a Bioconductor 
-#' MultiSet object with microarray signal intensity data (foreground 
-#' intensity, background intensity and other measures for assessing 
-#' feature quality) in the assayData slot. A minimal annotation set 
-#' is created by recording sample data (sample unique identifier and file name) 
-#' in the phenoData slot, and feature data (feature names and ID, and 
-#' layout information) in the featureData slot. The scan date and time 
-#' for the GPR file (if recorded in the GPR header) is written to the 
-#' annnotated data frame in the protocolData slot. Only signal intensity 
-#' data from a single wavelength (single colour data) is imported.
+#' \code{readArrays} is a function used to read 
+#' in peptide microarray data from Genepix GPR files 
+#' (in Axon ATF format). It produces a Bioconductor 
+#' MultiSet object with microarray signal intensity 
+#' data (foreground intensity, background intensity 
+#' and other measures for assessing feature quality) 
+#' in the assayData slot. A minimal annotation set 
+#' is created by recording sample data 
+#' (sample unique identifier and file name) 
+#' in the phenoData slot, and feature data 
+#' (feature names and ID, and layout information)
+#' in the featureData slot. The scan date and time 
+#' for the GPR file (if recorded in the GPR header) 
+#' is written to the annnotated data frame in the 
+#' protocolData slot. Only signal intensity data from 
+#' a single wavelength (single colour data) is imported.
 #' 
 #' @param files a data frame with 3 columns: 
 #' sampleName - unique identifier for the sample,
@@ -21,7 +26,8 @@
 #' @return an object of class MultiSet
 #' @import plyr
 #' @export
-readArrays <- function(samplename = NULL, filename = NULL, path = NULL, wavelength = NULL) {
+readArrays <- function(samplename = NULL, filename = NULL, 
+                       path = NULL, wavelength = NULL) {
   if(is.null(samplename)){
     stop("At least one sample name must be specified.")
   }
@@ -57,14 +63,17 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
   
   colHeaders <- list()
   for (i in 1:length(filePath)){
-    colHeaders[[i]] <- read.table(filePath[i], 
-                                  skip = gprHeader$HeaderLines[i], 
-                                  nrows = 1, 
-                                  stringsAsFactors = FALSE, 
-                                  sep = "\t"
-                                  )
+    colHeaders[[i]] <- 
+      read.table(filePath[i],
+                 skip = gprHeader$HeaderLines[i], 
+                 nrows = 1, 
+                 stringsAsFactors = FALSE, 
+                 sep = "\t"
+      )
+                
     colHeaders[[i]] <- colHeaders[[i]] %in% 
-      c("Block", "Column", "Row", "Name", "ID", "Dia.", dataHeader, "F Pixels", "Flags")
+      c("Block", "Column", "Row", "Name", "ID", 
+        "Dia.", dataHeader, "F Pixels", "Flags")
   }
   
   colClasses <- list()
@@ -103,15 +112,16 @@ readArrays <- function(samplename = NULL, filename = NULL, path = NULL, waveleng
   
   
   obj <- new("MultiSet")
-  assayData(obj) <- assayDataNew(fMedian = sapply(gpr, function(x) x[,7]),
-                                 fMean = sapply(gpr, function(x) x[,8]),
-                                 bg = sapply(gpr, function(x) x[,9]),
-                                 bMedian = sapply(gpr, function(x) x[,10]),
-                                 bMean = sapply(gpr, function(x) x[,11]),
-                                 fPixels = sapply(gpr, function(x) x$F.Pixels),
-                                 dia = sapply(gpr, function(x) x$Dia.),
-                                 flags = sapply(gpr, function(x) x$Flags)
-  )
+  assayData(obj) <- 
+    assayDataNew(fMedian = sapply(gpr, function(x) x[,7]),
+                 fMean = sapply(gpr, function(x) x[,8]),
+                 bg = sapply(gpr, function(x) x[,9]),
+                 bMedian = sapply(gpr, function(x) x[,10]),
+                 bMean = sapply(gpr, function(x) x[,11]),
+                 fPixels = sapply(gpr, function(x) x$F.Pixels),
+                 dia = sapply(gpr, function(x) x$Dia.),
+                 flags = sapply(gpr, function(x) x$Flags)
+                 )
   sampleNames(assayData(obj)) <- samplename
   featureNames(assayData(obj)) <- feature.id
   
