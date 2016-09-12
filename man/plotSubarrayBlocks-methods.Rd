@@ -11,7 +11,8 @@ plotSubarrayBlocks(x, ...)
 \S4method{plotSubarrayBlocks}{MultiSet}(x, arr, transform = "log2", ...)
 }
 \arguments{
-\item{x}{MultiSet object with fMedian and/or bMedian matrices in the assayData slot}
+\item{x}{MultiSet object with fMedian and/or bMedian matrices
+in the assayData slot}
 
 \item{arr}{Index indicating which array should be plotted}
 

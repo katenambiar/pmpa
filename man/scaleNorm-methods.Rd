@@ -25,14 +25,17 @@ scaleNorm(x, ...)
 \item{offset}{numeric value added to raw signal intensity before
 background correction is implemented}
 
-\item{x}{MultiSet object with fMedian matrices in the assayData slot}
+\item{x}{MultiSet object with fMedian matrices
+in the assayData slot}
 
-\item{offset}{numeric value added to raw signal intensity before background correction is implemented}
+\item{offset}{numeric value added to raw signal intensity
+before background correction is implemented}
 }
 \value{
 MultiSet object with normalised foreground signal in the fMedian matrix
 
-MultiSet object with normalised foreground signal in the fMedian matrix
+MultiSet object with normalised
+foreground signal in the fMedian matrix
 }
 \description{
 Scale Normalisation

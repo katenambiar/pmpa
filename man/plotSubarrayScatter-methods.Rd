@@ -16,7 +16,8 @@ plotSubarrayScatter(x, ...)
 
 \item{arr}{Index indicating which array should be plotted}
 
-\item{subarray}{Vector of length = 2 indicating which subarrays should be plotted}
+\item{subarray}{Vector of length = 2 indicating
+which subarrays should be plotted}
 
 \item{transform}{function to apply to transform the raw data}
 }

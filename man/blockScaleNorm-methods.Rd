@@ -4,7 +4,7 @@
 \name{blockScaleNorm}
 \alias{blockScaleNorm}
 \alias{blockScaleNorm,MultiSet-method}
-\title{Within array scaling normalisation of print tip blocks}
+\title{Within array scaling normalisation of blocks (print-tip groups)}
 \usage{
 blockScaleNorm(x, ...)
 
@@ -16,9 +16,10 @@ blockScaleNorm(x, ...)
 \item{arr}{integer value corresponding to array to be normalised}
 }
 \value{
-MultiSet object with normalised foreground signal in the fMedian matrix
+MultiSet object with normalised foreground signal
+in the fMedian matrix
 }
 \description{
-Within array scaling normalisation of print tip blocks
+Within array scaling normalisation of blocks (print-tip groups)
 }
 
