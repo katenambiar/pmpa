@@ -96,7 +96,10 @@ lmNorm <- function(x, sampleID = sampleNames(x), featureID = fData(x)$ID,
       )
       fit <- lm(Intensity ~ Sample, data = modeldata)
       norm <- coef(fit)[-1]
-      normmat <- matrix(rep(c(0, norm), times = nrow(x)), ncol = ncol(x), byrow = TRUE)
+      normmat <- matrix(rep(c(0, norm), times = nrow(x)), 
+                        ncol = ncol(x), 
+                        byrow = TRUE
+                        )
       normdata <- fg(x) - normmat
       return (normdata)
       
@@ -109,7 +112,10 @@ lmNorm <- function(x, sampleID = sampleNames(x), featureID = fData(x)$ID,
       )
       fit <- lm(Intensity ~ Sample, data = modeldata)
       norm <- coef(fit)[-1]
-      normmat <- matrix(rep(c(0, norm), times = nrow(x)), ncol = ncol(x), byrow = TRUE)
+      normmat <- matrix(rep(c(0, norm), times = nrow(x)), 
+                        ncol = ncol(x), 
+                        byrow = TRUE
+                        )
       normdata <- fg(x) - normmat
       return (normdata)
     }

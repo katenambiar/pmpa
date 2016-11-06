@@ -1,11 +1,14 @@
-#' Batch Correction for peptide array data (using ComBat algorithm)
+#' Batch Correction for peptide array data 
+#' (using ComBat algorithm)
 #' 
 #' Wrapper for the ComBat function within the sva package
 #' 
 #' @param x MultiSet, ExpressionSet or matrix object
 #' @param batch vector indicating batch
-#' @param mod model matrix for outcome of interest other than the batch
-#' @return MultiSet, ExpressionSet or matrix object with batch corrected intensities
+#' @param mod model matrix for outcome of interest 
+#' other than the batch
+#' @return MultiSet, ExpressionSet or matrix object 
+#' with batch corrected intensities
 #'  
 #' @import sva
 #' @exportMethod arrayBatchCorrect
