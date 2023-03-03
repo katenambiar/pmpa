@@ -12,6 +12,11 @@ arrayQAplot <- function(x, arr, titletext, transform = "log2"){
          widths = c(1.4, 0.8, 0.8, 1)
          )
   
+ 
+df1<-getArrayLayout(rawdata)
+
+fData(rawdata)$Subarray<-df1[,5]
+  
   plotImage(x, arr, 
             slot = "fg", 
             lowcol = "white", 
