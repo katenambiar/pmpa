@@ -13,9 +13,9 @@ arrayQAplot <- function(x, arr, titletext, transform = "log2"){
          )
   
  
-df1<-getArrayLayout(rawdata)
+df1<-getArrayLayout(x)
 
-fData(rawdata)$Subarray<-df1[,5]
+fData(x)$Subarray<-df1[,5]
   
   plotImage(x, arr, 
             slot = "fg", 
