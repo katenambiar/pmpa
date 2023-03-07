@@ -13,9 +13,7 @@ arrayQAplot <- function(x, arr, titletext, transform = "log2"){
          )
   
  
-df1<-getArrayLayout(x)
 
-fData(x)$Subarray<-df1[,5]
   
  plotSubarrayBlocks(x, arr, 
                      outcex = 0.6, 
