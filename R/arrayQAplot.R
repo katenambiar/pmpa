@@ -17,6 +17,11 @@ df1<-getArrayLayout(x)
 
 fData(x)$Subarray<-df1[,5]
   
+ plotSubarrayBlocks(x, arr, 
+                     outcex = 0.6, 
+                     transform = transform
+                     )
+  
   plotImage(x, arr, 
             slot = "fg", 
             lowcol = "white", 
@@ -30,10 +35,7 @@ fData(x)$Subarray<-df1[,5]
             highcol = "black", 
             titletext = "BG Image"
             )
-  plotSubarrayBlocks(x, arr, 
-                     outcex = 0.6, 
-                     transform = transform
-                     )
+
   plotSubarrayScatter(x, arr, 
                       c(1,2), 
                       cex = 0.6, 
