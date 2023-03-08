@@ -8,6 +8,7 @@
 #' @export
 arrayQAplot <- function(x, arr, titletext, transform = "log2"){
   par(oma = c(0, 0, 3, 0))
+  par(mar = c(1,1,1,1)))
   layout(matrix(c(1:6,2,3,7,8),2,5, byrow = T), 
          widths = c(1.4, 0.8, 0.8, 1)
          )
