@@ -8,13 +8,21 @@
 #' @export
 arrayQAplot <- function(x, arr, titletext, transform = "log2"){
   par(oma = c(0, 0, 3, 0))
+  par(mar = c(1,1,1,1))
   layout(matrix(c(1:6,2,3,7,8),2,5, byrow = T), 
          widths = c(1.4, 0.8, 0.8, 1)
          )
-  plotSubarrayBlocks(x, arr, 
+  
+df1<-getArrayLayout(x)
+
+fData(x)$Subarray<-df1[,5] 
+
+  
+ plotSubarrayBlocks(x, arr, 
                      outcex = 0.6, 
                      transform = transform
                      )
+  
   plotImage(x, arr, 
             slot = "fg", 
             lowcol = "white", 
@@ -28,6 +36,7 @@ arrayQAplot <- function(x, arr, titletext, transform = "log2"){
             highcol = "black", 
             titletext = "BG Image"
             )
+
   plotSubarrayScatter(x, arr, 
                       c(1,2), 
                       cex = 0.6, 
